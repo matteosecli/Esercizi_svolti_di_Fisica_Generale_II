@@ -1,0 +1,180 @@
+\documentclass[a4paper,oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{type1cm}
+\usepackage[italian]{babel}
+\usepackage{amsthm}
+\renewenvironment{proof}
+	{\noindent\textsc{Soluzione:}}
+	{\begin{flushright}$\blacksquare$\end{flushright}\vskip 1em}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{cancel}
+\usepackage{graphicx}
+\usepackage{asymptote}
+\usepackage{geometry}
+\author{Matteo Seclì}
+\title{Esercizi svolti di Fisica Generale II\\
+	\large{\textit{Dalle lezioni di Giuseppe Dalba}}}
+\newtheorem{problema}{Problema}
+\let\oldhat\hat
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}
+
+\begin{document}
+
+\maketitle
+
+\begin{problema}
+	Preso un filo sottile carico, di lunghezza $2a$ e 
+	distribuzione lineare di carica $\lambda = \mathrm{costante}$, 
+	determinare:
+	\begin{enumerate}
+		\item $\vec{E} = \vec{E}(x,\,y,\,z)$ in un qualsiasi punto 
+		che si trovi sull'asse del filo.
+		\item Sempre in un generico punto sull'asse, trovare $\vec{E}$ 
+		nel limite in cui $a \longrightarrow \infty$.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Da considerazioni di simmetria (vedi Figura \ref{filo_sottile_carico}),
+		vale che $\vec{E} \equiv \vec{E}_x$,
+		dove $\vec{E}_x$ indica la componente del campo $\vec{E}$ nella direzione $x$.
+		\begin{figure}
+			\centering
+			\begin{asy}
+				import graph;
+				import cse5;
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(8cm);
+				real xmin=-2,xmax=12;
+				real ymin=-8,ymax=8;
+				xaxis(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow, NoTicks);
+				yaxis(Label("\small $y$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow, NoTicks);
+				dot(Label("$P(x,\,y,\,z)$",align=NNE),(10,0));
+				draw("$\vec{r}$",(0,0)--(10,0),1bp+black,Arrow(10bp,8));
+				draw(Label("$\vec{r}-\vec{r'}$",position=MidPoint,NE),
+				(0,4)--(10,0),1bp+black,Arrow(8bp,8));
+				draw(Label("$\vec{r'}$",position=MidPoint,W),
+				(-0.2,0)--(-0.2,4),1bp+black,Arrow(8bp,8));
+				draw((0,-6)--(0,6),solid+1.5bp);
+				MarkAngle("\vartheta",black,(0,4),(10,0),(0,0),2,black);
+				labely("$a$",6,W);
+				labely("$-a$",-6,W);
+			\end{asy}
+			\caption{Filo sottile carico}
+			\label{filo_sottile_carico}
+		\end{figure}
+		Ora,
+		$$
+		E_x = k_e \int_{l} \frac{\lambda dl (x-x')}{\left[ (x-x')^2 + (y-y')^2 + 
+		(z-z')^2 \right]^{3/2}}
+		$$
+		Poiché $\vec{r} = (x,\,0,\,0)$, $\vec{r'} = (0,\,y',\,0)$ e $dl \equiv dy'$,
+		si ottiene che
+		$$
+		E_x = k_e \int_{-a}^{a} \frac{\lambda dy' x}{\left[ x^2 + y'^2 \right]^{3/2}}
+		= k_e \lambda x \int_{-a}^{a} \frac{dy'}{\left[ x^2 + y'^2 \right]^{3/2}}
+		$$
+		Usando la semplificazione $y' = x\tan\vartheta, \; dy' = 
+		\frac{x}{\cos^2\vartheta}d\vartheta$, abbiamo:
+		\begin{align*}
+		E_x &= k_e \lambda \cancel{x} \int_{\arctan(-a/x)}^{\arctan(a/x)}
+		\frac{\cancel{x} d\vartheta}{\cancel{cos^2\vartheta}} 
+		\frac{cos^{\cancel{3}^1}\vartheta}{x^{\cancel{3}^1}}\\
+		&= \frac{k_e \lambda}{x} \int_{\arctan(-a/x)}^{\arctan(a/x)}
+		\cos\vartheta d\vartheta\\ &= 
+		\boxed{\frac{2 k_e \lambda}{x} \sin(\arctan(a/x))}
+		\end{align*}
+		\item Per $a \longrightarrow \infty$, $\arctan(a/x) \longrightarrow \pi/2$.
+		Quindi,
+		$$
+		E \longrightarrow \frac{2 k_e \lambda}{x} \sin\left(\frac{\pi}{2}\right)
+		= \frac{2 k_e \lambda}{x} = \boxed{\frac{\lambda}{2 \pi \varepsilon_0 x}}
+		$$
+		Notiamo che il campo ha lo stesso andamento riscontrato nel caso di 
+		cariche puntiformi! Inoltre, per ragioni di natura pratica, conviene 
+		equivalentemente studiare $x \ll a$ invece che $a \longrightarrow \infty$.
+ 	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	Presa una spira sottile carica, di raggio $R$ e 
+	distribuzione lineare di carica $\lambda = \mathrm{costante}$, 
+	determinare:
+	\begin{enumerate}
+		\item $\vec{E} = \vec{E}(x,\,y,\,z)$ in un qualsiasi punto 
+		che si trovi sull'asse della spira.
+		\item $\vec{E} = \vec{E}(x,\,y,\,z)$ come nel caso precedente,
+		ma considerando i limiti $x \ll 1$ e $x \gg R$.
+		\item $\vec{E} = \vec{E}(x,\,y,\,z)$ in un qualsiasi punto 
+		che si trovi sull'asse di un disco avente lo stesso raggio
+		e densità di carica superficiale $\sigma = \mathrm{costante}$.
+		\item $\vec{E} = \vec{E}(x,\,y,\,z)$ come nel caso precedente,
+		ma considerando il limite $R \longrightarrow \infty$ (piano infinito).
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item La soluzione è identica al problema del filo sottile carico: 
+		chiamando $x$ l'asse della spira, $\vec{E} \equiv \vec{E}_x$. Considerando
+		che $\vec{r} = (x,\,0,\,0)$ e $\vec{r'} = (0,\,y',\,z')$, il calcolo diventa:
+		\begin{align*}
+		E_x &= k_e \lambda \int_l \frac{dl(x-x')}{|\vec{r} - \vec{r'}|^3}\\
+		&= \frac{k_e \lambda x}{|\vec{r} - \vec{r'}|^3} \int_l dl\\
+		&= \frac{k_e \lambda x l}{|\vec{r} - \vec{r'}|^3}\\
+		&= \boxed{\frac{k_e \lambda x 2\pi R}{(x^2 + R^2)^{3/2}}}
+		\end{align*}
+		\item Se $x \ll 1$, $E \longrightarrow 0$. Se $x \gg R$, abbiamo invece
+		$$
+		E \sim \frac{k_e\cancel{x}\lambda 2 \pi R}{x^{\cancel{3}^2}} =
+		\frac{k_e\lambda 2 \pi R}{x^2} =
+		\frac{1}{\null_2\cancel{4} \cancel{\pi} \varepsilon_0} 
+		\frac{k_e\lambda \cancel{2} \cancel{\pi} R}{x^2} =
+		\frac{\lambda R}{2 \varepsilon_0 x^2}
+		$$
+		Se $Q$ è la carica del filo, $Q = \lambda 2 \pi R$, quindi
+		$$
+		E \sim \boxed{\frac{k_e Q}{x^2}}
+		$$
+		Il risultato ci dice che, da lontano, la spira è assimilabile 
+		ad una carica puntiforme!
+		\item Per calcolare il campo generato da un disco, conviene prima
+		calcolare il campo $dE_x$ generato da un anello sottile, di spessore infinitesimo
+		$dr'$. La superficie infinitesima dell'anello sarà dunque $dS = dr'dl$.
+		Abbiamo:
+		\begin{align*}
+		dE_x &= k_e \int_S \frac{\sigma dS (x-x')}{|\vec{r} - \vec{r'}|^3}
+		= k_e \int_l \frac{\sigma dr'dl x}{(x^2+r'^2)^{3/2}}\\
+		&= \frac{k_e \sigma dr' x}{(x^2+r'^2)^{3/2}} \int_l dl
+		= \frac{k_e \sigma dr' x l}{(x^2+r'^2)^{3/2}}\\
+		&= \frac{k_e \sigma dr' x 2 \pi r'}{(x^2+r'^2)^{3/2}}
+		= \frac{\sigma x r' dr'}{2 \varepsilon_0 (x^2+r'^2)^{3/2}}
+		\end{align*}
+		Ora, basta integrare su tutta la lunghezza del raggio:
+		\begin{align*}
+		E_x &= \int_{0}^{R} dE_x = \int_{0}^{R} 
+		\frac{\sigma x r' dr'}{2 \varepsilon_0 (x^2+r'^2)^{3/2}}\\
+		&= \frac{\sigma x}{2 \varepsilon_0} \frac{1}{2} \int_{0}^{R} 
+		\frac{2 r' dr'}{(x^2+r'^2)^{3/2}}\\
+		&= \frac{1}{\cancel{2}} \frac{\sigma x}{2 \varepsilon_0}
+		\left. \frac{(-\cancel{2})}{\sqrt{x^2+r'^2}} \right\lvert_O^R\\
+		&= \boxed{\frac{\sigma}{2 \varepsilon_0} \left( 1 - 
+		\frac{x}{\sqrt{x^2+R^2}}\right)}
+		\end{align*}
+		\item Per $x \ll R$, dal caso precedente segue immediatamente che:
+		$$
+		\boxed{E \sim \frac{\sigma}{2 \varepsilon_0}}
+		$$
+		A distanza ravvicinata dal disco, $\vec{E}$ si comporta come un campo costante!
+	\end{enumerate}
+\end{proof}
+
+
+
+\end{document}
