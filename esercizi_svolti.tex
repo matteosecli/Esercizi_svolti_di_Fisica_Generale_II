@@ -2,6 +2,24 @@
 \usepackage[utf8]{inputenc}
 \usepackage{type1cm}
 \usepackage[italian]{babel}
+\usepackage[%hypertex,
+                 unicode=true,
+                 plainpages = false, 
+                 pdfpagelabels, 
+                 bookmarks=true,
+                 bookmarksnumbered=true,
+                 bookmarksopen=true,
+                 breaklinks=true,
+                 backref=false,
+                 colorlinks=true,
+                 linkcolor = blue,		% Use "blue" if you want to highlight them
+                 urlcolor  = blue,
+                 citecolor = red,
+                 anchorcolor = green,
+                 hyperindex = true,
+                 linktocpage = true,
+                 hyperfigures
+]{hyperref}
 \usepackage{amsthm}
 \renewenvironment{proof}
 	{\noindent\textsc{Soluzione:}}
@@ -13,7 +31,7 @@
 \usepackage{graphicx}
 \usepackage{asymptote}
 \usepackage{geometry}
-\author{Matteo Seclì}
+\author{A.V.}
 \title{Esercizi svolti di Fisica Generale II\\
 	\large{\textit{Dalle lezioni di Giuseppe Dalba}}}
 \newtheorem{problema}{Problema}
@@ -38,7 +56,7 @@
 \end{problema}
 \begin{proof}
 	\begin{enumerate}
-		\item Da considerazioni di simmetria (vedi Figura \ref{filo_sottile_carico}),
+		\item Da considerazioni di simmetria (vedi Figura \ref{fig:filo_sottile_carico}),
 		vale che $\vec{E} \equiv \vec{E}_x$,
 		dove $\vec{E}_x$ indica la componente del campo $\vec{E}$ nella direzione $x$.
 		\begin{figure}
@@ -68,7 +86,7 @@
 				labely("$-a$",-6,W);
 			\end{asy}
 			\caption{Filo sottile carico}
-			\label{filo_sottile_carico}
+			\label{fig:filo_sottile_carico}
 		\end{figure}
 		Ora,
 		$$
@@ -146,7 +164,11 @@
 		ad una carica puntiforme!
 		\item Per calcolare il campo generato da un disco, conviene prima
 		calcolare il campo $dE_x$ generato da un anello sottile, di spessore infinitesimo
-		$dr'$. La superficie infinitesima dell'anello sarà dunque $dS = dr'dl$.
+		$dr'$. La superficie infinitesima dell'anello sarà dunque $dS = dr'dl$
+		\footnote{
+		Equivalentemente, è possibile definire $dS = 2 \pi r' dr'$, cioè prendere
+		una corona circolare infinitesima, e integrare direttamente.		
+		}.
 		Abbiamo:
 		\begin{align*}
 		dE_x &= k_e \int_S \frac{\sigma dS (x-x')}{|\vec{r} - \vec{r'}|^3}
@@ -175,6 +197,76 @@
 	\end{enumerate}
 \end{proof}
 
+\begin{problema}
+	Calcolare $\vec{E}$ in un generico punto del piano in Figura
+	\ref{fig:distribuzioni_parallele}, dove le distribuzioni superficiali 
+	di carica schematizzate sono da considerare di lunghezza e larghezza
+	infinite.
+	\begin{figure}
+			\centering
+			\begin{asy}
+				import graph;
+				import markers;
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(8cm);
+				real xmin=-8,xmax=8;
+				real ymin=-6,ymax=6;
+				xaxis(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow, NoTicks);
+				yaxis(Label("\small $y$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow, NoTicks);
+				draw(Label("\small $+\sigma$",position=EndPoint,N,p=black),
+				(-4,-6)--(-4,6),invisible,
+				CrossIntervalMarker(12,4,size=2,angle=45,bp+black,
+				dotframe(invisible)));
+				draw(Label("\small $+\sigma$",position=EndPoint,N,p=black),
+				(-2,-6)--(-2,6),invisible,
+				CrossIntervalMarker(12,4,size=2,angle=45,bp+black,
+				dotframe(invisible)));
+				draw(Label("\small $+\sigma$",position=EndPoint,N,p=black),
+				(2,-6)--(2,6),invisible,
+				CrossIntervalMarker(12,4,size=2,angle=45,bp+black,
+				dotframe(invisible)));
+				draw(Label("\small $+\sigma$",position=EndPoint,N,p=black),
+				(4,-6)--(4,6),invisible,
+				CrossIntervalMarker(12,4,size=2,angle=45,bp+black,
+				dotframe(invisible)));
+				draw(Label("\small $a$",align=Center,filltype=UnFill),
+				(-3.9,-4)--(-2.1,-4),arrow=Arrows(4bp,8));
+				draw(Label("\small $a$",align=Center,filltype=UnFill),
+				(-1.9,-4)--(-0.1,-4),arrow=Arrows(4bp,8));
+				draw(Label("\small $a$",align=Center,filltype=UnFill),
+				(0.1,-4)--(1.9,-4),arrow=Arrows(4bp,8));
+				draw(Label("\small $a$",align=Center,filltype=UnFill),
+				(2.1,-4)--(3.9,-4),arrow=Arrows(4bp,8));
+			\end{asy}
+			\caption{Distribuzioni di carica parallele}
+			\label{fig:distribuzioni_parallele}
+		\end{figure}
+\end{problema}
+\begin{proof}
 
+\end{proof}
+
+\begin{problema}
+	Calcolare il campo $\vec{E}$ generato da un piano infinito carico 
+	elettricamente, considerandolo come successione infinita di fili di 
+	lunghezza a loro volta infinita. Il singolo filo ha una densità
+	lineare di carica $\lambda = \mathrm{costante}$.
+\end{problema}
+\begin{proof}
+
+\end{proof}
+
+\begin{problema}
+	Calcolare il campo $\vec{E}$ generato da una lamina di spessore $2a$, che 
+	abbia le restanti due dimensioni infinite. La lamina ha una densità 
+	volumetrica di carica $\rho = \mathrm{costante}$. 
+\end{problema}
+\begin{proof}
+
+\end{proof}
 
 \end{document}
