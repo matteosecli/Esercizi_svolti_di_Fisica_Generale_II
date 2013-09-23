@@ -245,17 +245,102 @@
 		\end{figure}
 \end{problema}
 \begin{proof}
-
+	Da considerazioni di natura geometrica, si vede chiaramente che il campo
+	assume i valori riportati in Figura \ref{fig:distribuzioni_parallele_soluzione}.
+	\begin{figure}
+			\centering
+			\begin{asy}
+				import graph;
+				import markers;
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(8cm);
+				real xmin=-8,xmax=8;
+				real ymin=-6,ymax=6;
+				xaxis(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow, NoTicks);
+				yaxis(Label("\small $y$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow, NoTicks);
+				draw(Label("\small $+\sigma$",position=EndPoint,N,p=black),
+				(-3,-6)--(-3,6),invisible,
+				CrossIntervalMarker(12,4,size=2,angle=45,bp+black,
+				dotframe(invisible)));
+				draw(Label("\small $+\sigma$",position=EndPoint,N,p=black),
+				(-1,-6)--(-1,6),invisible,
+				CrossIntervalMarker(12,4,size=2,angle=45,bp+black,
+				dotframe(invisible)));
+				draw(Label("\small $+\sigma$",position=EndPoint,N,p=black),
+				(1,-6)--(1,6),invisible,
+				CrossIntervalMarker(12,4,size=2,angle=45,bp+black,
+				dotframe(invisible)));
+				draw(Label("\small $+\sigma$",position=EndPoint,N,p=black),
+				(3,-6)--(3,6),invisible,
+				CrossIntervalMarker(12,4,size=2,angle=45,bp+black,
+				dotframe(invisible)));
+				label(rotate(90)*"\small $E = -\frac{2\sigma}{\varepsilon_0}$",
+				(-4,0),NoAlign,p=solid+black,filltype=UnFill);
+				label(rotate(90)*"\small $E = -\frac{\sigma}{\varepsilon_0}$",
+				(-2,0),NoAlign,p=solid+black,filltype=UnFill);
+				label(rotate(90)*"\small $E = 0$",
+				(0,0),NoAlign,p=solid+black,filltype=UnFill);
+				label(rotate(90)*"\small $E = \frac{\sigma}{\varepsilon_0}$",
+				(2,0),NoAlign,p=solid+black,filltype=UnFill);
+				label(rotate(90)*"\small $E = \frac{2\sigma}{\varepsilon_0}$",
+				(4,0),NoAlign,p=solid+black,filltype=UnFill);
+			\end{asy}
+			\caption{Distribuzioni di carica parallele}
+			\label{fig:distribuzioni_parallele_soluzione}
+		\end{figure}
 \end{proof}
 
 \begin{problema}
 	Calcolare il campo $\vec{E}$ generato da un piano infinito carico 
 	elettricamente, considerandolo come successione infinita di fili di 
-	lunghezza a loro volta infinita. Il singolo filo ha una densità
-	lineare di carica $\lambda = \mathrm{costante}$.
+	lunghezza a loro volta infinita. Il piano ha una densità
+	superficiale di carica $\sigma = \mathrm{costante}$.
 \end{problema}
 \begin{proof}
-
+	Iniziamo con delle considerazioni di natura geometrica. Prendiamo il piano
+	di cariche in modo tale che sia coincidente col piano $xz$ e dividiamolo
+	in tanti fili paralleli all'asse $z$, ognuno di spessore infinitesimo $dx$. 
+	Dalla condizione $\sigma = \mathrm{costante}$, otteniamo subito che la 
+	densità lineare di carica dei fili $\lambda = \sigma dx = \mathrm{costante}$.
+	
+	Siano ora $x'$ la distanza di un filo generico dall'asse $z$ e $y$ la distanza 
+	di un punto generico $P$ dal piano di cariche. Per semplicità, possiamo prendere 
+	$\vec{r'} = (x',\,0,\,0)$ e $\vec{r} = (0,\,y,\,0)$, in modo tale che
+	$P$ abbia coordinate $(0,\,y,\,0)$ e $dx = dx'$. Il campo nel punto $P$ generato 
+	dal filo in posizione $\vec{r'}$ non sarà, in generale, parallelo all'asse $y$. 
+	Avrà una componente $E_x$ diretta lungo l'asse $x$ e una componente
+	$E_y$ diretta lungo l'asse $y$. 
+	Ma se prendiamo il filo in posizione $-\vec{r'}$, quest'ultimo indurrà in $P$
+	un campo che avrà componenti $-E_x$ e $E_y$! Quindi il campo totale generato
+	dai due fili sarà diretto lungo l'asse $y$ e avrà modulo\footnote{
+	Per il campo generato da un filo infinitamente lungo, 
+	riguardare il relativo esercizio.	
+	}
+	$$
+	E_{\text{2 fili}} = 2E_y = \frac{\lambda y}{\pi \varepsilon_0 (x'^2 + y^2)}
+	$$
+	Ora, per avere il campo generato da tutti i fili, basta usare il principio di
+	sovrapposizione e integrare $E_{\text{2 fili}}$ da $0$ a $+\infty$:
+	\begin{align*}
+	E &= \int_{0}^{+\infty} E_{\text{2 fili}}
+	= \int_{0}^{+\infty} \frac{\lambda y}{\pi \varepsilon_0 (x'^2 + y^2)}\\
+	&= \int_{0}^{+\infty} \frac{\sigma dx' y}{\pi \varepsilon_0 (x'^2 + y^2)}
+	= \frac{\sigma y}{\pi \varepsilon_0} \int_{0}^{+\infty} 
+	\frac{dx'}{(x'^2 + y^2)}\\
+	&= \frac{\sigma y}{\pi \varepsilon_0} \int_{0}^{+\infty} 
+	\frac{dx'}{y^2 \left( \left(\frac{x'}{y}\right)^2 + 1 \right)}\\
+	&= \frac{\sigma}{\pi \varepsilon_0} \int_{0}^{+\infty} 
+	\frac{\frac{dx'}{y}}{\left( \left(\frac{x'}{y}\right)^2 + 1 \right)}\\
+	&= \frac{\sigma}{\pi \varepsilon_0} 
+	\left.\arctan\left(\frac{x'}{y}\right)\right\rvert_{0}^{+\infty}
+	= \frac{\sigma}{\cancel{\pi} \varepsilon_0} \frac{\cancel{\pi}}{2}
+	= \boxed{\frac{\sigma}{2\varepsilon_0}} 
+	\end{align*}
+	coerentemente con quanto trovato nel caso del disco a raggio infinito.
 \end{proof}
 
 \begin{problema}
@@ -264,7 +349,28 @@
 	volumetrica di carica $\rho = \mathrm{costante}$. 
 \end{problema}
 \begin{proof}
-
+	Per risolvere il problema, basta dividere la lamina metallica in tante
+	``sfoglie'' sottili, di spessore infinitesimo $ds$ e di superficie infinita.
+	La densità di carica superficiale delle ``sfoglie'' sarà dunque 
+	$\sigma = \rho ds = \mathrm{costante}$, e il campo generato dalla singola
+	sfoglia in un punto generico sarà semplicemente:
+	$$
+	E_{\text{sfoglia}} = \frac{\sigma}{2\varepsilon_0} =
+	\frac{\rho ds}{2\varepsilon_0}
+	$$
+	Per comodità, possiamo posizionare il sistema di riferimento in modo tale che
+	lo spessore della lamina sia parallelo al piano $yz$ e l'asse $x$ lo divida
+	esattamente a metà. Con questa configurazione $ds = dy$, e utilizzando il
+	principio di sovrapposizione è possibile calcolare il campo totale
+	integrando il campo della singola sfoglia da $-a$ ad $a$:
+	\begin{align*}
+	E &= \int_{-a}^{a} E_{\text{sfoglia}} 
+	= \int_{-a}^{a} \frac{\rho ds}{2\varepsilon_0}\\
+	&= \int_{-a}^{a} \frac{\rho dy}{2\varepsilon_0}
+	= \frac{\rho}{2\varepsilon_0} \int_{-a}^{a} dy\\
+	&= \frac{\rho}{\cancel{2}\varepsilon_0} \cancel{2}a 
+	= \boxed{\frac{\rho a}{\varepsilon_0}}
+	\end{align*}
 \end{proof}
 
 \end{document}
