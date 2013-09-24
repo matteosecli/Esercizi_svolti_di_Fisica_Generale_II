@@ -512,4 +512,87 @@
 	\end{itemize}
 \end{proof}
 
+\begin{problema}
+	Sia data una sfera di raggio $R$, carica elettricamente con densità
+	volumetrica di carica $\rho = \mathrm{costante}$. Determinare
+	$\vec{E}$ in un punto generico dello spazio.
+\end{problema}
+\begin{proof}
+	Distinguiamo due casi.
+	\begin{itemize}
+	\item \underline{$r \geq R$}\\
+	\`E come nel caso della sfera cava, basta sfruttare il principio di
+	sovrapposizione! Quindi, se $Q = \int_{\tau} \rho(\tau)d\tau$ è la carica
+	contenuta nella sfera, si ha semplicemente che
+	$$
+	\boxed{E = k_e \frac{Q}{r^2}}
+	$$
+	\item \underline{$r < R$}\\
+	Sfruttiamo il Teorema di Gauss:
+	$$
+	\oint \vec{E} \cdot d\vec{S} = \frac{q}{\varepsilon_0}
+	$$	
+	Valgono:
+	$$
+	\oint \vec{E} \cdot d\vec{S} = E 4 \pi r^2
+	$$
+	$$
+	q = \rho \frac{4}{3} \pi r^3
+	$$
+	Eguagliando le due relazioni sopra, troviamo che
+	$$
+	\boxed{E = \frac{\rho r}{3 \varepsilon_0}}
+	$$
+	\end{itemize}
+\end{proof}
+
+\begin{problema}
+	Considerare di nuovo il problema della lamina infinita di spessore
+	$2a$, carica elettricamente con densità volumetrica di carica
+	$\rho = \mathrm{costante}$. Trovare $\vec{E}$ usando il Teorema di Gauss.
+\end{problema}
+\begin{proof}
+	Distinguiamo due casi.
+	\begin{itemize}
+		\item \underline{All'esterno della lamina}\\
+		Consideriamo un cilindro di altezza $h \geq 2a$, e raggio di base $r$,
+		posizionato in modo che abbia le due basi parallele alle facce della 
+		lamina. Calcoliamo il flusso:
+		$$
+		\oint \vec{E} \cdot d\vec{S} 
+		= \cancelto{0}{\int\limits_{\text{sup. later.}} \vec{E} \cdot d\vec{S}}
+		+ \int\limits_{\text{base 1}} \vec{E} \cdot d\vec{S} 
+		+ \int\limits_{\text{base 2}} \vec{E} \cdot d\vec{S} 
+		$$
+		Il flusso attraverso la superficie laterale è nullo, perché 
+		$\vec{E} \perp d\vec{S}$. D'altra parte, attraverso le due basi,
+		$\vec{E} \parallel d\vec{S}$ e quindi $\vec{E} \cdot d\vec{S} = EdS$.
+		Il calcolo si semplifica notevolmente:
+		$$
+		\oint \vec{E} \cdot d\vec{S} 
+		= 2\int\limits_{\text{base}} EdS = 2 E \pi r^2
+		$$
+		D'altra parte, la carica contenuta all'interno del cilindro è
+		$Q = \rho \pi r^2 2 a$, quindi applicando il Teorema di Gauss si
+		ottiene:
+		$$
+		\boxed{E = \frac{\rho a}{\varepsilon_0}}
+		$$
+		\item \underline{All'interno della lamina}\\
+		Il calcolo è del tutto analogo a quello del caso precedente. Il cilindro,
+		questa volta, avrà un'altezza $h = 2y < 2a$, e la carica contenuta
+		all'interno sarà $Q = \rho \pi r^2 2 y$. Applicando il Teorema di Gauss,
+		$$
+		\boxed{E = \frac{\rho y}{\varepsilon_0}}
+		$$
+	\end{itemize}
+\end{proof}
+
+
+
+
+
+
+
+
 \end{document}
