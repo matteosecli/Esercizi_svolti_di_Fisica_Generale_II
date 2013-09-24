@@ -359,17 +359,74 @@
 	\frac{\rho ds}{2\varepsilon_0}
 	$$
 	Per comodità, possiamo posizionare il sistema di riferimento in modo tale che
-	lo spessore della lamina sia parallelo al piano $yz$ e l'asse $x$ lo divida
-	esattamente a metà. Con questa configurazione $ds = dy$, e utilizzando il
-	principio di sovrapposizione è possibile calcolare il campo totale
-	integrando il campo della singola sfoglia da $-a$ ad $a$:
+	lo spessore della lamina sia parallelo al piano $yz$ e il piano $xz$ divida
+	la lamina esattamente a metà (vedi Figura \ref{fig:lamina_infinita}). 
+	Con questa configurazione $ds = dy$, e utilizzando 
+	il principio di sovrapposizione è possibile calcolare il campo totale
+	all'esterno della lamina integrando il campo della singola sfoglia da 
+	$-a$ ad $a$:
 	\begin{align*}
-	E &= \int_{-a}^{a} E_{\text{sfoglia}} 
+	E_{\text{ext}} &= \int_{-a}^{a} E_{\text{sfoglia}} 
 	= \int_{-a}^{a} \frac{\rho ds}{2\varepsilon_0}\\
 	&= \int_{-a}^{a} \frac{\rho dy}{2\varepsilon_0}
 	= \frac{\rho}{2\varepsilon_0} \int_{-a}^{a} dy\\
 	&= \frac{\rho}{\cancel{2}\varepsilon_0} \cancel{2}a 
 	= \boxed{\frac{\rho a}{\varepsilon_0}}
+	\end{align*}
+	Il campo avrà segno positivo nel verso positivo dell'asse $y$, negativo nel 
+	verso negativo dell'asse $y$.
+	\begin{figure}
+			\centering
+			\begin{asy}
+				import graph;
+				import patterns;
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(8cm);
+				real xmin=-8,xmax=8;
+				real ymin=-6,ymax=6;
+				xaxis(Label("\small $y$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow, NoTicks);
+				yaxis(Label("\small $z$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow, NoTicks);
+				draw((-2,-4)--(-2,4));
+				draw((2,-4)--(2,4));
+				draw(Label("\small $\infty$",align=Center,filltype=UnFill),
+				(-2,4)--(2,4),dashed);
+				draw(Label("\small $\infty$",align=Center,filltype=UnFill),
+				(-2,-4)--(2,-4),dashed);
+				labelx("\small $-a$",-2,WSW);
+				labelx("\small $+a$",2,ESE);
+				picture fillpattern()
+				{
+				picture tiling;
+				draw(tiling,(0,-2)--(0,2));
+				draw(tiling,(-2,0)--(2,0));
+				draw(tiling,(0,-3)--(0,3),invisible);
+				draw(tiling,(-3,0)--(3,0),invisible);
+				return tiling;
+				}
+				add("fillpattern",fillpattern());
+				path fillarea = (-2,-4)--(-2,4)--(2,4)--(2,-4)--cycle;
+				fill(fillarea,pattern("fillpattern"));
+			\end{asy}
+			\caption{Lamina di spessore $2a$}
+			\label{fig:lamina_infinita}
+		\end{figure}
+	
+	Per calcolare il campo all'interno della lamina si segue la stessa procedura,
+	cambiando però gli estremi di integrazione. In un punto generico in posizione
+	$y$ rispetto al piano $xz$, si ottiene:
+	\begin{align*}
+	E_{\text{int}} &= - \int_{y}^{a} E_{\text{sfoglia}} 
+	+ \int_{-a}^{y} E_{\text{sfoglia}}\\
+	&= - \int_{y}^{a} \frac{\rho dy}{2\varepsilon_0}
+	+ \int_{-a}^{y} \frac{\rho dy}{2\varepsilon_0}\\
+	&= \frac{\rho}{2\varepsilon_0} \left( - \int_{y}^{a} dy 
+	+ \int_{-a}^{y} \right)\\
+	&= \frac{\rho}{2\varepsilon_0} (\cancel{-a} + y + y + \cancel{a}) 
+	= \boxed{\frac{\rho y}{\varepsilon_0}}
 	\end{align*}
 \end{proof}
 
