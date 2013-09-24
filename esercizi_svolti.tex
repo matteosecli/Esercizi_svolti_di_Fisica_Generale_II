@@ -29,6 +29,7 @@
 \usepackage{amssymb}
 \usepackage{cancel}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{asymptote}
 \usepackage{geometry}
 \author{A.V.}
@@ -428,6 +429,87 @@
 	&= \frac{\rho}{2\varepsilon_0} (\cancel{-a} + y + y + \cancel{a}) 
 	= \boxed{\frac{\rho y}{\varepsilon_0}}
 	\end{align*}
+\end{proof}
+
+\begin{problema}
+	Sia data una sfera cava di raggio $R$, carica elettricamente con densità
+	superficiale di carica $\sigma = \mathrm{costante}$. Determinare
+	$\vec{E}$ in un punto generico dello spazio.
+\end{problema}
+\begin{proof}
+	Sfruttando la simmetria del problema, possiamo ridurre le dimensioni da $3$
+	a $1$ per semplificare i calcoli. Distinguiamo due casi.
+	\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import markers;
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(8cm);
+				draw(circle((0,0),0.9));
+				draw(circle((0,0),1),invisible,
+				CrossIntervalMarker(20,4,size=2,angle=45,bp+black,
+				dotframe(invisible)));
+				draw(Label("\small $S$"),circle((0,0),1.5),dashed);
+				draw((0,0)--rotate(15)*(4,0),dashed);
+				draw(Label("\small $R$"),(0,0)--rotate(-45)*(0.9,0));
+				draw(Label("\small $r$"),(0,0)--rotate(45)*(-1.5,0));
+				draw(rotate(15)*(1.5,-0.1)--rotate(15)*(1.5,0.1),2bp+black);
+				draw(Label("\small $d\vec{S}$",position=EndPoint,align=NNW),
+				rotate(15)*(1.5,0)--rotate(15)*(2,0),arrow=Arrow);		
+				draw(Label("\small $\vec{E}$",position=EndPoint,align=S),
+				rotate(15)*(1.5,0)--rotate(15)*(2.5,0),arrow=Arrow);
+				draw(Label("\small $r$",position=EndPoint,align=S),
+				(0,0)--(4,0),arrow=Arrow);
+			\end{asy}
+			\caption{Sfera cava}
+			\label{fig:sfera_cava}
+		\end{figure}
+	\begin{itemize}
+		\item \underline{$r \geq R$}\\
+		Vogliamo sfruttare il Teorema di Gauss:
+		$$
+		\oint \vec{E} \bullet d\vec{S} = \frac{E}{\varepsilon_0}
+		$$
+		A tale scopo, consideriamo una superficie sferica $S$ di raggio $r \geq R$:
+		per la natura del campo, $\vec{E}$ sarà sempre perpendicolare a tale
+		superficie. Inoltre, poiché $\vec{E}$ dipende solo dalla distanza dal
+		centro (una volta fissata la carica generatrice), il modulo di $\vec{E}$ 
+		sarà costante in ogni punto della superficie che stiamo considerando
+		(vedi Figura \ref{fig:sfera_cava}).
+		
+		Possiamo quindi scrivere:
+		$$
+		\oint \vec{E} \bullet d\vec{S} = \oint E dS
+		= E \oint dS = E 4 \pi r^2
+		$$
+		Indicando poi con $S_f$ la superficie della sfera, dalla definizione
+		si ottiene immediatamente che:
+		$$
+		Q = \int \sigma dS_f = \sigma \int dS_f = \sigma 4 \pi R^2
+		$$
+		Applicando il Teorema di Gauss, segue che:
+		$$
+		E 4 \pi r^2 = \frac{Q}{\varepsilon_0}
+		\qquad \Longrightarrow \qquad
+		E = \frac{1}{4 \pi \varepsilon_0} \frac{Q}{r^2}
+		$$
+		ossia
+		$$
+		\boxed{E = k_e \frac{Q}{r^2}}
+		$$
+		come nel caso di una carica puntiforme! In particolare per $r=R$,
+		sfruttando il fatto che $Q = \sigma 4 \pi R^2$,
+		$$
+		E(R) = \frac{\sigma}{\varepsilon_0}
+		$$
+		\item \underline{$r < R$}\\
+		Dal Teorema di Gauss segue banalmente che
+		$$
+		\boxed{E = 0}
+		$$
+	\end{itemize}
 \end{proof}
 
 \end{document}
