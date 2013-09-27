@@ -30,6 +30,7 @@
 \usepackage{cancel}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{enumitem}
 \usepackage{asymptote}
 \usepackage{geometry}
 \author{A.V.}
@@ -470,7 +471,7 @@
 		\item \underline{$r \geq R$}\\
 		Vogliamo sfruttare il Teorema di Gauss:
 		$$
-		\oint \vec{E} \cdot d\vec{S} = \frac{Q}{\varepsilon_0}
+		\oint \vec{E} \cdot d\vec{S} = \frac{E}{\varepsilon_0}
 		$$
 		A tale scopo, consideriamo una superficie sferica $S$ di raggio $r \geq R$:
 		per la natura del campo, $\vec{E}$ sarà sempre perpendicolare a tale
@@ -588,8 +589,164 @@
 	\end{itemize}
 \end{proof}
 
-
-
+\begin{problema}
+	Due cariche $q$ puntiformi e della stessa grandezza
+	sono disposte a distanza $a$ lungo l'asse in
+	posizione simmetrica rispetto al piano $y = 0$
+	(Figura \ref{fig:dipolo_3d}).
+	Si calcoli il campo elettrico in ciascun punto del
+	piano nei seguenti casi:
+	\begin{enumerate}%[labelindent=\parindent,leftmargin=*,label=\textnormal{\alph*)}]
+		\item Le cariche siano dello stesso segno.
+		\item Le cariche abbiano polarità opposta.
+	\end{enumerate}
+	\begin{figure}[H]
+			\centering
+			\begin{asy}[height=6cm,inline=true,attach=false,viewportwidth=\linewidth]
+				import three;
+				import graph3;
+				import solids;
+				currentprojection=obliqueX(-45);
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				//size(6cm);
+				size3(6cm);		//IgnoreAspect
+				real xmin=-2,xmax=6;
+				real ymin=-4,ymax=6;
+				real zmin=-2,zmax=4;
+				xaxis3(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow3, NoTicks3);
+				yaxis3(Label("\small $y$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow3, NoTicks3);
+				zaxis3(Label("\small $z$",position=EndPoint,align=NW),
+				zmin, zmax, arrow=EndArrow3, NoTicks3);
+				triple Q1=(0,2,0);
+				triple Q2=(0,-2,0);			
+				dot(Q1);
+				dot(Q2);
+				label("\small $q$",Q1,S);
+				label("\small $q$",Q2,S);
+				draw(Label(shift(0,6)*"\small $\frac{a}{2}$"),
+				(0,0.1,0.5)--(0,1.9,0.5),arrow=Arrows3(8bp,8));
+				draw(Label(shift(0,6)*"\small $\frac{a}{2}$"),
+				(0,-1.9,0.5)--(0,-0.1,0.5),arrow=Arrows3(8bp,8));
+			\end{asy}
+			\caption{Cariche puntiformi in tre dimensioni}
+			\label{fig:dipolo_3d}
+		\end{figure}
+\end{problema}
+\begin{proof}
+	Iniziamo col notare che il piano $y=0$ corrisponde all'``asse'' 
+	(bidimensionale) del
+	segmento che congiunge le due cariche; inoltre, la forza elettrica
+	è una forza centrale, quindi possiamo ridurre il problema da 3 a 2
+	dimensioni. Detto in altro modo, si tratta di studiare l'andamento
+	del campo sull'asse del segmento che congiunge due cariche puntiformi.
+	
+	Per comodità, scegliamo come asse proprio l'asse $x$; il generico punto
+	$(x,\,0,\,0)$ avrà dunque distanza 
+	$\sqrt{x^2 + \left(\frac{a}{2}\right)^2}$
+	da ognuna delle due cariche. Il modulo del campo $\vec{E}$ nel punto preso 
+	in considerazione sarà chiaramente
+	$$
+	E = k_e \frac{q}{x^2 + \left(\frac{a}{2}\right)^2}
+	$$
+	e la direzione di $\vec{E}$ formerà con l'asse $x$ un angolo $\vartheta$
+	tale che:
+	$$
+	\cos\vartheta = \frac{x}{\sqrt{x^2 + \left(\frac{a}{2}\right)^2}};
+	\qquad
+	\sin\vartheta = \frac{a/2}{\sqrt{x^2 + \left(\frac{a}{2}\right)^2}}.
+	$$
+	Fatte queste premesse, possiamo ora distinguere i due casi.
+	\begin{enumerate}
+		\item\underline{Cariche dello stesso segno}\\
+		Supponiamo, per semplicità, che le due cariche siano positive
+		(se fossero entrambe negative il campo elettrico differirebbe solo
+		per il verso). La situazione è schematizzata in Figura 
+		\ref{fig:dipolo_2d_pos}.
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import cse5;
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(6cm);
+				draw(Label("\small $\frac{a}{2}$"),(-2,0)--(0,0));
+				draw((0,0)--(2,0));
+				filldraw(circle((-2,0),0.2));
+				filldraw(circle((2,0),0.2));
+				label("\small $q_1^+$",(-2,0),2SW);
+				label("\small $q_2^+$",(2,0),2SE);
+				draw(Label("\small $x$"),(0,0)--(0,4));
+				MarkAngle("\vartheta",black,(-2,0),(0,4),(0,0),1,black);
+				draw((-2,0)--(0,4)--(2,0));
+				draw(Label("\small $\vec{E_1}$",position=EndPoint),(0,4)--(1,6),
+				linewidth(1bp),Arrow(10bp,12));
+				draw(Label("\small $\vec{E_2}$",position=EndPoint),(0,4)--(-1,6),
+				linewidth(1bp),Arrow(10bp,12));
+				draw(Label("\small $\vec{E_{\mathrm{tot}}}$",position=EndPoint),
+				(0,4)--(0,8),linewidth(1bp),Arrow(10bp,12));				
+			\end{asy}
+			\caption{Due cariche positive}
+			\label{fig:dipolo_2d_pos}
+		\end{figure}
+		Facendo il calcolo,
+		\begin{align*}
+		\vec{E}_{\mathrm{tot}} &= 2E\cos\vartheta
+		= 2 k_e \frac{q}{x^2 + \left(\frac{a}{2}\right)^2}
+		\frac{x}{\sqrt{x^2 + \left(\frac{a}{2}\right)^2}}\\
+		&= \frac{2 k_e q x}
+		{\left( x^2 + \left(\frac{a}{2}\right)^2 \right)^{3/2}}
+		= \boxed{\frac{qx}
+		{2 \pi \varepsilon_0 \left( x^2 + \left(\frac{a}{2}\right)^2 \right)^{3/2}}}
+		\end{align*}
+		\item\underline{Cariche di segno opposto}\\
+		Supponiamo, per semplicità, che la carica di sinistra in Figura
+		\ref{fig:dipolo_2d_pos_neg} sia positiva e quella a destra negativa
+		(se fosse al contrario il campo elettrico differirebbe solo
+		per il verso).
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import cse5;
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(6cm);
+				draw(Label("\small $\frac{a}{2}$"),(-2,0)--(0,0));
+				draw((0,0)--(2,0));
+				filldraw(circle((-2,0),0.2));
+				filldraw(circle((2,0),0.2));
+				label("\small $q_1^+$",(-2,0),2SW);
+				label("\small $q_2^-$",(2,0),2SE);
+				draw(Label("\small $x$"),(0,0)--(0,4));
+				MarkAngle("\vartheta",black,(-2,0),(0,4),(0,0),1,black);
+				draw((-2,0)--(0,4)--(2,0));
+				draw(Label("\small $\vec{E_1}$",position=EndPoint,NE),(0,4)--(1,6),
+				linewidth(1bp),Arrow(10bp,12));
+				draw(Label("\small $\vec{E_2}$",position=EndPoint,SE),(0,4)--(1,2),
+				linewidth(1bp),Arrow(10bp,12));
+				draw(Label("\small $\vec{E_{\mathrm{tot}}}$",position=EndPoint),
+				(0,4)--(2,4),linewidth(1bp),Arrow(10bp,12));				
+			\end{asy}
+			\caption{Due cariche di segno opposto}
+			\label{fig:dipolo_2d_pos_neg}
+		\end{figure}
+		Facendo il calcolo,
+		\begin{align*}
+		\vec{E}_{\mathrm{tot}} &= 2E\sin\vartheta
+		= 2 k_e \frac{q}{x^2 + \left(\frac{a}{2}\right)^2}
+		\frac{a/2}{\sqrt{x^2 + \left(\frac{a}{2}\right)^2}}\\
+		&= \frac{k_e q a}
+		{\left( x^2 + \left(\frac{a}{2}\right)^2 \right)^{3/2}}
+		= \boxed{\frac{qa}
+		{4 \pi \varepsilon_0 \left( x^2 + \left(\frac{a}{2}\right)^2 \right)^{3/2}}}
+		\end{align*}
+	\end{enumerate}
+\end{proof}
 
 
 
