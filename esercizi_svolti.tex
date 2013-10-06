@@ -39,7 +39,7 @@
 \newtheorem{problema}{Problema}
 \let\oldhat\hat
 \renewcommand{\vec}[1]{\mathbf{#1}}
-\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}
+\renewcommand{\hat}[1]{\widehat{\mathbf{#1}}}
 
 \begin{document}
 
@@ -849,6 +849,75 @@
 	E_y=\frac{\rho y}{2 \epsilon_0}
 	}
 	$$
+\end{proof}
+
+\begin{problema}
+	Una linea di trasmissione è costituita da un cavo sottile
+	rettilineo ed infinitamente lungo su cui è distribuita
+	uniformemente una carica di densità $\lambda = 10^{-7} \; \mathrm{C/m}$.
+	La linea è disposta parallelamente al suolo ad una distanza
+	$D = 10 \; \mathrm{m}$.
+	Trascurando l'influenza del terreno si calcoli:
+	\begin{enumerate}
+		\item Il campo elettrico ovunque nello spazio.
+		\item La grandezza del campo elettrico sul terreno giusto
+		al disotto della linea.
+	\end{enumerate}
+	Sotto la prima linea ne viene aggiunta, parallelamente ad essa, 
+	una seconda a distanza $d = 2 \; \mathrm{m}$ su cui è
+	distribuita uniformemente una carica di densità lineare uguale ed opposta, 
+	pari cioè a $-10^{-7} \; \mathrm{C/m}$. Si calcoli:
+	\begin{enumerate}[start=3]
+		\item Il campo elettrico in un generico punto dello spazio.
+		\item Il campo elettrico al livello del suolo immediatamente 
+		al disotto delle linee.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Avevamo già calcolato il campo generato da un filo infinito.
+		Ricordiamo che, a distanza $x$ dall'asse del filo, il campo
+		è perpendicolare al filo stesso e in vale:
+		$$
+		\boxed{
+		\vec{E} = \frac{\lambda}{2\pi\varepsilon_0x}\hat{x}
+		}
+		$$
+		\item Basta porre $x = D$ nella formula precedente per ottenere:
+		$$
+		\vec{E_D} = \frac{\lambda}{2\pi\varepsilon_0D}\hat{x} \simeq
+		\boxed{179.95 \; \mathrm{N/C}}
+		$$
+		\item Preso un generico punto P, indichiamo con $x^+$ la sua distanza 
+		dall'asse del filo con densità di
+		carica $\lambda^+$ positiva, e con $x^-$ la sua distanza dall'asse del filo
+		con densità di carica $\lambda^-$ negativa. Poniamo inoltre 
+		$\lambda = |\lambda^+| = |\lambda^-|$.
+		
+		Dal principio di sovrapposizione e utilizzando la formula al primo punto,
+		otteniamo:
+		$$
+		\vec{E} =
+		\frac{\lambda}{2\pi\varepsilon_0x^+}\hat{x}^+ -
+		\frac{\lambda}{2\pi\varepsilon_0x^-}\hat{x}^- =
+		\boxed{
+		\frac{\lambda}{2\pi\varepsilon_0}\left(
+		\frac{\hat{x}^+}{x^+} - \frac{\hat{x}^-}{x^-}
+		\right)
+		}
+		$$
+		Il segno del campo può essere (arbitrariamente) riferito al filo positivo,
+		per cui un segno ``$+$'' nel risultato indicherà un campo \emph{uscente}
+		dal filo positivo, mentre un ``$-$'' un campo \emph{entrante}.
+		\item Basta sostituire $x^+ = D$, $x^- = D-d$ e 
+		$\hat{x}^+ = \hat{x}^-$ nella formula precedente per ottenere:
+		$$
+		\vec{E_D} = - \frac{\lambda d}{2\pi\varepsilon_0D(D-d)}\hat{x}^+ =
+		\boxed{- 44.94 \; \mathrm{N/C}}
+		$$
+		dove il segno ``$-$'' indica che il campo è diretto verso il filo
+		di densità di carica positiva.
+	\end{enumerate}
 \end{proof}
 
 
