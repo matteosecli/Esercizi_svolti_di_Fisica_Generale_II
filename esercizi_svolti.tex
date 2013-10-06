@@ -748,8 +748,108 @@
 	\end{enumerate}
 \end{proof}
 
+\begin{problema}
+	Un cilindro di raggio $R$ e lunghezza $2L$ è disposto verticalmente 
+	con il proprio asse coincidente con l'asse $z$ ed è centrato 
+	rispetto al piano $z=0$. Sulla parete sottile del cilindro è distribuita
+	uniformemente una carica di densità superficiale $\sigma$.
+	\begin{enumerate}
+		\item Si calcoli il campo elettrostatico lungo l'asse del cilindro.
+		\item Si valuti il campo per $L \longrightarrow 0$ e per 
+		$L \longrightarrow \infty$.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	Considerando $h$ come la distanza fra il piano identificato da $z=0$ e il punto 
+	generico $(0,\,0,\,z)$ sulla quale calcoliamo il campo elettrico, ho che ogni 
+	superficie $dS$ dà un contributo pari a:
+	$$
+	|d\vec{E}|=k_e \frac{\sigma (z-h) dS}{|(\vec{r}-\vec{r'})|^3}
+	$$
+	dove $dS=2\pi R dh$ e $|(\vec{r}-\vec{r'})|=\sqrt{R^2+(z-h)^2}$.
+	
+	Integrando fra $-L$ e $L$ ottengo:
+	$$
+	|\vec{E}|=\int_{-l}^{L} k_e \frac{\sigma (z-h) dS}{|(\vec{r}-\vec{r'})|^3}=
+	k_e \int_{-l}^{L} \frac{\sigma (z-h) 2\pi R }
+	{\left(\sqrt{R^2+(z-h)^2}\right)^3} dh
+	$$
+	Posso risolvere l'integrale effettuando la sostituzione $s=z-h$ ($ds=-dh$); 
+	l'integrale si riduce a:
+	$$
+	|\vec{E}| = - 2 k_e \sigma \pi R \int \frac{s}{(\sqrt{R^2+s^2})^3} ds=
+	2 k_e \sigma \pi R \left[ \frac{1}{\sqrt{R^2+(z-h)^2}} \right]_{-L}^{L}
+	$$
+	da cui il risultato:
+	$$
+	\boxed{
+	|\vec{E}|=
+	2 k_e \sigma \pi R \left[ \frac{1}{\sqrt{R^2+(z-L)^2}} - 
+	\frac{1}{\sqrt{R^2+(z+L)^2}} \right]
+	}
+	$$
+	
+	Per $L \longrightarrow 0$, il campo elettrico è 0, così come per 
+	$L \longrightarrow \infty$.
+\end{proof}
 
-
+\begin{problema}
+	Una carica di densità volumica è distribuita uniformemente in un 
+	volume cilindrico di raggio $R$ e lunghezza infinita. Si calcoli 
+	il campo elettrostatico ovunque nello spazio.
+\end{problema}
+\begin{proof}
+	Per comodità pongo il generico punto in cui voglio calcolare il campo 
+	elettrico sull'asse $y$. Per simmetria (dato che ogni elemento 
+	infinitesimo di volume ha un corrispettivo simmetricamente opposto sul 
+	cilindro) le componenti diverse da quelle sull'asse delle $y$ si annullano: 
+	il campo va dunque calcolato sull'asse $y$.
+	
+	Il contributo infinitesimo di ogni coppia di volumi infinitesimi è dato da:
+	$$
+	|d\vec{E}|=2 k_e \frac{\rho dV y}{|(\vec{r}-\vec{r'})|^3}
+	$$
+	
+	Con considerazioni geometriche sul disegno (pongo $y$ la distanza fra il
+	volume infinitesimo e il punto su cui voglio calcolare il campo, ed $h$ 
+	la distanza fra il piano $z=0$ e il volume infinitesimo) ottengo le seguenti 
+	relazioni: $h = y \tan\vartheta$ e $\cos\vartheta |\vec{r}-\vec{r'}|=y$, da cui 
+	ricavo $dh=y \frac{1}{cos^2 \vartheta} d\vartheta$. Sostituendo:
+	$$
+	|d\vec{E}|=k_e \frac{2 \rho \pi R^2 y^2 \frac{1}{\cos^2\vartheta} d\vartheta}
+	{\frac{y^3}{\cos^3\vartheta}}=k_e \frac{2 \rho R^2 \cos\vartheta}{y} d\vartheta
+	$$
+	Integrando fra $0$ e $\pi/2$ ottengo il risultato:
+	\begin{equation}
+	\label{sol_pr3}
+	E_y=k_e \frac{2 \rho \pi R^2}{y}=
+	\boxed{
+	\frac{\rho R^2}{2 y \epsilon_0}
+	}
+	\end{equation}
+	
+	Lo stesso risultato poteva essere ottenuto sfruttando il teorema di Gauss 
+	e considerando come superficie un cilindro di raggio $y$ con l'asse 
+	coincidente a quella del nostro cilindro. Dato che il campo elettrico è 
+	diretto verso l'asse $y$ per le considerazioni di cui sopra, si può considerare 
+	solo la superficie esterna del cilindro. Vale dunque (se consideriamo i cilindri 
+	della stessa lunghezza $L$):
+	\begin{equation}
+	\label{pr3_gauss}
+	E 2 \pi y L = \frac{\pi R^2 L \rho}{\epsilon_0}
+	\end{equation}
+	Il campo elettrico non dipende dunque da $L$ ed ottengo lo stesso 
+	risultato (\ref{sol_pr3}).
+	
+	Con il teorema di Gauss è possibile calcolare facilmente anche il campo elettrico 
+	nel caso in cui $y<R$, sostituendo $y$ a $R$ (per il teorema di Gauss consideriamo 
+	solo le cariche interne), ottenendo:
+	$$
+	\boxed{
+	E_y=\frac{\rho y}{2 \epsilon_0}
+	}
+	$$
+\end{proof}
 
 
 \end{document}
