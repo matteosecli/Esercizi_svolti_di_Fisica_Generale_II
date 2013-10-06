@@ -920,5 +920,67 @@
 	\end{enumerate}
 \end{proof}
 
+\begin{problema}
+	(in corso di scrittura)
+\end{problema}
+
+\begin{problema}
+	Una carica è distribuita uniformemente lungo un filo sottile di lunghezza
+	$L$ con densità uniforme $\lambda$. Inizialmente il filo è disposto a distanza
+	$d$ da una superficie piana infinitamente grande, carica uniformemente con
+	densità di carica $\sigma$. Calcolare il lavoro richiesto per ruotare il filo di
+	$90^{\circ}$ come in Figura (da inserire).
+\end{problema}
+\begin{proof}
+	Iniziamo col dire che il lavoro \emph{richiesto} è pari al lavoro delle forze
+	del campo cambiato di segno. Nel nostro caso,
+	$$
+	W_R = -W_E
+	$$
+	dove $W_R$ indica il lavoro richiesto e $W_E$ il lavoro fatto falla forza
+	elettrica.
+	
+	Consideriamo ora un pezzettino di lunghezza infinitesima $dl$ sul filo,
+	a distanza $l$ dall'estremo di rotazione, e indichiamo con $dh$ 
+	lo spostamento infinitesimo lungo la direzione di 
+	$\vec{E}$. Poiché $\vec{E}$ è conservativo, possiamo pensare di sostituire l'arco 
+	di circonferenza compiuto dal pezzettino con una spezzata che procede in direzione
+	di $\vec{E}$ per il primo tratto, e poi continua orizzontalmente fino al punto di
+	arrivo. Il lavoro compiuto nel tratto orizzontale è nullo, perché 
+	$\vec{E} \perp \vec{ds}$;
+	quindi il lavoro richiesto per ruotare il suddetto pezzettino di un angolo
+	pari a $\pi/2$ sarà:
+	$$
+	dW_R = -\int (\lambda dl)\vec{E} \cdot \vec{ds} =
+	-\int_{0}^{l} (\lambda dl)Edh = -\lambda dlE \int_{0}^{l} dh = 
+	-\lambda dlEl
+	$$
+	dove nel calcolo abbiamo usato il fatto che, per un piano infinito, $E$ è costante
+	e non dipende dalla distanza.
+	
+	Per trovare il lavoro totale, basta ora integrare su tutta la lunghezza $L$
+	del filo:
+	$$
+	W_R = \int dW_R = \int_{0}^{L} -\lambda E ldl =
+	-\lambda E \int_{0}^{L} l dl = 
+	-\lambda E \left.\frac{l^2}{2}\right\rvert_{0}^{L} = -\lambda E \frac{L^2}{2}
+	$$
+	
+	Dal Teorema di Gauss, sappiamo che per una piastra infinita carica uniformemente
+	vale:
+	$$
+	E = \frac{\sigma}{2\varepsilon_0}
+	$$
+	Sostituendo l'espressione di $E$ in quella di $W_R$, otteniamo infine:
+	$$
+	\boxed{W_R = -\frac{\lambda \sigma L^2}{4\varepsilon_0}}
+	$$
+	Il segno ``$-$'' nel risultato è indicativo del fatto che il sistema non
+	ha bisogno di un lavoro esterno per posizionare il filo in quella posizione;
+	essendo infatti le due distribuzioni con lo stesso segno, la piastra e il filo
+	tendono a respingersi, e il filo si posiziona spontaneamente in una buca di 
+	potenziale.
+\end{proof}
+
 
 \end{document}
