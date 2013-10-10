@@ -758,6 +758,43 @@
 		\item Si valuti il campo per $L \longrightarrow 0$ e per 
 		$L \longrightarrow \infty$.
 	\end{enumerate}
+	\begin{figure}%[H]
+			\centering
+			\begin{asy}[height=6cm,inline=true,attach=false,viewportwidth=\linewidth]
+				import three;
+				import graph3;
+				import solids;
+				currentprojection=obliqueX(-45);
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size3(6cm);
+				real xmin=-4,xmax=6;
+				real ymin=-4,ymax=4;
+				real zmin=-6,zmax=6;
+				xaxis3(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow3, NoTicks3);
+				yaxis3(Label("\small $y$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow3, NoTicks3);
+				zaxis3(Label("\small $z$",position=EndPoint,align=NW),
+				zmin, zmax, arrow=EndArrow3, NoTicks3);
+				revolution lat_surf=cylinder((0,0,-4), 2, 8, Z);
+				//path3 base_upper=circle((0,0,4), 2);
+				//path3 base_lower=circle((0,0,4), 2);
+				draw(lat_surf,black);
+				draw(surface(lat_surf),lightgrey+opacity(0.75));
+				//draw(surface(base_upper),lightgrey+opacity(0.75));
+				//draw(surface(base_lower),lightgrey+opacity(0.75));
+				draw(Label("$R$",position=EndPoint,align=N),
+				(0,0,4)--(-sqrt(2),sqrt(2),4));
+				dot((0,0,4));
+				labelz("$L$",(0,0,4),NW);
+				dot((0,0,-4));
+				labelz("$-L$",(0,0,-4),SW);
+			\end{asy}
+			\caption{Cilindro cavo verticale}
+			\label{fig:cilindro_cavo}
+		\end{figure}	
 \end{problema}
 \begin{proof}
 	Considerando $h$ come la distanza fra il piano identificato da $z=0$ e il punto 
@@ -797,6 +834,43 @@
 	Una carica di densità volumica è distribuita uniformemente in un 
 	volume cilindrico di raggio $R$ e lunghezza infinita. Si calcoli 
 	il campo elettrostatico ovunque nello spazio.
+	\begin{figure}%[H]
+			\centering
+			\begin{asy}[height=6cm,inline=true,attach=false,viewportwidth=\linewidth]
+				import three;
+				import graph3;
+				import solids;
+				currentprojection=obliqueX(-45);
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size3(6cm);
+				real xmin=-4,xmax=6;
+				real ymin=-4,ymax=4;
+				real zmin=-6,zmax=6;
+				xaxis3(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow3, NoTicks3);
+				yaxis3(Label("\small $y$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow3, NoTicks3);
+				zaxis3(Label("\small $z$",position=EndPoint,align=NW),
+				zmin, zmax, arrow=EndArrow3, NoTicks3);
+				revolution lat_surf=cylinder((0,0,-4), 2, 8, Z);
+				path3 base_upper=circle((0,0,4), 2);
+				path3 base_lower=circle((0,0,4), 2);
+				draw(lat_surf,black);
+				draw(surface(lat_surf),lightgrey+opacity(0.75));
+				draw(surface(base_upper),lightgrey+opacity(0.75));
+				draw(surface(base_lower),lightgrey+opacity(0.75));
+				draw(Label("$R$",position=EndPoint,align=N),
+				(0,0,4)--(-sqrt(2),sqrt(2),4));
+				//dot((0,0,4));
+				labelz("$+\infty$",(0,0,4),NW);
+				//dot((0,0,-4));
+				labelz("$-\infty$",(0,0,-4),SW);
+			\end{asy}
+			\caption{Volume cilindrico di lunghezza infinita}
+			\label{fig:cilindro_pieno_infinito}
+		\end{figure}	
 \end{problema}
 \begin{proof}
 	Per comodità pongo il generico punto in cui voglio calcolare il campo 
