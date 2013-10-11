@@ -764,13 +764,14 @@
 				import three;
 				import graph3;
 				import solids;
-				currentprojection=obliqueX(-45);
+				//currentprojection=obliqueX(-45);
+				currentprojection=orthographic(2,2,1);
 				texpreamble("\let\oldhat\hat
 				\renewcommand{\vec}[1]{\mathbf{#1}}
 				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
-				size3(6cm);
-				real xmin=-4,xmax=6;
-				real ymin=-4,ymax=4;
+				size3(8cm);
+				real xmin=-4,xmax=5;
+				real ymin=-4,ymax=5;
 				real zmin=-6,zmax=6;
 				xaxis3(Label("\small $x$",position=EndPoint,align=SE),
 				xmin, xmax, arrow=EndArrow3, NoTicks3);
@@ -840,13 +841,14 @@
 				import three;
 				import graph3;
 				import solids;
-				currentprojection=obliqueX(-45);
+				//currentprojection=obliqueX(-45);
+				currentprojection=orthographic(2,2,1);
 				texpreamble("\let\oldhat\hat
 				\renewcommand{\vec}[1]{\mathbf{#1}}
 				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
-				size3(6cm);
-				real xmin=-4,xmax=6;
-				real ymin=-4,ymax=4;
+				size3(8cm);
+				real xmin=-4,xmax=5;
+				real ymin=-4,ymax=5;
 				real zmin=-6,zmax=6;
 				xaxis3(Label("\small $x$",position=EndPoint,align=SE),
 				xmin, xmax, arrow=EndArrow3, NoTicks3);
