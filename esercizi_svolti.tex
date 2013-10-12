@@ -41,6 +41,7 @@
 \let\oldhat\hat
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \renewcommand{\hat}[1]{\widehat{\mathbf{#1}}}
+%\usepackage[square]{natbib}
 
 \begin{document}
 
@@ -1062,9 +1063,9 @@
 	la retta perpendicolare al filo passante per la sua estremità, dipende solo dalla 
 	distanza.
 	Consideriamo tale distanza $\sqrt{R^2+z^2}$, abbiamo che 
-	(si veda esercizio I.22 [Mencuccini], pag. 72: le formule utilizzate in seguito 
+	(si veda esercizio I.22 \cite{mencuccini}, pag. 72: le formule utilizzate in seguito 
 	sono state ricavate facendo tendere ad infinito la lunghezza del filo) la 
-	componente $z$ (componente $y$ sull'esercizio del [Mencuccini] moltiplicata 
+	componente $z$ (componente $y$ sull'esercizio del \cite{mencuccini} moltiplicata 
 	per $\cos \vartheta$) è:
 	$$
 	\vec{E_z}=
@@ -1358,5 +1359,15 @@
 	\end{enumerate}
 \end{proof}
 
+\begin{thebibliography}{9}
+
+\bibitem[Mencuccini]{mencuccini}
+  Corrado Mencuccini, Vittorio Silvestrini,
+  \emph{Fisica II: Elettromagnetismo -- Ottica}.
+  Liguori Editore, Napoli,
+  1988.
+  \texttt{ISBN 88-207-1633-X}.
+
+\end{thebibliography}
 
 \end{document}
