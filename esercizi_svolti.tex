@@ -1004,7 +1004,7 @@
 	paralleli tra loro. La densità di carica lineare è uguale a $\lambda$; 
 	il raggio di curvatura del filo è $R$.
 	
-	Calcolare il campo elettrico lungo l'asse $z$ passante per il cento della 
+	Calcolare il campo elettrico lungo l'asse $z$ passante per il centro della 
 	circonferenza di raggio R.
 \end{problema}
 \begin{proof}
@@ -1015,6 +1015,56 @@
 	Per il principio di sovrapposizione posso considerare il campo elettrico come 
 	la somma di tre contributi: due dati dai fili infiniti paralleli e uno dato 
 	dalla semicirconferenza.
+	\begin{figure}%[H]
+			\centering
+			\begin{asy}[height=6cm,inline=true,attach=false,viewportwidth=\linewidth]
+				import three;
+				import graph3;
+				import solids;
+				currentprojection=orthographic(1,-2,1);
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size3(8cm);
+				real xmin=-7,xmax=6;
+				real ymin=-7,ymax=6;
+				real zmin=-2,zmax=6;
+				xaxis3(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow3, NoTicks3);
+				yaxis3(Label("\small $y$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow3, NoTicks3);
+				zaxis3(Label("\small $z$",position=EndPoint,align=NW),
+				zmin, zmax, arrow=EndArrow3, NoTicks3);
+				path3 semicirc = (4,0,0)..(0,4,0)..(-4,0,0);
+				path3 line1 = (-4,0,0)--(-4,-6,0);
+				path3 line1infty = (-4,-6,0)--(-4,-7,0);
+				path3 line2 = (4,0,0)--(4,-6,0);
+				path3 line2infty = (4,-6,0)--(4,-7,0);
+				draw(semicirc, linewidth(2bp)+solid);
+				draw(line1, linewidth(2bp)+solid);
+				draw(line1infty, linewidth(2bp)+dotted);
+				draw(line2, linewidth(2bp)+solid);
+				draw(line2infty, linewidth(2bp)+dotted);
+				draw(Label("\small $R$",align=N),(0,0,0)--(4*sqrt(3)/2,4*1/2,0));
+				draw(Label("\small $\vec{r'}$",position=MidPoint,align=N),
+				(0,0,0)--(-4*sqrt(3)/2,4*1/2,0),linewidth(1bp),Arrow3(10bp,12));
+				draw(Label("\small $\vec{r-r'}$",position=MidPoint,align=NW),
+				(-4*sqrt(3)/2,4*1/2,0)--(0,0,4),linewidth(1bp),Arrow3(10bp,12));
+				draw(Label("\small $\vec{r}$",position=MidPoint,align=E),
+				(0,0,0)--(0,0,4),linewidth(1bp),Arrow3(10bp,12));
+				draw((0,0,0.5)--(-sqrt(3)/4,1/4,0.5)--(-sqrt(3)/4,1/4,0));
+				draw(Label("\small $\psi$",align=WNW),(-1,0,0)..
+				(-(sqrt(6)+sqrt(2))/4,(sqrt(6)-sqrt(2))/4,0)..(-sqrt(3)/2,1/2,0));
+				draw(Label("\small $\vartheta$",align=SW),(0,0,3)..
+				(-(sqrt(2-sqrt(2)))/2*sqrt(3)/2,(sqrt(2-sqrt(2)))/2*1/2,4-(sqrt(2+sqrt(2)))/2)..
+				(-sqrt(2)/2*sqrt(3)/2,sqrt(2)/2*1/2,4-sqrt(2)/2));
+				dot(Label("\small $P$",align=SE),(0,0,4));
+				draw(Label("\small $d\vec{E}$",position=EndPoint,align=SE),
+				(0,0,4)--(4*sqrt(3)/4,-1,6),linewidth(1bp),Arrow3(10bp,12));
+			\end{asy}
+			\caption{Filo carico ricurvo}
+			\label{fig:filo_carico_ricurvo}
+		\end{figure}	
 	
 	Calcoliamo il contributo al campo elettrico dato dalla semicirconferenza. 
 	Si nota che la componente sull'asse $x$ del campo è nulla per simmetria. 
