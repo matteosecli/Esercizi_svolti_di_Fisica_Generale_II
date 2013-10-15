@@ -902,7 +902,7 @@
 	\label{sol_pr3}
 	E_y=k_e \frac{2 \rho \pi R^2}{y}=
 	\boxed{
-	\frac{\rho R^2}{2 y \epsilon_0}
+	\frac{\rho R^2}{2 y \varepsilon_0}
 	}
 	\end{equation}
 	
@@ -914,7 +914,7 @@
 	della stessa lunghezza $L$):
 	\begin{equation}
 	\label{pr3_gauss}
-	E 2 \pi y L = \frac{\pi R^2 L \rho}{\epsilon_0}
+	E 2 \pi y L = \frac{\pi R^2 L \rho}{\varepsilon_0}
 	\end{equation}
 	Il campo elettrico non dipende dunque da $L$ ed ottengo lo stesso 
 	risultato (\ref{sol_pr3}).
@@ -924,7 +924,7 @@
 	solo le cariche interne), ottenendo:
 	$$
 	\boxed{
-	E_y=\frac{\rho y}{2 \epsilon_0}
+	E_y=\frac{\rho y}{2 \varepsilon_0}
 	}
 	$$
 \end{proof}
@@ -1347,9 +1347,42 @@
 		$\forall \, i = 1,\,2,\,3$, ossia
 		\begin{equation}
 		\sum_{i=1}^{3} (q_iV_i' - q_i'V_i) = 0
+		\label{eq:green_discrete}
 		\end{equation}
 		che prova la tesi. L'estensione al caso di $N$ cariche è immediata.
-		\item Dobbiamo provare che, data una distribuzione di carica $\rho_1(\vec{r})$
+		\item Basta generalizzare l'equazione (\ref{eq:green_discrete}) (per $N$ cariche
+		puntiformi) a due configurazioni con distribuzione superficiale di carica,
+		\footnote{In questo caso, si tratta dello \emph{stesso} conduttore caricato in due
+		modi diversi. Per la generalizzazione a due corpi \emph{diversi} con distribuzioni
+		di carica generiche, si veda più avanti.}
+		chiamiamole $\sigma_1$ e $\sigma_2$, sostituendo $\sum$ con $\int$ e $q_i$ con 
+		$dq$. Non abbiamo necessità di considerare ``potenziali infinitesimi'' perché, 
+		per le proprietà dei conduttori, il potenziale è costante su tutta la superficie.
+		
+		Abbiamo dunque:
+		$$
+		\int_{S_1} \sigma_1 V_2 dS_1 = \int_{S_2} \sigma_2 V_1 dS_2
+		$$
+		che, poiché i potenziali sono costanti e 
+		$\displaystyle_S \int \sigma dS = Q$, si riduce a:
+		$$
+		Q_1V_2 = Q_2V_1.
+		$$
+		Definendo
+		$$
+		C \doteqdot \frac{Q}{V},
+		$$
+		possiamo riscrivere il risultato come:
+		$$
+		\boxed{C_1 = C_2.}
+		$$
+		Il risultato ci dice che la quantità $C$ non dipende da \emph{come} carichiamo
+		un dato conduttore, ma è una \emph{proprietà specifica} del conduttore stesso
+		che rimane costante. Tale proprietà si chiama \emph{capacità elettrica}.
+		
+		Giusto per completezza, si può generalizzare l'equazione (\ref{eq:green_discrete})
+		a due distribuzioni di carica qualsiasi (vedi anche Problema 3.50 \cite{griffiths}).
+		Dobbiamo provare che, data una distribuzione di carica $\rho_1(\vec{r})$
 		che genera un potenziale $V_1$, e una distribuzione di carica $\rho_2(\vec{r})$
 		che genera un potenziale $V_2$, vale la relazione:\footnotemark
 		\begin{equation}
@@ -1410,6 +1443,14 @@
 \end{proof}
 
 \begin{thebibliography}{9}
+
+\bibitem[Griffiths]{griffiths}
+  David J. Griffiths,
+  \emph{Introduction to Electrodynamics}.
+  Addison-Wesley, 
+  4th edition,
+  2012.
+  \texttt{ISBN-13 978-0-321-85656-2}.
 
 \bibitem[Mencuccini]{mencuccini}
   Corrado Mencuccini, Vittorio Silvestrini,
