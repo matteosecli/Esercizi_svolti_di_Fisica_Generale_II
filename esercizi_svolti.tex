@@ -1356,8 +1356,7 @@
 		modi diversi. Per la generalizzazione a due corpi \emph{diversi} con distribuzioni
 		di carica generiche, si veda più avanti.}
 		chiamiamole $\sigma_1$ e $\sigma_2$, sostituendo $\sum$ con $\int$ e $q_i$ con 
-		$dq$. Non abbiamo necessità di considerare ``potenziali infinitesimi'' perché, 
-		per le proprietà dei conduttori, il potenziale è costante su tutta la superficie.
+		$dq$.
 		
 		Abbiamo dunque:
 		$$
@@ -1379,67 +1378,319 @@
 		Il risultato ci dice che la quantità $C$ non dipende da \emph{come} carichiamo
 		un dato conduttore, ma è una \emph{proprietà specifica} del conduttore stesso
 		che rimane costante. Tale proprietà si chiama \emph{capacità elettrica}.
-		
-		Giusto per completezza, si può generalizzare l'equazione (\ref{eq:green_discrete})
-		a due distribuzioni di carica qualsiasi (vedi anche Problema 3.50 \cite{griffiths}).
-		Dobbiamo provare che, data una distribuzione di carica $\rho_1(\vec{r})$
-		che genera un potenziale $V_1$, e una distribuzione di carica $\rho_2(\vec{r})$
-		che genera un potenziale $V_2$, vale la relazione:\footnotemark
-		\begin{equation}
-		\int\limits_{\text{spazio}} \rho_1V_2d\tau =
-		\int\limits_{\text{spazio}} \rho_2V_1d\tau
-		\end{equation}
-		\footnotetext{
-		$\displaystyle \int\limits_{\text{spazio}}$ indica l'integrale su tutto 
-		lo spazio.
-		}
-		
-		Partiamo dall'identità vettoriale
-		\begin{equation}
-		\nabla \cdot (f\vec{A}) = f(\nabla \cdot \vec{A}) + \vec{A} \cdot (\nabla f)
-		\label{eq:grad_scalar_prod}
-		\end{equation}
-		e applichiamola con $f\vec{A} = V_1(\nabla V_2)$, ottenendo:
-		$$
-		\nabla \cdot (V_1\nabla V_2) =
-		V_1\nabla \cdot \nabla V_2 + \nabla V_1 \cdot \nabla V_2
-		$$
-		Ora, usando il fatto che $\vec{E_1} = -\nabla V_1$, $\vec{E_2} = -\nabla V_2$
-		e $\nabla \cdot \vec{E_2} = \rho_2/\varepsilon_0$, otteniamo:
-		\begin{equation}
-		\vec{E_1} \cdot \vec{E_2} =
-		\nabla \cdot (V_1\nabla V_2) + V_1\frac{\rho_2}{\varepsilon_0}
-		\end{equation}
-		Integrando su tutto lo spazio e usando il teorema della divergenza:
-		\begin{align*}
-		\int\limits_{\text{spazio}} \vec{E_1} \cdot \vec{E_2} d\tau &=
-		\int\limits_{\text{spazio}} \nabla \cdot (V_1\nabla V_2) d\tau +
-		\frac{1}{\varepsilon_0} \int\limits_{\text{spazio}} \rho_2 V_1 d\tau \\
-		&= \cancelto{0}{\int\limits_{\text{spazio}} V_1\nabla V_2 dS} +
-		\frac{1}{\varepsilon_0} \int\limits_{\text{spazio}} \rho_2 V_1 d\tau
-		\end{align*}
-		dove il primo integrale è nullo perché è un integrale di superficie
-		su tutto lo spazio. Rimane quindi:
-		\begin{equation}
-		\int\limits_{\text{spazio}} \vec{E_1} \cdot \vec{E_2} d\tau =
-		\frac{1}{\varepsilon_0} \int\limits_{\text{spazio}} \rho_2 V_1 d\tau
-		\label{eq:green_part1}
-		\end{equation}
-		Analogamente, applicando (\ref{eq:grad_scalar_prod}) con
-		$f\vec{A} = V_2(\nabla V_1)$, otteniamo:
-		\begin{equation}
-		\int\limits_{\text{spazio}} \vec{E_1} \cdot \vec{E_2} d\tau =
-		\frac{1}{\varepsilon_0} \int\limits_{\text{spazio}} \rho_1 V_2 d\tau
-		\label{eq:green_part2}
-		\end{equation}
-		Confrontando (\ref{eq:green_part1}) e (\ref{eq:green_part2}), otteniamo
-		infine
-		$$
-		\int\limits_{\text{spazio}} \rho_1V_2d\tau =
-		\int\limits_{\text{spazio}} \rho_2V_1d\tau,
-		$$
-		che prova la tesi.
 	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	Generalizzare l'equazione (\ref{eq:green_discrete})
+	a due distribuzioni di carica qualsiasi
+	\footnote{
+	Il problema proposto in precedenza fa riferimento a due distribuzioni di carica con la
+	\emph{stessa} geometria, ed in particolare due distribuzioni superficiali. Qui si
+	stanno invece considerando due distribuzioni volumetriche di forma
+	qualsiasi, anche molto diversa fra loro. Lo scopo è di dimostrare l'uguaglianza 
+	nel caso più generale di due corpi generici, non necessariamente per uno 
+	stesso conduttore caricato in due modi differenti.
+	}
+	(si veda anche Problema 3.50 \cite{griffiths}).
+\end{problema}
+\begin{proof}
+	Dobbiamo provare che, data una distribuzione di carica $\rho_1(\vec{r})$
+	che genera un potenziale $V_1$, e una distribuzione di carica $\rho_2(\vec{r})$
+	che genera un potenziale $V_2$, vale la relazione:\footnotemark
+	\begin{equation}
+	\int\limits_{\text{spazio}} \rho_1V_2d\tau =
+	\int\limits_{\text{spazio}} \rho_2V_1d\tau
+	\end{equation}
+	\footnotetext{
+	$\displaystyle \int\limits_{\text{spazio}}$ indica l'integrale su tutto 
+	lo spazio.
+	}
+	
+	Partiamo dall'identità vettoriale
+	\begin{equation}
+	\nabla \cdot (f\vec{A}) = f(\nabla \cdot \vec{A}) + \vec{A} \cdot (\nabla f)
+	\label{eq:grad_scalar_prod}
+	\end{equation}
+	e applichiamola con $f\vec{A} = V_1(\nabla V_2)$, ottenendo:
+	$$
+	\nabla \cdot (V_1\nabla V_2) =
+	V_1\nabla \cdot \nabla V_2 + \nabla V_1 \cdot \nabla V_2
+	$$
+	Ora, usando il fatto che $\vec{E_1} = -\nabla V_1$, $\vec{E_2} = -\nabla V_2$
+	e $\nabla \cdot \vec{E_2} = \rho_2/\varepsilon_0$, otteniamo:
+	\begin{equation}
+	\vec{E_1} \cdot \vec{E_2} =
+	\nabla \cdot (V_1\nabla V_2) + V_1\frac{\rho_2}{\varepsilon_0}
+	\end{equation}
+	Integrando su tutto lo spazio e usando il teorema della divergenza:
+	\begin{align*}
+	\int\limits_{\text{spazio}} \vec{E_1} \cdot \vec{E_2} d\tau &=
+	\int\limits_{\text{spazio}} \nabla \cdot (V_1\nabla V_2) d\tau +
+	\frac{1}{\varepsilon_0} \int\limits_{\text{spazio}} \rho_2 V_1 d\tau \\
+	&= \cancelto{0}{\int\limits_{\text{spazio}} V_1\nabla V_2 \cdot d\vec{S}} +
+	\frac{1}{\varepsilon_0} \int\limits_{\text{spazio}} \rho_2 V_1 d\tau
+	\end{align*}
+	dove il primo integrale è nullo perché è un integrale di superficie
+	su tutto lo spazio. Rimane quindi:
+	\begin{equation}
+	\int\limits_{\text{spazio}} \vec{E_1} \cdot \vec{E_2} d\tau =
+	\frac{1}{\varepsilon_0} \int\limits_{\text{spazio}} \rho_2 V_1 d\tau
+	\label{eq:green_part1}
+	\end{equation}
+	Analogamente, applicando (\ref{eq:grad_scalar_prod}) con
+	$f\vec{A} = V_2(\nabla V_1)$, otteniamo:
+	\begin{equation}
+	\int\limits_{\text{spazio}} \vec{E_1} \cdot \vec{E_2} d\tau =
+	\frac{1}{\varepsilon_0} \int\limits_{\text{spazio}} \rho_1 V_2 d\tau
+	\label{eq:green_part2}
+	\end{equation}
+	Confrontando (\ref{eq:green_part1}) e (\ref{eq:green_part2}), otteniamo
+	infine
+	$$
+	\int\limits_{\text{spazio}} \rho_1V_2d\tau =
+	\int\limits_{\text{spazio}} \rho_2V_1d\tau,
+	$$
+	che prova la tesi.
+\end{proof}
+
+\begin{problema}
+	Una carica $q > 0 $ è posta in un punto $P$ di fronte ad un conduttore collegato a terra.
+	\begin{enumerate}
+		\item Calcolare la carica $q_{\mathrm{in}}$ indotta sul conduttore dalla carica $q$
+		applicando il Teorema di reciprocità, e supponendo che lo stesso conduttore, carico 
+		ad un potenziale $V_C$, generi nel punto $P$ il potenziale $V_P$ in assenza di carica.
+		\item Se il generico conduttore è sostituito da una sfera conduttrice di raggio $R$ il
+		cui centro è distante $D$ dal punto $P$, si determini $q_{\mathrm{in}}$ in funzione di
+		$q$, $R$ e $D$ alle stesse condizioni del punto precedente.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Applicando il Teorema di reciprocità, abbiamo:
+		$$
+		|V_Cq_{\mathrm{in}}| = |V_Pq|
+		$$
+		da cui:
+		$$
+		\boxed{q_{\mathrm{in}} = - \left\lvert \frac{V_P}{V_C} \right\rvert q.}
+		$$
+		\item La sfera conduttrice è carica ad un potenziale
+		$$
+		V_C = k_e \frac{q_{\mathrm{in}}}{R},
+		$$
+		mentre il potenziale nel punto $P$ è pari a
+		$$
+		V_C = k_e \frac{q_{\mathrm{in}}}{D}
+		$$
+		(immaginando $q_{\mathrm{in}}$ come puntiforme, al centro della sfera). Applicando la
+		relazione trovata al punto precedente, abbiamo:
+		$$
+		q_{\mathrm{in}} = 
+		- \left\lvert \frac{V_P}{V_C} \right\rvert q =
+		\boxed{- \frac{R}{D}q.}
+		$$
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	Sia
+	$$
+	\vec{A} = -y \hat{i} + x \hat{j}
+	$$
+	un campo vettoriale.
+	\begin{enumerate}
+		\item Calcolare l'equazione delle linee di campo di $\vec{A}$ sul piano $xy$.
+		\item Calcolare il rotore di $\vec{A}$.
+		\item Calcolare la circuitazione di $\vec{A}$ lungo la linea chiusa di equazione
+		$x^2 + y^2 = 1$.
+		\item Dimostrare la validità del Teorema di Stokes applicata alla superficie piana
+		delimitata dalla curva $x^2 + y^2 = 1$.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Partiamo dalla relazione
+		$$
+		\vec{A} = -y \hat{i} + x \hat{j}.
+		$$
+		Vale che:
+		$$
+		||\vec{A}||^2 = (-y)^2 + (x)^2 = x^2 + y^2.
+		$$
+		Definendo $||\vec{A}||^2 \doteqdot R$, l'equazione delle linee di campo è chiaramente
+		l'equazione di una circonferenza di raggio $R$:
+		$$
+		\boxed{x^2 + y^2 = R,}
+		$$
+		con $R \in [0,\,+\infty)$.
+		\item Dalla definizione,
+		$$
+		\nabla \times \vec{A} =
+		\det\left(
+		\begin{matrix}
+		\hat{i} & \hat{j} & \hat{k}\\
+		\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z}\\
+		-y & x & 0
+		\end{matrix}
+		\right) =
+		-\cancelto{0}{\frac{\partial x}{\partial z}}\hat{i} - 
+		\cancelto{0}{\frac{\partial y}{\partial z}}\hat{j} +
+		2\hat{k} = \boxed{2\hat{k}.}
+		$$
+		\item Notiamo che $\vec{A}$ è tangente in ogni punto alla linea lungo la quale
+		stiamo calcolando la circuitazione. Inoltre, possiamo pensare di percorrere
+		la curva $x^2+y^2=1$ in senso antiorario (come da convenzione), mentre $\vec{A}$
+		percorre la stessa curva ma in senso orario. Quindi:
+		\begin{align*}
+		\int \vec{A} \cdot d\vec{l} 
+		&= \int_l (-ydx + xdy)\\
+		&= \int_{0}^{2\pi}
+		[-sin\vartheta (-\sin\vartheta d\vartheta) +\cos\vartheta (cos\vartheta d\vartheta)]\\
+		&= \int_{0}^{2\pi} d\vartheta = \boxed{2\pi.}
+		\end{align*}
+		\item Vogliamo verificare la validità del Teorema di Stokes, ossia:
+		$$
+		\int_{S} (\nabla \times \vec{A}) \cdot d\vec{S} 
+		= \int_{l} \vec{A} \cdot d\vec{S}.
+		$$
+		Calcoliamo quindi il primo termine dell'uguaglianza:
+		$$
+		\int_{S} (\nabla \times \vec{A}) \cdot d\vec{S} 
+		= (\nabla \times \vec{A}) \cdot \int_{S} d\vec{S} 
+		= (\nabla \times \vec{A}) \cdot \vec{S}
+		= \boxed{2\pi.}
+		$$
+		Il Teorema di Stokes è dunque verificato in questo caso.
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	Dati i campi:
+	\begin{align*}
+	\vec{A} &= (x+y)\hat{i} + (-x+y)\hat{j} - 2z\hat{k}\\
+	\vec{B} &= 2y\hat{i} + (2x+3z)\hat{j} + 3y\hat{k}\\
+	\vec{C} &= (x^2-z^2)\hat{i} + 2\hat{j} + 2xz\hat{k}
+	\end{align*}
+	calcolare per ciascuno di essi
+	\begin{enumerate}
+		\item la divergenza;
+		\item il rotore.
+	\end{enumerate}
+	Uno solo di questi campi è un campo elettrostatico. Si determini la sua funzione
+	potenziale $V = V(x,\,y,\,z)$ e si verifichi che il suo gradiente cambiato di segno
+	coincide con il suddetto campo.
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item
+		\begin{align*}
+		\nabla \cdot \vec{A}
+		&= \frac{\partial (x+y)}{\partial x} +
+		\frac{\partial (-x+y)}{\partial y} +
+		\frac{\partial (-2z)}{\partial z}\\
+		&= 1 + 1 - 2 = \boxed{0}.
+		\end{align*}
+		\begin{align*}
+		\nabla \cdot \vec{B}
+		&= \frac{\partial 2y}{\partial x} +
+		\frac{\partial (2x+3z)}{\partial y} +
+		\frac{\partial 3y}{\partial z}\\
+		&= 0 + 0 + 0 = \boxed{0}.
+		\end{align*}
+		\begin{align*}
+		\nabla \cdot \vec{C}
+		&= \frac{\partial (x^2-z^2)}{\partial x} +
+		\frac{\partial 2}{\partial y} +
+		\frac{\partial 2xz}{\partial z}\\
+		&= 2x + 0 + 2x = \boxed{4x}.
+		\end{align*}
+		\item
+		\begin{align*}
+		\nabla \times \vec{A}
+		&= \det\left(
+		\begin{matrix}
+		\hat{i} & \hat{j} & \hat{k}\\
+		\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z}\\
+		(x+y) & (-x+y) & -2z
+		\end{matrix}
+		\right)\\
+		&= \cancelto{0}{\hat{i}(0-0)} - \cancelto{0}{\hat{j}(0-0)} + \hat{k}(-1-1)
+		= \boxed{-2\hat{k}}.
+		\end{align*}
+		\begin{align*}
+		\nabla \times \vec{B}
+		&= \det\left(
+		\begin{matrix}
+		\hat{i} & \hat{j} & \hat{k}\\
+		\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z}\\
+		2y & (2x+3z) & 3y
+		\end{matrix}
+		\right)\\
+		&= \cancelto{0}{\hat{i}(3-3)} - \cancelto{0}{\hat{j}(0-0)} + \cancelto{0}{\hat{k}(2-2)}
+		= \boxed{\vec{0}}.
+		\end{align*}
+		\begin{align*}
+		\nabla \times \vec{C}
+		&= \det\left(
+		\begin{matrix}
+		\hat{i} & \hat{j} & \hat{k}\\
+		\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z}\\
+		(x^2-z^2) & 2 & 2xz 
+		\end{matrix}
+		\right)\\
+		&= \cancelto{0}{\hat{i}(0-0)} - \hat{j}(2z+2z) + \cancelto{0}{\hat{k}(0-0)}
+		= \boxed{-4z\hat{j}}.
+		\end{align*}
+	\end{enumerate}
+	Il campo elettrostatico è chiaramente $\vec{B}$, perché è l'unico ad avere rotore nullo.
+	La relazione che intercorre fra il campo elettrico $\vec{B}$ e il suo potenziale $V$ è
+	$$
+	\vec{B} = -\nabla V,
+	$$
+	quindi per ottenere $V$ bisogna risolvere il sistema:
+	$$
+	\begin{cases}\medskip
+	\dfrac{\partial V}{\partial x} = -2y\\\medskip
+	\dfrac{\partial V}{\partial y} = -2x - 3z\\
+	\dfrac{\partial V}{\partial z} = -3y
+	\end{cases}
+	$$
+	Integrando,
+	$$
+	\begin{cases}
+	V = -2xy + c_1(y,\,z)\\
+	V = -2xy - 3yz + c_2(x,\,z)\\
+	V = -3yz + c_3(x,\,y)
+	\end{cases}
+	$$
+	Usando -- ad esempio -- le prime due equazioni, otteniamo la condizione
+	$$
+	c_1(y,\,z) = -3yz + c_2(x,\,z).
+	$$
+	Ora, poiché $c_1$ è funzione di $y$ e $z$ e $c_2$ è funzione di $x$ e $z$, l'unico modo
+	di soddisfare la condizione è richiedere che $c_2$ sia nulla rispetto a $x$, o in altri
+	termini che $c_2$ sia funzione solo di $z$ e non di $x$. Usando questo fatto e la terza
+	equazione del sistema, otteniamo poi
+	$$
+	c_3(x,\,y) = -2xy + c_2(z).
+	$$
+	Di nuovo, per soddisfare la condizione, bisogna richiedere che $c_2$ sia nulla rispetto
+	a $z$, ossia $c_2 = 0$. Riassumendo,
+	$$
+	\begin{cases}
+	c_1(y,\,z) = -3yz\\
+	c_2(x,\,z) = 0\\
+	c_3(x,\,y) = -2xy
+	\end{cases}
+	\qquad \Longrightarrow \qquad
+	\boxed{V = - 2xy - 3yz}.
+	$$
+	La relazione $\vec{B} = -\nabla V$ è facile da verificare. Vale:
+	$$
+	-\nabla V = \nabla (-V) = \nabla(2xy + 3yz)
+	= (2y,\,2x+3z,\,3y) \equiv \vec{B}.
+	$$
 \end{proof}
 
 \begin{thebibliography}{9}
