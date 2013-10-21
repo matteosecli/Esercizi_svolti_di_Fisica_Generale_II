@@ -31,7 +31,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{enumitem}
-%\usepackage{comment} % Uncomment for selective compilation
+\usepackage{comment} % Uncomment for selective compilation
 \usepackage{asymptote}
 \usepackage{geometry}
 \author{A.V.}
@@ -1691,6 +1691,74 @@
 	-\nabla V = \nabla (-V) = \nabla(2xy + 3yz)
 	= (2y,\,2x+3z,\,3y) \equiv \vec{B}.
 	$$
+\end{proof}
+
+\begin{problema}
+Si calcolino:
+	\begin{enumerate}
+		\item il campo elettrico fra due cilindri coassiali infinitamente lunghi aventi 
+		raggi $a$ e $b$ (Figura \ref{fig:condensatore_cilindrico_infinito}), sapendo che la 
+		carica per unità di lunghezza sul cilindro interno è $+\lambda$ mentre quella sul
+		cilindro esterno è $-\lambda$;
+		\item la differenza di potenziale $V_A - V_B$ fra i due cilindri.
+	\end{enumerate}
+	\begin{figure}[H]
+			\centering
+			\begin{asy}
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(4cm);
+				draw(Label("\small $+\lambda$",p=black),circle((0,0),1),invisible);
+				label("\small $A$",rotate(45)*(1,0),E);
+				filldraw(circle((0,0),1),grey+opacity(0.3));
+				draw(Label("\small $-\lambda$",p=black),circle((0,0),3.3),invisible);
+				label("\small $B$",rotate(45)*(3.3,0),E);
+				filldraw(circle((0,0),3.3)^^circle((0,0),3),evenodd+grey+opacity(0.3));
+				draw(Label("\small $a$",position=MidPoint,align=NNW),(0,0)--rotate(45)*(-1,0));
+				draw(Label("\small $b$",position=MidPoint,align=2E),(0,0)--rotate(-45)*(3,0));
+			\end{asy}
+			\caption{Cilindri coassiali infiniti}
+			\label{fig:condensatore_cilindrico_infinito}
+		\end{figure}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Per ragioni di simmetria, sappiamo che fra i due cilindri il campo elettrico
+		 $\vec{E}$ è radiale, ed è diretto dal cilindro interno verso quello esterno.
+		 Possiamo quindi calcolarne facilmente il modulo usando il Teorema di Gauss.
+		 A tale scopo, consideriamo una superficie gaussiana di forma cilindrica, con
+		 raggio $a < r < b$ e altezza $h$, da cui:
+		 $$
+		 \begin{cases}\medskip
+		 \displaystyle
+		 \oint\limits_{S} \vec{E}(r) \cdot d\vec{S} = E(r)S = E(r)2\pi rh\\
+		 \dfrac{q_{\mathrm{in}}}{\varepsilon_0} = \dfrac{\lambda h}{\varepsilon_0}
+		 \end{cases}
+		 \qquad \Longrightarrow \qquad
+		 \boxed{
+		 \vec{E}(\vec{r}) = \frac{\lambda}{2\pi\varepsilon_0}\frac{1}{r}\hat{r}
+		 }
+		 $$
+		 \item La relazione generale che lega $\vec{E}$ e $V$ è $\vec{E} = -\nabla V$. In
+		 questo caso, però, $\vec{E}$ è solo funzione della distanza dall'asse, quindi
+		 possiamo scrivere che
+		 $$
+		 E(r) = -\frac{dV}{dr}.
+		 $$
+		 Integrando,
+		 $$
+		 V(b) - V(a) = -\int_{a}^{b} E(r)dr 
+		 = -\frac{\lambda}{2\pi\varepsilon_0}\left.\log(r)\right\rvert_{a}^{b}
+		 =-\frac{\lambda}{2\pi\varepsilon_0}\log\left(\frac{b}{a}\right).
+		 $$
+		 Quindi
+		 $$
+		 \boxed{
+		 V_A - V_B = \frac{\lambda}{2\pi\varepsilon_0}\log\left(\frac{b}{a}\right)
+		 }
+		 $$
+	\end{enumerate}
 \end{proof}
 
 \begin{thebibliography}{9}
