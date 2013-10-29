@@ -31,7 +31,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{enumitem}
-\usepackage{comment} % Uncomment for selective compilation
+%\usepackage{comment} % Uncomment for selective compilation
 \usepackage{asymptote}
 \usepackage{geometry}
 \author{A.V.}
@@ -1170,7 +1170,29 @@
 	$L$ con densità uniforme $\lambda$. Inizialmente il filo è disposto a distanza
 	$d$ da una superficie piana infinitamente grande, carica uniformemente con
 	densità di carica $\sigma$. Calcolare il lavoro richiesto per ruotare il filo di
-	$90^{\circ}$ come in Figura (da inserire).
+	$90^{\circ}$ come in Figura \ref{fig:spostamento_filo}.
+	\begin{figure}
+		\centering
+		\begin{asy}
+			import graph;
+			texpreamble("\let\oldhat\hat
+			\renewcommand{\vec}[1]{\mathbf{#1}}
+			\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+			size(8cm);
+			pen shortdashed=linetype(new real[] {4,4});
+			draw(Label("$\sigma$",position=MidPoint,align=N),(0,0)--(2,0),
+			2bp+black+shortdashed);
+			draw((2,0)--(10,0),2bp+black);
+			draw((10,0)--(12,0),2bp+black+shortdashed);
+			draw(Label("$\lambda$",position=MidPoint,align=N),(4,2)--(8,2),2bp+black);
+			draw((8,2)--(8,6),dashed);
+			draw((7,2)..rotate(-45,(8,2))*(7,2)..rotate(-90,(8,2))*(7,2),Arrow);
+			draw(Label("$L$",align=Center,filltype=UnFill),(4,1)--(8,1),arrow=Arrows,bar=Bars);
+			draw(Label("$d$",align=Center,filltype=UnFill),(9,0)--(9,2),arrow=Arrows,bar=Bars);
+		\end{asy}
+		\caption{Spostamento di un filo carico}
+		\label{fig:spostamento_filo}
+	\end{figure}
 \end{problema}
 \begin{proof}
 	Iniziamo col dire che il lavoro \emph{richiesto} è pari al lavoro delle forze
@@ -1220,6 +1242,21 @@
 	ha bisogno di un lavoro esterno per posizionare il filo in quella posizione;
 	essendo infatti le due distribuzioni con lo stesso segno, la piastra e il filo
 	tendono a respingersi, e il filo si posiziona spontaneamente in verticale.
+	
+	\underline{Soluzione alternativa.} Il lavoro richiesto può essere anche pensato come
+	il lavoro necessario a spostare il ``centro di carica'' nella posizione desiderata.
+	La carica del centro di carica è, per definizione, $Q = \lambda L$, mentre la sua 
+	posizione è pari a
+	$$
+	\frac{1}{\lambda L} \int_{0}^{L} \vec{r}\lambda(\vec{r})dl = \frac{L}{2}.
+	$$
+	Per quanto detto prima, il lavoro necessario a spostare il centro di carica
+	è pari al lavoro necessario per spostarlo di un tratto verticale di lunghezza
+	$L/2$, cioè:
+	$$
+	W_R = -QE\frac{L}{2} = - \lambda L E \frac{L}{2} = -\lambda E \frac{L^2}{2}
+	= \boxed{W_R = -\frac{\lambda \sigma L^2}{4\varepsilon_0}}.
+	$$
 \end{proof}
 
 \begin{problema}
@@ -1691,6 +1728,79 @@
 	-\nabla V = \nabla (-V) = \nabla(2xy + 3yz)
 	= (2y,\,2x+3z,\,3y) \equiv \vec{B}.
 	$$
+	
+	\underline{Soluzione alternativa.} \`E possibile ottenere $V$ usando la relazione
+	$$
+	V(P) = {\int\limits_l}^P_{V=0} \vec{B} \cdot d\vec{l},
+	$$
+	dove $l$ è un cammino arbitrario dal punto in cui poniamo $V=0$ fino al punto 
+	$P = (x_0,\,y_0,\,z_0)$ in cui vogliamo calcolare il potenziale. 
+	Esprimendo $dl$ come $(dx,\,dy,\,dz)$ e
+	scegliendo come punto iniziale $(0,\,0,\,0)$ abbiamo:
+	$$
+	V(P) = {\int\limits_l}_O^P [2ydx + (2x+3z)dy + 3ydz].
+	$$
+	Scegliamo -- ad esempio -- il cammino riportato in Figura \ref{fig:cammino_potenziale}.
+		\begin{figure}[H]
+			\centering
+			\begin{asy}[height=6cm,inline=true,attach=false,viewportwidth=\linewidth]
+				import three;
+				import graph3;
+				import solids;
+				currentprojection=obliqueX(-45);
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size3(6cm);
+				real xmin=0,xmax=6;
+				real ymin=0,ymax=6;
+				real zmin=0,zmax=6;
+				xaxis3(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow3, NoTicks3);
+				yaxis3(Label("\small $y$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow3, NoTicks3);
+				zaxis3(Label("\small $z$",position=EndPoint,align=NW),
+				zmin, zmax, arrow=EndArrow3, NoTicks3);
+				triple O=(0,0,0);
+				triple P1=(4,0,0);
+				triple P2=(4,4,0);
+				triple P3=(4,4,4);
+				draw(Label("\small I"),O--P1,linewidth(1.5bp));
+				draw(Label("\small II"),P1--P2,linewidth(1.5bp));
+				draw(Label("\small III"),P2--P3,linewidth(1.5bp));
+				dot(Label("\small $P=(x_0,\,y_0,\,z_0)$"),P3);
+			\end{asy}
+			\caption{Cammino arbitrario tra $0$ e $P$}
+			\label{fig:cammino_potenziale}
+		\end{figure}
+		Mettendo un segno ``$-$'' davanti al $dy$ nel tratto II,
+		e davanti al $dz$ nel tratto III, perché gli spostamenti sono in verso opposto
+		agli assi, si ha:
+		\begin{align*}
+		V(P) &= {\int\limits_l}^P_{V=0} \vec{B} \cdot d\vec{l}
+		= \int_{I} \vec{B} \cdot d\vec{l} 
+		+ \int_{II} \vec{B} \cdot d\vec{l} 
+		+ \int_{III} \vec{B} \cdot d\vec{l}\\
+		&= \int\limits_{(0,0,0)}^{(x_0,0,0)} 
+		[\cancel{2 \cdot 0 \cdot dx} 
+		+ \cancel{(2x+3 \cdot 0) \cdot 0} 
+		+ \cancel{3 \cdot 0 \cdot 0}] +\\
+		&+ \int\limits_{(x_0,0,0)}^{(x_0,y_0,0)} 
+		[\cancel{2 y \cdot 0} 
+		- (2x+3 \cdot 0) \cdot dy 
+		+ \cancel{3 y \cdot 0}] +\\
+		&+ \int\limits_{(x_0,y_0,0)}^{(x_0,y_0,z_0)} 
+		[\cancel{2 y \cdot 0} 
+		+ \cancel{(2x+3 y) \cdot 0}
+		- 3 y dz]\\
+		&= \left.-2xy\right\rvert_{(x_0,0,0)}^{(x_0,y_0,0)}
+		+ \left.-3yz\right\rvert_{(x_0,y_0,0)}^{(x_0,y_0,z_0)}
+		= - 2x_0y_0 - 3y_0z_0,
+		\end{align*}
+		ossia
+		$$
+		\boxed{V(x,\,y,\,z) = -2xy - 3yz}.
+		$$
 \end{proof}
 
 \begin{problema}
@@ -1758,6 +1868,228 @@ Si calcolino:
 		 V_A - V_B = \frac{\lambda}{2\pi\varepsilon_0}\ln\left(\frac{b}{a}\right)
 		 }
 		 $$
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	Tre lastre conduttrici piane sono disposte parallelamente tra loro come in Figura
+	\ref{fig:tre_lastre}. Le piastre hanno area $A$ e le distanze $x_1$ e $x_2$ sono
+	infinitesime rispetto a $\sqrt{A}$. La piastra superiore è connessa a quella
+	inferiore tramite un filo conduttore. Sulla piastra centrale è depositata uniformemente
+	una carica $Q$.
+	
+	Determinare le cariche indotte $Q_1$ e $Q_2$ rispettivamente sulla piastra superiore e
+	su quella inferiore, note le distanze $x_1$ e $x_2$ e trascurando gli effetti del campo
+	ai bordi delle piastre.
+	\begin{figure}%[H]
+			\centering
+			\begin{asy}
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(6cm);
+				draw(Label("\small $A$",2N),(14,6)--(14,5)--(0,5)--(0,6)--cycle);
+				draw(Label("\small $B$",2N),(14,1)--(14,0)--(0,0)--(0,1)--cycle);
+				draw(Label("\small $C$",2N),(14,-7)--(14,-8)--(0,-8)--(0,-7)--cycle);
+				draw((14,5.5)--(16,5.5)--(16,-7.5)--(14,-7.5));
+				label("\small $Q_1$",(7,5.5),NoAlign);
+				label("\small $Q$",(7,0.5),NoAlign);
+				label("\small $Q_2$",(7,-7.5),NoAlign);
+				draw(Label("\small $x_1$",align=Center,filltype=UnFill),
+				(-1,1)--(-1,5),arrow=Arrows,bar=Bars);
+				draw(Label("\small $x_2$",align=Center,filltype=UnFill),
+				(-1,0)--(-1,-7),arrow=Arrows,bar=Bars);
+			\end{asy}
+			\caption{Tre lastre conduttrici parallele}
+			\label{fig:tre_lastre}
+		\end{figure}
+\end{problema}
+\begin{proof}
+	Il calcolo delle cariche indotte $Q_1$ e $Q_2$ equivale al calcolo delle distribuzioni
+	superficiali di carica $\sigma_1$ e $\sigma_2$, che d'ora in poi saranno le nostre
+	incognite.
+	
+	Usando il Principio di sovrapposizione, il Teorema degli elementi corrispondenti 
+	e il fatto che il potenziale su $A$ e
+	$C$ deve essere lo stesso perché sono collegate da un filo (il potenziale sulla
+	superficie di un conduttore è costante), possiamo impostare il sistema
+	$$
+	\begin{cases}
+	\medskip
+	E_1 = \dfrac{\sigma}{2\varepsilon_0} - \dfrac{\sigma_1}{2\varepsilon_0}\\\medskip
+	E_2 = \dfrac{\sigma}{2\varepsilon_0} - \dfrac{\sigma_2}{2\varepsilon_0}\\
+	E_1x_1 = E_2x_2\\
+	Q_1 + Q_2 = -Q
+	\end{cases}
+	$$
+	\`E un sistema di 4 equazioni in 4 incognite ($E_1,\,E_2,\,\sigma_1,\,\sigma_2$), perché
+	le $\sigma_i$ sono legate alle $Q_i$ dalla relazione
+	$$
+	\sigma_i = \frac{Q_i}{A}.
+	$$
+	Risolvendo, abbiamo:
+	$$
+	\begin{cases}
+	\medskip
+	E_1 = \dfrac{3\sigma}{2\varepsilon_0}\dfrac{x_2}{x_1+x_2}\\\medskip
+	E_2 = \dfrac{3\sigma}{2\varepsilon_0}\dfrac{x_1}{x_1+x_2}\\\medskip
+	\boxed{\sigma_1 = \dfrac{x_1-2x_2}{x_1+x_2}\sigma}\\\medskip
+	\boxed{\sigma_2 = \dfrac{x_2-2x_1}{x_1+x_2}\sigma}\\
+	\end{cases}
+	$$
+\end{proof}
+
+\begin{problema}
+	Lo strato sottile semisferico illustrato in Figura \ref{fig:emisfero_carico} ha raggio
+	$R$ ed è uniformemente carico. Nota la carica $Q$ distribuita su di esso, si calcolino:
+	\begin{enumerate}
+		\item il potenziale lungo tutto l'asse $z$ ($z>R$ e $z<R$);
+		\item il campo elettrico lungo tutto l'asse $z$.
+	\end{enumerate}
+	\begin{figure}%[H]
+		\centering
+		\begin{asy}[height=6cm,inline=true,attach=false,viewportwidth=\linewidth]
+			import three;
+			import graph3;
+			import solids;
+			currentprojection=orthographic(2,2,1);
+			texpreamble("\let\oldhat\hat
+			\renewcommand{\vec}[1]{\mathbf{#1}}
+			\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+			size3(8cm);
+			real xmin=-8,xmax=8;
+			real ymin=-8,ymax=8;
+			real zmin=-4,zmax=10;
+			zaxis3(Label("\small $z$",position=EndPoint,align=NW),
+			zmin, zmax, arrow=EndArrow3, NoTicks3);
+			surface plane=surface((-8,-8,0)--(-8,8,0)--(8,8,0)--(8,-8,0)--cycle);
+			draw(plane, opacity(0.2)+lightgrey);
+			real r=6, h=0; // r=sphere radius; h=altitude section
+			real rs=sqrt(r^2-h^2); // section radius
+			real ch=180*acos(h/r)/pi;
+			path3 arcU=Arc((0,0,0),r,ch,0,0,0,Y,10);
+			revolution sphereU=revolution((0,0,0),arcU,Z);
+			draw(surface(sphereU), opacity(0.5)+lightgrey);
+			dot(Label("\small $P$"),(0,0,8));
+			draw(Label("\small $R$",position=MidPoint),(0,0,0)--(0,-6,0));
+			draw((0,0,0)--rotate(45,(0,0,1))*(0,-6,0));
+			draw((0,0,0)--(0,3*sqrt(2),3*sqrt(2)),linewidth(1.5bp));
+			draw(Label("\small $r$"),(0,3*sqrt(2),3*sqrt(2))--(0,0,8),linewidth(1.5bp));
+			draw(Label("\small $\vartheta$",align=N),
+			(0,0,1)..rotate(-45/2,(1,0,0))*(0,0,1)..rotate(-45,(1,0,0))*(0,0,1));
+			draw(Label("\small $\psi$",align=N),
+			(0,-1,0)..rotate(45/2,(0,0,1))*(0,-1,0)..rotate(45,(0,0,1))*(0,-1,0));
+		\end{asy}
+		\caption{Emisfero carico}
+		\label{fig:emisfero_carico}
+	\end{figure}	
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Utilizzando gli angoli illustrati in Figura \ref{fig:emisfero_carico}, abbiamo:
+		$$
+		r = \sqrt{z^2+R^2-2zR\cos\vartheta};
+		\qquad
+		dS = [(R\sin\vartheta)d\psi](Rd\vartheta) = R^2 \sin\vartheta d\vartheta d\psi.
+		$$
+		Definita $\sigma = \dfrac{Q}{S} = \dfrac{Q}{2 \pi R^2}$,
+		possiamo quindi calcolare il potenziale $V$ direttamente dalla definizione:
+		\begin{align*}
+		V &= k_e \int_S \frac{1}{r} \sigma dS\\
+		&= k_e \int_{\psi=0}^{2\pi} \int_{\vartheta=0}^{\pi/2}
+		\frac{\sigma R^2 \sin\vartheta}{\sqrt{z^2+R^2-2zR\cos\vartheta}} d\vartheta d\psi\\
+		&= k_e \int_{\psi=0}^{2\pi} d\psi \int_{\vartheta=0}^{\pi/2}
+		\frac{\sigma R^2}{2zR}
+		\frac{2zR\sin\vartheta}{\sqrt{z^2+R^2-2zR\cos\vartheta}} d\vartheta\\
+		&= k_e \int_{\psi=0}^{2\pi} d\psi
+		\left[
+		\frac{\sigma R^2}{\cancel{2}zR} \cancel{2} \sqrt{z^2+R^2-2zR\cos\vartheta}
+		\right]_{0}^{\pi/2}\\
+		&= k_e \frac{\sigma R^2}{zR} \left(\sqrt{z^2+R^2}-|z-R|\right)
+		\int_{\psi=0}^{2\pi} d\psi\\
+		&= -k_e \frac{Q}{\cancel{2\pi R^2}} 
+		\frac{\cancel{R^2}}{zR} \left(|z-R|-\sqrt{z^2+R^2}\right) \cancel{2\pi}\\
+		&= \boxed{-k_e \frac{Q}{zR} \left(|z-R| - \sqrt{z^2+R^2}\right)}.
+		\end{align*}
+		Notiamo che
+		$$
+		V \sim_{\pm\infty} \pm k_e\frac{Q}{z},
+		$$
+		cioè, a grandi distanze dalla distribuzione, il potenziale va come quello
+		di una carica puntiforme $Q$.
+		\item
+		\begin{align*}
+		E &= - |\nabla V| = - \frac{\partial V}{\partial z}\\
+		&= \left[
+		k_e \frac{Q}{zR} \left(|z-R| - \sqrt{z^2+R^2}\right)
+		\right]'\\
+		&= k_e Q \left[
+		\frac{|z-R|}{zR} - \frac{1}{R}\frac{\sqrt{z^2+R^2}}{z}
+		\right]'\\
+		&= k_e Q \left[
+		\frac{z \cdot \mathrm{sgn}(z-R)-R \cdot \mathrm{sgn}(z-R)}{zR} 
+		- \frac{1}{R}\frac{\sqrt{z^2+R^2}}{z}
+		\right]'\\
+		&= k_e Q \left[
+		\frac{\mathrm{sgn}(z-R)}{R} - \frac{\mathrm{sgn}(z-R)}{z} 
+		- \frac{1}{R}\frac{\sqrt{z^2+R^2}}{z}
+		\right]'\\
+		&= k_e Q
+		\left(
+		0 + \frac{\mathrm{sgn}(z-R)}{z^2}
+		- \frac{1}{R}
+		\frac{\frac{z}{\sqrt{z^2+R^2}} \cdot z - \sqrt{z^2+R^2} \cdot 1}{z^2} 
+		\right)\\
+		&= k_e Q
+		\left(
+		\mathrm{sgn}(z-R) - \frac{1}{R}\frac{\cancel{z^2}-\cancel{z^2}-R^2}{\sqrt{z^2+R^2}}
+		\right)\\
+		&= \boxed{
+		k_e \frac{Q}{z^2} \left(\mathrm{sgn}(z-R) + \frac{R}{\sqrt{z^2+R^2}}\right)
+		}.
+		\end{align*}
+		Notiamo che, come nel caso del potenziale,
+		$$
+		E \sim_{\pm\infty} \pm k_e\frac{Q}{z^2},
+		$$
+		cioè, a grandi distanze dalla distribuzione, il campo elettrico va come quello
+		di una carica puntiforme $Q$.
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	Un campo elettrico $\vec{E}$ è descritto -- in coordinate cilindriche -- dal potenziale
+	$$
+	V(r,\,\varphi,\,z) = 80 \varphi \; [V].
+	$$
+	Calcolare:
+	\begin{enumerate}
+			\item l'energia immagazzinata nella regione
+			$$
+			r \in [2,\,4]\, \mathrm{cm}; \qquad
+			\varphi \in [0,\,0.2\pi]; \qquad
+			z \in [0,\,1] \, \mathrm{m};
+			$$
+			\item il valore massimo della densità di energia $\mathrm{u}$ nella regione
+			specificata;
+			\item la differenza di potenziale $V_{AB}$ tra i punti
+			$A = (r = 3 \, \mathrm{cm},\,\varphi = 0,\,z = 0)$ e
+			$B = (3 \, \mathrm{cm},\,0.2\pi,\,1 \, \mathrm{m})$.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item $\vec{E} = - \nabla V = -80 \hat{\varphi} \, \dfrac{C}{m}$.\\
+		$\mathrm{u} = \dfrac{\varepsilon_0}{2}E^2 
+		= \dfrac{\varepsilon_0}{2}(-80)^2 = 320 \varepsilon_0 \, \dfrac{J}{m^3}$.\\
+		$W = \mathrm{u}\tau 
+		= 320\varepsilon_0 \cdot 2 \times 10^{-1} \pi \cdot 
+		(4-2) \times 10^{-2} \cdot 1 \, \mathrm{J}
+		= 320\varepsilon_04\pi \times 10^{-3} \, \mathrm{J}
+		= \boxed{\dfrac{320}{k_e} \, \mathrm{J}}$.
+		\item Poiché $\mathrm{u}$ è costante, il suo massimo nella regione considerata
+		coincide con il valore calcolato precedentemente.
+		\item $V_B - V_A = 80(0.2\pi-0) \, \mathrm{V} = \boxed{16\pi \, \mathrm{V}}$.
 	\end{enumerate}
 \end{proof}
 
