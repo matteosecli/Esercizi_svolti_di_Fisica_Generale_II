@@ -41,6 +41,7 @@
 \let\oldhat\hat
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \renewcommand{\hat}[1]{\widehat{\mathbf{#1}}}
+\DeclareMathOperator*{\arsinh}{arsinh}
 %\usepackage[square]{natbib}
 
 \begin{document}
@@ -2091,6 +2092,92 @@ Si calcolino:
 		coincide con il valore calcolato precedentemente.
 		\item $V_B - V_A = 80(0.2\pi-0) \, \mathrm{V} = \boxed{16\pi \, \mathrm{V}}$.
 	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	Una carica di densità $\sigma$ è distribuita uniformemente sul triangolo in Figura
+	\ref{fig:potenziale_triangolo}; il lato $BC$ ha lunghezza $b$ pari al doppio
+	dell'altezza relativa $AH$, di lunghezza $a$. Si calcoli il potenziale sul vertice $A$.
+	\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import graph;
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(6cm);
+				real xmin=-2,xmax=6;
+				real ymin=-4,ymax=4;
+				xaxis(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow, NoTicks);
+				yaxis(Label("\small $y$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow, NoTicks);
+				pair A=(0,0);
+				pair B=(3,3);
+				pair C=(3,-3);
+				pair H=(3,0);
+				path mytriangle = A--B--C--cycle;
+				filldraw(mytriangle,lightgrey+opacity(0.7));
+				dot("\small $A$",A,W);
+				dot("\small $B$",B,NE);
+				dot("\small $C$",C,SE);
+				dot("\small $H$",H,NE);
+				draw(Label("\small $a$",N,position=MidPoint,p=black),A--H,p=invisible);
+				draw(Label("\small $a$",E,position=MidPoint,p=black),B--H,p=invisible);
+				draw(Label("\small $a$",E,position=MidPoint,p=black),H--C,p=invisible);
+			\end{asy}
+			\caption{Distribuzione di carica uniforme su un triangolo}
+			\label{fig:potenziale_triangolo}
+		\end{figure}
+\end{problema}
+\begin{proof}
+	Per calcolare il potenziale in $A$ utilizziamo l'equazione:
+	\begin{equation}
+	V = \int k_{e}\frac{\sigma}{r}dS,
+	\label{eq:potenziale_superficie}
+	\end{equation}
+	dove $r$ è la distanza del vertice $A$ da un fazzoletto infinitesimo di superficie 
+	del triangolo considerato. Osserviamo che $dS = dxdy$ e $r = \sqrt{x^2 + y^2}$. 
+	Inoltre $b = 2a $. Facendo riferimento alla Figura \ref{fig:potenziale_triangolo} 
+	e sostituendo nell'equazione (\ref{eq:potenziale_superficie}) otteniamo:
+	\begin{align*}
+	V(A)
+	&= k_e \int_0^a dx \int_{-x}^x \frac{\sigma}{\sqrt{x^2 + y^2}} dy \\
+	&= k_e\sigma \int_0^a dx \int_{-x}^x \frac{1/x}{\sqrt{1 +( y/x)^2}} dy
+	\end{align*}
+	dove
+	\begin{align*}
+	\int_{-x}^x \frac{1/x}{\sqrt{1 +( y/x)^2}} dy
+	&= \left.\arsinh\left(\frac{y}{x}\right) \right|_{y=-x}^x \\
+	&= 2\arsinh(1) \\
+	&= 2\ln\left(1 + \sqrt{2}\right)
+	\end{align*}
+	dove nell'ultimo passaggio si è utilizzata la relazione:
+	$$
+	\arsinh(x) = \ln\left(x + \sqrt{x^2+1}\right).
+	$$
+	Sostituendo ancora:
+	\begin{align*}
+	V(A)
+	&= 2k_e\sigma \int_0^a \ln\left(1 + \sqrt{2}\right) dx \\
+	&= 2k_e\sigma\ln\left(1 + \sqrt{2}\right) \int_0^a dx \\
+	&= \boxed{2k_e\sigma\ln\left(1 + \sqrt{2}\right)a}
+	\end{align*}
+	
+	\underline{Soluzione alternativa.} Il triangolo può essere visto come una successione
+	di fili verticali, ognuno di densità lineare di carica $\lambda = \sigma dx$ e lunghezza
+	$2x$, dove $x$ è la posizione del filo che andiamo a considerare. La posizione di un
+	elemento infinitesimo $dl$ del filo è $r = \sqrt{x^2+y^2}$, e $dl \equiv dy$. Ogni filo
+	dà quindi un contributo al potenziale
+	$$
+	dV = \int_l \frac{1}{r}\lambda dl = \int_{y=-x}^{x} \frac{1}{r}(\sigma dx) dy.
+	$$
+	Sommando tutti i contributi al potenziale otteniamo:
+	$$
+	V(A) = \int dV = 
+	\int_{x=0}^{a} \int_{y=-x}^{x} \frac{1}{\sqrt{x^2+y^2}}\sigma dx dy,
+	$$
+	come già ottenuto in precedenza.
 \end{proof}
 
 \begin{thebibliography}{9}
