@@ -835,7 +835,7 @@
 \end{proof}
 
 \begin{problema}
-	Una carica di densità volumica è distribuita uniformemente in un 
+	Una carica di densità volumetrica è distribuita uniformemente in un 
 	volume cilindrico di raggio $R$ e lunghezza infinita. Si calcoli 
 	il campo elettrostatico ovunque nello spazio.
 	\begin{figure}%[H]
@@ -1882,7 +1882,7 @@ Si calcolino:
 	Determinare le cariche indotte $Q_1$ e $Q_2$ rispettivamente sulla piastra superiore e
 	su quella inferiore, note le distanze $x_1$ e $x_2$ e trascurando gli effetti del campo
 	ai bordi delle piastre.
-	\begin{figure}%[H]
+	\begin{figure}[H]
 			\centering
 			\begin{asy}
 				texpreamble("\let\oldhat\hat
@@ -2080,16 +2080,24 @@ Si calcolino:
 \end{problema}
 \begin{proof}
 	\begin{enumerate}
-		\item $\vec{E} = - \nabla V = -80 \hat{\varphi} \, \dfrac{C}{m}$.\\
-		$\mathrm{u} = \dfrac{\varepsilon_0}{2}E^2 
-		= \dfrac{\varepsilon_0}{2}(-80)^2 = 320 \varepsilon_0 \, \dfrac{J}{m^3}$.\\
-		$W = \mathrm{u}\tau 
-		= 320\varepsilon_0 \cdot 2 \times 10^{-1} \pi \cdot 
-		(4-2) \times 10^{-2} \cdot 1 \, \mathrm{J}
-		= 320\varepsilon_04\pi \times 10^{-3} \, \mathrm{J}
-		= \boxed{\dfrac{320}{k_e} \, \mathrm{J}}$.
-		\item Poiché $\mathrm{u}$ è costante, il suo massimo nella regione considerata
-		coincide con il valore calcolato precedentemente.
+		\item $\vec{E} = - \nabla V = -\dfrac{80}{r} \hat{\varphi} \, \dfrac{C}{m}$.\\
+		$\mathrm{u} = \dfrac{\varepsilon_0}{2} E^2 
+		= \dfrac{\varepsilon_0}{2}\left(-\dfrac{80}{r}\right)^2 = 
+		\dfrac{320}{r^2} \varepsilon_0 \, \dfrac{J}{m^3}$.\\
+		$\displaystyle W = \int_{\tau} \mathrm{u} d\tau 
+		= 320\varepsilon_0 \int_{\tau} \frac{1}{r^{\cancel{2}^1}}\cancel{r} dr d\varphi dz
+		= 320\varepsilon_0 \cdot (2 \times 10^{-1} \pi)
+		\cdot 1 \cdot \left.\ln(r)\right\rvert_{2 \times 10^{-2}}^{4 \times 10^{-2}} 
+		\, \mathrm{J} = \\
+		= 64\pi\ln(2)\varepsilon_0 \, \mathrm{J}
+		= \boxed{\dfrac{16\ln(2)}{k_e} \, \mathrm{J}}$.
+		\item $\max u \Longleftrightarrow 
+		\min r^2 \Longleftrightarrow 
+		\min |r| \Longleftrightarrow 
+		\min r = 2 \times 10^{-2} \, \mathrm{m}$, da cui\\
+		$\max u = 
+		\dfrac{320}{\left( 2 \times 10^{-2} \right)^2} \varepsilon_0 \, \dfrac{J}{m^3} =
+		\boxed{125 \varepsilon_0 \, \dfrac{J}{m^3}}$
 		\item $V_B - V_A = 80(0.2\pi-0) \, \mathrm{V} = \boxed{16\pi \, \mathrm{V}}$.
 	\end{enumerate}
 \end{proof}
@@ -2179,6 +2187,154 @@ Si calcolino:
 	$$
 	come già ottenuto in precedenza.
 \end{proof}
+
+\begin{problema}
+	Si calcoli il momento di dipolo delle seguenti distribuzioni di carica. 
+	Sia $\lambda = \mathrm{costante}$ la densità di carica lineare.
+	\begin{enumerate}
+		\item FIGURA1
+		\item FIGURA2
+		\item FIGURA3
+		\item FIGURA4
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	Il problema può essere risolto in due modi.
+	\begin{enumerate}
+		\item Si calcolano il centro di carica $C^+$ della distribuzione positiva e
+		il centro di carica $C^-$ di quella negativa. La carica totale su ognuna delle due
+		distribuzioni è $q > 0$ o $-q$ a seconda della distribuzione, quindi il momento di
+		dipolo sarà semplicemente
+		$$
+		\vec{p} = q\vec{a},
+		$$
+		dove $\vec{a}$ è il vettore che va da $C^-$ a $C^+$.
+		\item Si applica la definizione
+		$$
+		\vec{p} = \int_l \vec{r}\lambda(\vec{r})dl,
+		$$
+		dove $\vec{r}$ è il vettore posizione di un elemento infinitesimo di carica, $\lambda$
+		la densità lineare di carica in quel punto e $dl$ l'elemento infinitesimo di lunghezza
+		della distribuzione.
+	\end{enumerate}
+	
+	Il primo metodo è in questo caso il più veloce, ma se si può applicare è grazie alla
+	particolare simmetria delle distribuzioni considerate. Il secondo metodo è più 
+	laborioso, ma ha una valenza generale.
+	In questa soluzione si è scelto di applicare la definizione.
+	
+	Passiamo ora ai vari casi. Per comodità in tutta la soluzione, si è posto $\lambda > 0$.
+	\begin{enumerate}
+		\item 
+		\begin{align*}
+		\vec{p} &= \int_l \vec{r}\lambda(\vec{r})dl
+		= \int_{x=-L}^{L} \vec{x}\lambda(\vec{x})dx \\
+		&= \int_{-L}^{0} (x\hat{x})(-\lambda)dx + \int_{0}^{L} (x\hat{x})\lambda dx \\
+		&= \lambda \hat{x} \left( -\left.\frac{x^2}{2}\right\rvert_{-L}^{0} 
+		+ \left.\frac{x^2}{2}\right\rvert_{0}^{L} \right)\\
+		&= \boxed{\lambda L^2 \hat{x}}.
+		\end{align*}
+		\item 
+		\begin{align*}
+		\vec{p} &= \int_l \vec{r}\lambda(\vec{r})dl
+		= \int_{x=-(L+d)}^{L+d} \vec{x}\lambda(\vec{x})dx \\
+		&= \int_{-(L+d)}^{0} (x\hat{x})(-\lambda)dx + \int_{0}^{L+d} (x\hat{x})\lambda dx \\
+		&= \lambda \hat{x} \left( -\left.\frac{x^2}{2}\right\rvert_{-(L+d)}^{0} 
+		+ \left.\frac{x^2}{2}\right\rvert_{0}^{L+d} \right)\\
+		&= \lambda \left[ (L+d)^2 - d^2 \right] \hat{x}
+		= \boxed{\lambda L(L+2d)\hat{x}}.
+		\end{align*}
+		\item 
+		\begin{align*}
+		\vec{p} &= \int_l \vec{r}\lambda(\vec{r})dl \\
+		&= \int_{y=0}^{L} (y\hat{y})\lambda dy + \int_{x=L}^{0} (x\hat{x})(-\lambda)(-dx) \\
+		&= \int_{y=0}^{L} y\hat{y}\lambda dy - \int_{x=0}^{L} x\hat{x}\lambda dx \\
+		&= \lambda \left[ \frac{L^2}{2}\hat{y} - \frac{L^2}{2}\hat{x} \right]
+		= \boxed{\lambda \frac{L^2}{2}(\hat{y}-\hat{x})}.
+		\end{align*}
+		\item 
+		\begin{align*}
+		\vec{p} &= \int_l \vec{r}\lambda(\vec{r})dl \\
+		&= \int_{\vartheta=0}^{\pi} (R\cos\vartheta\hat{x})\lambda(Rd\vartheta) 
+		+ \int_{\vartheta=0}^{\pi} (R\sin\vartheta\hat{y})\lambda(Rd\vartheta) + \\
+		&+ \int_{\vartheta=\pi}^{2\pi} (R\cos\vartheta\hat{x})(-\lambda)(Rd\vartheta) 
+		+ \int_{\vartheta=\pi}^{2\pi} (R\sin\vartheta\hat{y})(-\lambda)(Rd\vartheta) \\
+		&= \left[ \lambda R^2 \sin\vartheta \hat{x} 
+		- \lambda R^2 \cos\vartheta \hat{y} \right]_{\vartheta=0}^{\pi}
+		- \left[ \lambda R^2 \sin\vartheta \hat{x} 
+		- \lambda R^2 \cos\vartheta \hat{y} \right]_{\vartheta=\pi}^{2\pi} \\
+		&= \boxed{4 \lambda R^2 \hat{y}}.
+		\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	Una linea di trasmissione è costituita da due cavi cilindrici	 di raggio $R$ paralleli
+	e infinitamente lunghi i cui centri distano $D$. Su un cavo è distribuita uniformemente
+	una densità superficiale di carica $\sigma > 0$, sull'altro una densità superficiale di 
+	carica $-\sigma$ (sempre in maniera uniforme). Si calcoli la differenza di potenziale tra
+	i due conduttori.
+	\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import graph;
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(6cm);
+				real xmin=0,xmax=7;
+				xaxis(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow, NoTicks);
+				path cylinder1 = circle((0,0),1);
+				path cylinder2 = circle((5,0),1);
+				filldraw(cylinder1,lightgrey+opacity(0.7));
+				filldraw(cylinder2,lightgrey+opacity(0.7));
+				draw(Label("\small $D$",align=Center,filltype=UnFill),
+				(0,-2)--(5,-2),arrow=Arrows,bar=Bars);
+				draw(Label("\small $R$",position=MidPoint,align=WNW),
+				(0,0)--rotate(-45)*(0,1));
+				draw(Label("\small $R$",position=MidPoint,align=WNW),
+				(5,0)--rotate(-45,(5,0))*(5,1));
+				labelx("\small $0$",0,S);
+			\end{asy}
+			\caption{Cavi coassiali in sezione}
+			\label{fig:cavi_coassiali_sezione}
+		\end{figure}
+\end{problema}
+\begin{proof}
+	Siano $\vec{r_1}$ e $\vec{r_2}$ i versori radiali, uscenti dalle due sezioni; $r_{1}$ e
+	$r_{2}$ le distanze di un qualsiasi punto dello spazio dai rispettivi centri. 
+	Utilizzando il teorema di Gauss si verifica che il campo generato dai due cavi 
+	(consideriamo $1$ il cilindro di sinistra) è:
+	$$
+	\vec{E_{1}} = \frac{\sigma R}{\varepsilon_{0}r_{1}}\vec{r_{1}}, 
+	\qquad 
+	\vec{E_{2}} = -\frac{\sigma R}{\varepsilon_{0}r_{2}}\vec{r_{2}}.
+	$$
+	Ora, il campo elettrico è conservativo; quindi possiamo calcolare la differenza di
+	potenziale fra le due superfici sul percorso privilegiato che è la congiungente degli
+	assi dei cilindri. Orientando tale congiungente con un asse cartesiano $x$ che ha 
+	origine nel centro del cilindro $1$, possiamo scrivere il campo \emph{limitatamente}
+	alla congiungente come somma dei campi $\vec{E_1}$ ed $\vec{E_2}$:
+	$$
+	\vec{E_{\mathrm{tot, x}}}(\vec{x})
+	= \frac{\sigma R}{\varepsilon_0}\left(\frac{1}{x} + \frac{1}{D-x}\right)\hat{x}.
+	$$
+	Il vantaggio di limitarci alla congiungente è che qui il campo complessivo è
+	parallelo al versore $\hat{x}$, e quindi la relazione generale
+	$\displaystyle V(\vec{a}) - V(\vec{b)} = - \int_{b}^{a} \vec{E}(\vec{r}) \cdot d\vec{l} $ 
+	si semplifica notevolmente. Otteniamo infatti:
+	\begin{align*}
+	V_1 - V_2 &= -\int_{x=D-R}^{x=R} E_{\mathrm{tot, x}}(\vec{x}) dx \\
+	&= -\int_{x=D-R}^{x=R} 
+	\frac{\sigma R}{\varepsilon_0}\left(\frac{1}{x} + \frac{1}{D-x}\right) dx \\
+	&= -\frac{\sigma R}{\varepsilon_0}
+	\left[ \ln(x) - \ln\left(D-x\right) \right]_{D-R}^{R}\\
+	&= 2\frac{\sigma R}{\varepsilon_0}[\ln(D-R)-\ln(R)]
+	= \boxed{2\frac{\sigma R}{\varepsilon_0}\ln\left(\frac{D}{R}-1\right)}.
+	\end{align*}
+\end{proof}
+
 
 \begin{thebibliography}{9}
 
