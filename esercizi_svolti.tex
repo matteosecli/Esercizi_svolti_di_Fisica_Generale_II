@@ -811,8 +811,8 @@
 	
 	Integrando fra $-L$ e $L$ ottengo:
 	$$
-	|\vec{E}|=\int_{-L}^{L} k_e \frac{\sigma (z-h) dS}{|(\vec{r}-\vec{r'})|^3}=
-	k_e \int_{-L}^{L} \frac{\sigma (z-h) 2\pi R }
+	|\vec{E}|=\int_{-l}^{L} k_e \frac{\sigma (z-h) dS}{|(\vec{r}-\vec{r'})|^3}=
+	k_e \int_{-l}^{L} \frac{\sigma (z-h) 2\pi R }
 	{\left(\sqrt{R^2+(z-h)^2}\right)^3} dh
 	$$
 	Posso risolvere l'integrale effettuando la sostituzione $s=z-h$ ($ds=-dh$); 
@@ -2192,10 +2192,109 @@ Si calcolino:
 	Si calcoli il momento di dipolo delle seguenti distribuzioni di carica. 
 	Sia $\lambda = \mathrm{costante}$ la densità di carica lineare.
 	\begin{enumerate}
-		\item FIGURA1
-		\item FIGURA2
-		\item FIGURA3
-		\item FIGURA4
+		\item $\,$
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import graph;
+				import markers;
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(6cm);
+				real xmin=-6,xmax=6;
+				xaxis(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow, NoTicks);
+				draw((0,0)--(5,0),invisible,
+				CrossIntervalMarker(6,4,size=3,angle=45,1.5bp+blue,
+				dotframe(invisible)));
+				draw((-5,0)--(0,0),invisible,
+				CrossIntervalMarker(6,2,size=3,angle=0,1.5bp+red,
+				dotframe(invisible)));
+				xtick("\small $0$",0,N);
+				xtick("\small $L$",5,N);
+				xtick("\small $-L$",-5,N);
+			\end{asy}
+			\caption{Distribuzione lineare}
+			\label{fig:distribuzione_01}
+		\end{figure}
+		\item $\,$
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import graph;
+				import markers;
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(8cm);
+				real xmin=-7,xmax=7;
+				xaxis(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow, NoTicks);
+				draw((1,0)--(6,0),invisible,
+				CrossIntervalMarker(6,4,size=3,angle=45,1.5bp+blue,
+				dotframe(invisible)));
+				draw((-6,0)--(-1,0),invisible,
+				CrossIntervalMarker(6,2,size=3,angle=0,1.5bp+red,
+				dotframe(invisible)));
+				xtick("\small $0$",0,N);
+				xtick("\small $L+d$",6,N);
+				xtick("\small $-(L+d)$",-6,N);
+				xtick("\small $d$",1,N);
+				xtick("\small $-d$",-1,N);
+			\end{asy}
+			\caption{Distribuzione lineare}
+			\label{fig:distribuzione_02}
+		\end{figure}
+		\item $\,$
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import graph;
+				import markers;
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(4cm);
+				real xmin=0,xmax=6;
+				real ymin=0,ymax=6;
+				xaxis(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow, NoTicks);
+				yaxis(Label("\small $y$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow, NoTicks);
+				draw((0,0)--(5,0),invisible,
+				CrossIntervalMarker(6,4,size=3,angle=45,1.5bp+blue,
+				dotframe(invisible)));
+				draw((0,0)--(0,5),invisible,
+				CrossIntervalMarker(6,2,size=3,angle=0,1.5bp+red,
+				dotframe(invisible)));
+				labelx("\small $0$",0,SW);
+				xtick("\small $L$",5);
+				ytick("\small $L$",5);
+			\end{asy}
+			\caption{Distribuzione lineare}
+			\label{fig:distribuzione_03}
+		\end{figure}
+		\item $\,$
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import markers;
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				size(4cm);
+				draw((-1,0)..(0,1)..(1,0),invisible,
+				CrossIntervalMarker(10,4,size=3,angle=45,1.5bp+blue,
+				dotframe(invisible)));
+				draw((1,0)..(0,-1)..(-1,0),invisible,
+				CrossIntervalMarker(10,2,size=3,angle=0,1.5bp+red,
+				dotframe(invisible)));
+				draw("\small $R$",(0,0)--rotate(45)*(-1,0));
+			\end{asy}
+			\caption{Distribuzione lineare}
+			\label{fig:distribuzione_04}
+		\end{figure}
 	\end{enumerate}
 \end{problema}
 \begin{proof}
@@ -2334,6 +2433,1148 @@ Si calcolino:
 	= \boxed{2\frac{\sigma R}{\varepsilon_0}\ln\left(\frac{D}{R}-1\right)}.
 	\end{align*}
 \end{proof}
+
+\begin{problema}
+	Una carica puntiforme $q$ è disposta di fronte ad un conduttore costituito da due pareti
+	piane infinitamente grandi ortogonali tra loro. Note le distanze $a$ e $b$ dalle pareti
+	(vedi Figura \ref{fig:conduttori_ortogonali}) calcolare:
+	\begin{enumerate}
+		\item il potenziale $V(x,\,y)$ nel quadrante libero;
+		\item il campo elettrico $\vec{E} = \vec{E}(x,\,y)$;
+		\item i valori che $\vec{E}$ assume sulle due superfici, cioè $\vec{E}(x,\,0)$
+		e $\vec{E}(0,\,y)$.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	Risolviamo il problema utilizzando il metodo delle cariche immagine e considerando 
+	un sistema equivalente consistente in un rettangolo di lati $2a$ e $2b$ con ai vertici 
+	quattro cariche puntiformi come in Figura \ref{fig:conduttori_ortogonali_soluz}.
+	\begin{enumerate}
+		\item Per calcolare il potenziale sfruttiamo il principio di sovrapposizione e 
+		l'espressione del potenziale per una carica puntiforme $V = k_{e}\dfrac{q}{r}$, 
+		dove $r$ è la distanza tra la carica e il punto. Sia $P = (x,\,y)$ un punto 
+		generico del piano; allora
+		\begin{align*}
+		V(x,\,y) 
+		&= k_{e}q\left\{\frac{1}{\left[(x - a)^{2} + (y -b)^{2}\right]^{1/2}} 
+		+ \frac{1}{\left[(x + a)^{2} + (y + b)^{2} \right]^{1/2}}\right. \\
+		&\left.-\frac{1}{\left[(x + a)^{2} + (y - b)^{2} \right]^{1/2}} 
+		- \frac{1}{\left[(x - a)^{2} + (y + b)^{2}\right]^{1/2}}\right\}
+		\end{align*}
+		Osserviamo che se calcoliamo il potenziale sulle due superfici $V = 0$. 
+		Ciò conferma che nell'utilizzare il sistema equivalente stiamo rispettando 
+		le condizioni al contorno riguardanti la funzione potenziale, rendendo lecita la
+		risoluzione dell'esercizio.
+		\item Per calcolare il campo sfruttiamo la relazione $E = -\nabla V$:
+		\begin{align*}
+		E_{x} &= -\frac{\partial V}{\partial x}\\
+		&= k_{e}q\left\{ \frac{x - a}{\left[(x - a)^{2} + (y-b)^{2}\right]^{3/2}} 
+		+ \frac{x + a}{\left[(x + a)^{2} + (y + b)^{2}\right]^{3/2}}\right. \\
+		&\left. - \frac{x + a}{\left[(x + a)^{2} + (y - b)^{2}\right]^{3/2}} 
+		-\frac{x - a}{\left[(x - a)^{2} + (y + b)^{2}\right]^{3/2}}\right\} ;\\
+		E_{y} &= -\frac{\partial V}{\partial y} \\
+		&= k_{e}q\left\{ \frac{y - b}{\left[(x - a)^{2} + (y- b)^{2}\right]^{3/2}} 
+		+ \frac{y + b}{\left[(x + a)^{2} + (y + b)^{2}\right]^{3/2}}\right. \\
+		&\left. - \frac{y - b}{\left[(x + a)^{2} + (y - b)^{2}\right]^{3/2}} 
+		-\frac{y + b}{\left[(x - a)^{2} + (y + b)^{2}\right]^{3/2}}\right\} 
+		\end{align*}
+		In conclusione,
+		\begin{align*}
+		\boxed{\vec{E} = \left(E_{x}(x,\,y),\,E{y}(x,\,y)\right)}.
+		\end{align*}
+		\item Sostituiamo i punti desiderati nell'espressione del campo trovata nel punto
+		 precedente:
+		\begin{align*}
+		\vec{E}(x,\,0) &= \left(E_{x}(x,\,0),\,E_{y}(x,\,0)\right) \\
+		&= \left(0, -\frac{2qb}{\left[(x -a)^{2 + b^{2}}\right]^{3/2}} 
+		+ \frac{2qb}{\left[(x + a)^{2} + b^{2}\right]^{3/2}}\right);\\
+		\vec{E}(0,\,y) &= \left(E_{x}(0,\,y),\,E_{y}(0,\,y)\right) \\
+		&= \left(0, -\frac{2qa}{\left[a^{2 + (y - b)^{2}}\right]^{3/2}} 
+		+ \frac{2qa}{\left[(a)^{2} + (y + b)^{2}\right]^{3/2}}\right);
+		\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	Due cariche puntiformi $+q$ e $-q$ occupano rispettivamente le posizioni $(a,\,0,\,a)$ e 
+	$(-a,\,0,\,a)$ al di sopra di un conduttore piano, a potenziale zero, di equazione $z=0$. 
+	Calcolare:
+	\begin{enumerate}
+		\item La forza totale sulla carica $+q$.
+		\item Il lavoro fatto per assemblare le due cariche in fronte al piano conduttore.
+		\item La densità di carica nel punto $P = (a,\,0,\,0)$.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	Utilizzando il metodo delle cariche immagini possiamo sostituire il conduttore piano con due 
+	cariche di segno opposto, in modo da ottenere una configurazione come in figura. 
+	\begin{enumerate}
+		\item Per calcolare la forza risultante sulla carica $+q_{1}$ sfruttiamo la legge di 
+		Coulomb. Specificando a pedice la carica a cui è dovuta la forza e decomponendo sui 
+		versori $\hat{x}$ e $\hat{y}$ otteniamo:
+		\begin{align*}
+		\vec{F_{-q_{1}}} &= -\frac{k_{e}q^{2}}{4a^{2}}\hat{x};\\
+		\vec{F_{-q_{2}}} &= -\frac{k_{e}q^{2}}{4a^{2}}\hat{z};\\
+		\vec{F_{q_{2}}} &= \frac{k_{e}q^{2}}{(2a\sqrt{a})^{2}}\hat{r} \\
+		&= \frac{k_{e}q^{2}}{(2a\sqrt{a})^{2}}\hat{r}\cos\left(\frac{\pi}{4}\right) + 
+		\frac{k_{e}q^{2}}{(2a\sqrt{a})^{2}}\hat{r}\sin\left(\frac{\pi}{4}\right) \\
+		&= \frac{\sqrt{2}}{2}\frac{2k_{e}q^{2}}{(2a\sqrt{a})^{2}}\left[\frac{1}
+		{(2a\sqrt{a})^{2}}\hat{x} + \frac{1}{(2a\sqrt{a})^{2}}\hat{z}\right]
+		\end{align*}
+		dove $\hat{r}$ è il versore radiale ed uscente rispetto alla carica $+q_{2}$. Sfruttando 
+		il principio di sovrapposizione:
+		\begin{align*}
+		\vec{F_\text{tot}} &= \vec{F_{-q_{1}}} + \vec{F_{-q_{2}}} + \vec{F_{q_{2}}} \\
+		&= \boxed{k_{e}q^{2}\left[\left(\frac{\sqrt{2}}{2} \frac{1}{(2a\sqrt{a})^{2}} - \frac{1}
+		{4a^{2}}\right)\hat{x} + \left(\frac{\sqrt{2}}{2} \frac{1}{(2a\sqrt{a})^{2}} - \frac{1}
+		{4a^{2}}\right)\hat{y}\right]}
+		\end{align*}
+		\item Supponiamo di porre in posizione prima la carica $+q_{1}$. Poiché il campo 
+		elettrostatico è conservativo  il lavoro fatto non dipende dal percorso. Inoltre quando 
+		cerchiamo di avvicinare al piano conduttore la carica $+q_{1}$ l'unica forza agente su di 
+		essa è quella dovuta alla sola carica immagine $-q_{2}$. Osserviamo anche che le cariche 
+		immagini si muovono sempre a potenziale nullo, in quanto si trovano all'interno del 
+		conduttore; quindi possiamo trascurare il lavoro fatto per muoverle. Possiamo dunque 
+		calcolare il lavoro fatto per portare la carica $+q_{1}$ da $\infty$ a distanza $2a$ dalla 
+		carica immagine:
+		\begin{align*}
+		W_{1} &=  \int_\infty^{2a} \vec{F_{-q_{2}}}\,d\vec{l} \\
+		&= \int_\infty^{2a} \frac{k_{e}q^{2}}{z^{2}}\,dz \\
+		&= -\frac{k_{e}q^{2}}{2a}
+		\end{align*}
+		Il secondo passo consiste nel posizionare la seconda carica $-q_{1}$ nella posizione 
+		desiderata. Conoscendo l'espressione per il potenziale generato nello spazio da una carica 
+		puntiforme e sfruttando sempre il principio di sovrapposizione, possiamo calcolare il 
+		lavoro nel modo seguente:
+		\begin{align*}
+		W_{2} &= -q\sum_{i=1}^3 V_\text{i} 
+		\end{align*}
+		dove $V_\text{i}$ è la differenza di potenziale che le tre cariche $+q_{1},\,+q_{2},
+		\,-q_{2}$ esercitano sulla carica $-q_{1}$ nel suo percorso che va da $\infty$ fin al 
+		punto $P = (-a,\,0,\,a)$\,; in altre parole:
+		\begin{align*}
+		W_{2} &= -k_{e}q\left(\frac{q}{2a} + \frac{q}{2a} - \frac{q}{2a\sqrt{2}}\right) \\ 
+		&=  -\frac{k_{e}q^{2}}{a}\left(1 - \frac{1}{2\sqrt{2}}\right)
+		\end{align*}
+		L'ultimo passo consiste nel calcolare il lavoro totale:
+		\begin{align*}
+		W_{\text{tot}} &= W_{1} + W_{2} \\
+		&= -\frac{k_{e}q^{2}}{2a} -\frac{k_{e}q^{2}}{a}\left(1 - \frac{1}{2\sqrt{2}}\right) \\
+		&=\boxed{-\frac{k_{e}q^{2}}{a}\left(\frac{3}{2} - \frac{1}{2\sqrt{2}}\right)}
+		\end{align*}
+		\item Calcoliamo la densità di carica $\sigma(a,\,0,\,0 )$. L'idea è quella di sfruttare 
+		il Teorema di Coulomb in prossimità della superficie del piano conduttore, in modo da 
+		ottenere:
+		\begin{align*}
+		\sigma = \varepsilon_{0}\vec{E}(a,\,0,\,0)
+		\end{align*}
+		Dove $\vec{E}(x, y, z)$ è il campo generato nello spazio dalla distribuzione di carica che 
+		comprende le due cariche puntiformi più la carica indotta da esse sul conduttore. Abbiamo 
+		osservato in precedenza che  tale distribuzione è equivalente al sistema composto dalle 
+		quattro cariche disposte come in figura. Per ricavare il campo possiamo sfruttare il fatto 
+		che $ E = -\nabla V$. Passiamo ora a calcolare il potenziale:
+		\begin{equation}
+		\begin{split}
+		V(x, y, z) = k_{e}q\left[\frac{1}{\left[(x - a)^{2} + y^{2} + (z - a)^{2}\right]^{1/2}} + 
+		\frac{1}{\left[(x + a)^{2} + y^{2} + (z + a)^{2}\right]^{1/2}}\right. \\
+		\left.-\frac{1}{\left[(x + a)^{2} + y^{2} + (z - a)^{2}\right]^{1/2}} - \frac{1}
+		{\left[(x - a)^{2} + y^{2} + (z + a)^{2}\right]^{1/2}}\right]
+		\end{split}
+		\end{equation}
+		Una nota da fare riguarda il calcolo del potenziale sulla superficie del conduttore: 
+		sostituendo $y,z = 0$ si ottiene $V = 0$. Ciò conferma che nell'utilizzare il sistema 
+		equivalente stiamo rispettando le condizioni a contorno riguardanti la funzione 
+		potenziale, rendendo lecita la risoluzione dell'esercizio.
+		A questo punto calcoliamo il campo. Per semplicità di scrittura calcoleremo le singole 
+		componenti del campo $E = (E_{x}, E_{y}, E_{z})$:
+		\begin{align*}
+		{E_{x}} &= -\frac{\partial V}{\partial x}\\
+		&= k_{e}q\left\{ \frac{x - a}{\left[(x - a)^{2} + y^{2} + (z - a)^{2}\right]^{3/2}} + 
+		\frac{x + a}{\left[(x + a)^{2} + y^{2} + (z + a)^{2}\right]^{3/2}}\right. \\
+		&\left.- \frac{x + a}{\left[(x + a)^{2} + y^{2} + (z - a)^{2}\right]^{3/2}} -\frac{x - a}
+		{\left[(x - a)^{2} + y^{2} + (z + a)^{2}\right]^{3/2}}\right\} ;\\
+		E_{y} &= -\frac{\partial V}{\partial y} \\
+		&= k_{e}qy\left\{ \frac{1}{\left[(x - a)^{2} + y^{2} + (z - a)^{2}\right]^{3/2}} + 
+		\frac{1}{\left[(x + a)^{2} + y^{2} + (z + a)^{2}\right]^{3/2}}\right. \\
+		&\left.- \frac{1}{\left[(x + a)^{2} + y^{2} + (z - a)^{2}\right]^{3/2}} -\frac{1}
+		{\left[(x - a)^{2} + y^{2} + (z + a)^{2}\right]^{3/2}}\right\}; \\ 
+		E_{z} &= -\frac{\partial V}{\partial z} \\
+		&= k_{e}q\left\{ \frac{z - a}{\left[(x - a)^{2} + y^{2} + (z - a)^{2}\right]^{3/2}} + 
+		\frac{z + a}{\left[(x + a)^{2} + y^{2} + (z + a)^{2}\right]^{3/2}}\right.\\
+		&\left. - \frac{z + a}{\left[(x + a)^{2} + y^{2} + (z - a)^{2}\right]^{3/2}} -\frac{z - a}
+		{\left[(x - a)^{2} + y^{2} + (z + a)^{2}\right]^{3/2}}\right\} 
+		\end{align*}
+		Notare che le componenti del campo sono a loro volta funzioni di $x,y,z$ e che il campo 
+		calcolato sulla superficie è ortogonale ad essa, come deve essere per un conduttore. 
+		Calcolando, infatti il campo nel punto desiderato:
+		\begin{align*}
+		E(a,\,0,\,0) & =(0,\,0,E_{z}(a,\,0,\,0))\\
+		&= k_{e}qa\left\{-\frac{1}{\left(a^{2}\right)^{3/2}} +\frac{1}{\left(5a^{2}\right)^{3/2}} 
+		+\frac{1}{\left(5a^{2}\right)^{3/2}} -\frac{1}{\left(a^{2}\right)^{3/2}}\right\} \\
+		&= k_{e}\frac{q}{a^{2}}\frac{2 - 2\times5^{3/2}}{5^{3/2}}\hat{z}
+		\end{align*}
+		Concludendo:
+		\begin{align*}
+		\boxed{\sigma = \varepsilon_{0}k_{e}\frac{q}{a^{2}}\frac{2 - 2\times5^{3/2}}{5^{3/2}}}
+		\end{align*}
+	\end{enumerate}
+\end{proof}
+
+
+\begin{problema}
+	Calcolare il momento di dipolo di
+	\begin{enumerate}
+		\item Un guscio semisferico uniformemente carico nella metà superiore dalla carica $Q$ e 
+		nella metà inferiore dalla carica $-Q$. Sia $R$ il raggio del guscio.
+		\item Una sfera uniformemente carica in tutto il suo volume dalla carica $Q$ nella metà 
+		superiore e dalla carica $-Q$ nella semisfera inferiore. Sia $R$ il raggio della sfera.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Poiché la distribuzione di carica è uniforme, possiamo sfruttare la distanza tra i 
+		due centri di carica delle superfici semisferiche. Calcoliamo innanzitutto il centro di 
+		carica di una superficie semisferica. Scegliendo un sistema di riferimento come in figura 
+		possiamo osservare come il centro di carica avrà coordinate $C = (x_{C}, y_{C}, z_{C})$, 
+		dove $\vec{r_{C}} = \frac{1}{Q}\int r\sigma\,dS$. Utilizziamo le coordinate polari:
+		\begin{align*}
+		x = R\sin(\vartheta)\sin(\varphi), \qquad y = R\sin(\vartheta)\cos(\varphi), 
+		\qquad z = R\cos(\vartheta)
+		\end{align*}
+		Osservando inoltre che $dS = (Rd\vartheta)(R\sin(\vartheta)d\varphi)$. Calcoliamo le 
+		coordinate del centro di carica. 
+		\begin{align*}
+		x_{C} &= \frac{1}{Q}\int x\sigma\,dS \\
+		&=\frac{R^{3}\sigma}{Q}\int_{0}^{2\pi}\cos(\varphi)\,d\varphi
+		\int_0^{\frac{\pi}{2}}\sin(\vartheta)^{2}\,d\vartheta \\
+		&=0;\\
+		y_{C} &= \frac{1}{Q}\int y\sigma\,dS \\
+		&=\frac{R^{3}\sigma}{Q}\int_{0}^{2\pi}\sin(\varphi)\,d\varphi
+		\int_0^{\frac{\pi}{2}}\sin(\vartheta)^{2}\,d\vartheta \\
+		&=0
+		\end{align*}
+		osservando che $\int_{0}^{2\pi}\cos(\varphi)\,d\varphi = 0$ e 
+		$\int_{0}^{2\pi}\sin(\varphi)\,d\varphi = 0$. Si poteva giungere direttamente a tale 
+		risultato da semplici considerazioni di simmetria. Infine ci rimane da calcolare:
+		\begin{align*}
+		z_{C} &= \frac{1}{Q}\int z\sigma\,dS \\
+		&=\frac{R^{3}\sigma}{Q}\int_{0}^{2\pi}d\varphi
+		\int_0^{\frac{\pi}{2}}\cos(\vartheta)\sin(\vartheta)\,d\vartheta \\
+		\end{align*}
+		Calcolando separatamente gli integrali:
+		\begin{align}
+		\int_{0}^{2\pi}d\varphi &= 2\pi \\
+		\int_0^{\frac{\pi}{2}}\cos(\vartheta)\sin(\vartheta)\,d\vartheta 
+		&= \frac{1}{2}\int_0^{\frac{\pi}{2}}2\cos(\vartheta)\sin(\vartheta)\,d\vartheta \\
+		&= -\frac{1}{2}\cos(\vartheta)^{2}|_{0}^{\frac{\pi}{2}} \notag \\
+		&= \frac{1}{2} \notag
+		\end{align}
+		Sostituendo otteniamo:
+		\begin{align*}
+		z_{C} &= \frac{R^{3}\sigma}{Q}\,\cancel{2}\pi\,\frac{1}{\cancel{2}} \\
+		&=\frac{R^{\cancel{3}}\cancel{\sigma}\pi}{\cancel{R^{2}}\cancel{\sigma}2\cancel{\pi}} \\
+		&=\frac{R}{2}
+		\end{align*}
+		dove nell'ultimo passaggio abbiamo utilizzato il fatto che per una distribuzione di carica 
+		uniforme $Q = \sigma S = \sigma 2\pi R^{2}$.
+		Il risultato finale è dunque:
+		\begin{align*}
+		\boxed{C = \left(0, 0, \frac{R}{2}\right)}
+		\end{align*}
+		Utilizziamo ora il calcolo effettuato per trovare il momento di dipolo. Fissando un 
+		sistema di riferimento solidale alla sfera, indicando con 
+		$C_{1} = \left(0, 0,\frac{R}{2}\right) $ il centro di carica della parte positiva, 
+		$C_{2} = \left(0, 0, -\frac{R}{2}\right) $ il centro di carica della parte negativa e con 
+		$\vec{a}$ il vettore che li collega:
+		\begin{align*}
+		\vec{p} &= Q\vec{a} \\
+		&=Q(C_{1} - C_{2})\hat{a} \\
+		&=Q(z_{{C}_{1}} - z_{{C}_{2}})\hat{z}\\
+		&=Q\left(\frac{R}{2} - \left(-\frac{R}{2}\right)\right)\hat{z}\\
+		&=QR\hat{z}\\
+		&= \boxed{2\pi R^{3}\rho\hat{z}}
+		\end{align*}
+		\item Sulla scia del primo punto, calcoliamo il centro di carica di una semisfera con 
+		densità di carica volumetrica $\rho = \text{cost}$. Fissiamo un sistema di riferimento 
+		solidale con essa ed utilizziamo le coordinate polari. Indicando il centro di carica con 
+		$C = (x_\text{C}, y_\text{C}, z_\text{C})$, per ragioni di simmetria otteniamo 
+		$x_\text{C}, y_\text{C} = 0$. Osservando che 
+		$d\tau = (dr)(rd\vartheta)(r\sin(\vartheta)d\varphi)$, calcoliamo:
+		\begin{align*}
+		z_\text{C} = &= \frac{1}{Q}\int z\rho\,d\tau \\
+		&=\frac{\rho}{Q}\int_{0}^{2\pi}d\varphi
+		\int_0^{\frac{\pi}{2}}\cos(\vartheta)\sin(\vartheta)\,d\vartheta \int_{0}^{R} r^{3}\,dr 
+		\end{align*}
+		Utilizzando i risultati precedenti e osservando che 
+		$\int_{0}^{R} r^{3}\,dr = \frac{R^{4}}{4}$:
+		\begin{align*}
+		z_{C} &= \frac{\rho}{Q}\,\cancel{2}\pi\,\frac{1}{\cancel{2}}\frac{R^{4}}{4} \\
+		&= \frac{\cancel{\rho}\cancel{\pi}}
+		{\frac{2}{3}\cancel{\pi}\cancel{R^{3}}\cancel{\rho}}\frac{R^{\cancel{4}}}{4}\\
+		&= \frac{3}{8}R
+		\end{align*}
+		Dove abbiamo utilizzato il fatto che $Q = \rho \tau = \frac{2}{3}\pi R^{3} \rho$. In 
+		definitiva:
+		\begin{align*}
+		\boxed{C = \left(0, 0, \frac{3}{8}R\right)}
+		\end{align*}
+		Concludendo come in precedenza, fissiamo un sistema di riferimento solidale alla sfera, 
+		indichiamo con $C_{1} = \left(0, 0,\frac{3}{8}R\right) $ il centro di carica della parte 
+		positiva, $C_{2} = \left(0, 0, -\frac{3}{8}R\right) $ il centro di carica della parte 
+		negativa e con $\vec{a}$ il vettore che li collega:
+		\begin{align*}
+		\vec{p} &= Q\vec{a} \\
+		&=Q(C_{1} - C_{2})\hat{a} \\
+		&=Q(z_{{C}_{1}} - z_{{C}_{2}})\hat{z}\\
+		&=Q\left(\frac{3}{8}R - \left(-\frac{3}{8}R\right)\right)\hat{z}\\
+		&=Q\frac{R}{4}\hat{z}\\
+		&= \boxed{\frac{1}{6}\pi R^{4}\rho \hat{z}}
+		\end{align*}
+	\end{enumerate}
+\end{proof}
+
+
+
+% NUMERI 32,33,34,35 QUI!!!
+
+
+
+\begin{problema}
+	Il dielettrico del condensatore in figura (FIGURA) non è perfetto: esso presenta una
+	conducibilità non nulla. Detta $\varepsilon$ la permeabilità dielettrica e $\rho_e$ la
+	resistività del dielettrico, si dimostri la seguente relazione:
+	\begin{equation}
+	\rho_e\varepsilon = C R_p,
+	\end{equation}
+	quale che sia la forma del condensatore. $C$ rappresenta la capacità del condensatore
+	ed $R_p$ la sua resistenza di perdita.
+\end{problema}
+\begin{proof}
+	Chiamando con $\sigma_e$ la conducibilità elettrica e con $\vec{j}$ la densità di corrente,
+	il problema è risolvibile impostando	il sistema:
+	$$
+	\begin{cases}
+	\vec{J} = \sigma_e \vec{E} & \text{(Legge di Ohm puntuale)}\\
+	\sigma_e = \rho_e^{-1} \\
+	\Delta V = R_p I & \text{(Legge di Ohm)}
+	\end{cases}
+	$$
+	Dalla prima e dalla seconda equazione otteniamo:
+	$$
+	\vec{J} = \frac{1}{\rho_e} \vec{E};
+	$$
+	integrando scalarmente in $d\vec{S}$ ed applicando il Teorema di Gauss 
+	al secondo membro, otteniamo:
+	$$
+	I \doteqdot \int_{S} J \cdot d\vec{S} 
+	= \frac{1}{\rho_e} \int_{S} \vec{E} \cdot d\vec{S} = \frac{1}{\rho_e} \frac{Q}{\varepsilon}.
+	$$
+	Applicando infine la terza equazione e ricordando la definizione di capacità,
+	$$
+	\frac{\Delta V}{R_p} = \frac{Q}{\rho_e \varepsilon}
+	\qquad \Longrightarrow \qquad
+	\rho_e \varepsilon = \frac{Q}{\Delta V} R_p
+	\qquad \Longrightarrow \qquad
+	\boxed{\rho_e \varepsilon = C R_p}.
+	$$
+\end{proof}
+
+\begin{problema}
+		Un magnetron è equivalente, in linea di principio, ad un condensatore a grandi facce
+		piane e parallele, sottoposto ad una ddp $V_0$ in cui gli elettroni sono emessi in
+		posizione $(x,\,y) = (0,\,0)$ con velocità iniziale nulla (FIGURA DA FARE). Tra le
+		due piastre è presente un campo magnetico $\vec{B} = B_0 \hat{k}$. Trascurando i campi
+		elettrici e magnetici dovuti agli elettroni sulle piastre rispetto a quelli applicati,
+		e nota la distanza $d$ tra le piastre, determinare:
+		\begin{itemize}
+			\item Velocità e spostamento di un elettrone iniettato a velocità iniziale nulla
+			all'istante $t=0$.
+			\item Il campo magnetico di cut-off, cioè il campo che non consente agli elettroni
+			di raggiungere l'altro elettrodo.
+		\end{itemize}
+		(Il campo elettrico fra le due piastre può essere ritenuto costante.)
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Indichiamo con $\vec{E}$ il campo elettrico, con $\vec{v}$ la velocità
+		dell'elettrone, con $e = -1.602 \times 10^{-19} < 0$ la sua carica (negativa) 
+		e con $m_e$ la sua massa. Definendo
+		$$
+		\vec{F_m} = e\vec{v} \wedge \vec{B};
+		\qquad
+		\vec{F_e} = e\vec{E};
+		$$
+		possiamo scomporre le forze agenti sull'elettrone nelle direzioni degli assi:
+		$$
+		\begin{cases}
+		\vec{F_{m,y}} = -e\dot{x}B_0\hat{j} \\
+		\vec{F_{m,x}} = e\dot{y}B_0\hat{i} \\
+		\vec{F_{e,x}} \equiv \vec{F_e} = -eE\hat{i}
+		\end{cases}
+		$$
+		Il sistema risolutivo del problema è dunque:
+		$$
+		\begin{cases}
+		m_e\ddot{y} = -e\dot{x}B_0 \\
+		m_e\ddot{x} = e\dot{y}B_0 - eE \\
+		x(0) = 0; \qquad y(0) = 0 \\
+		\dot{x}(0) = 0; \qquad \dot{y}(0) = 0
+		\end{cases}
+		$$
+		Integrando in $dt$ la prima equazione e ricordando le condizioni iniziali $x(0) = 0,
+		\quad \dot{y}(0) = 0$, otteniamo:
+		\begin{equation}
+		m_e\dot{y} = -exB_0.
+		\label{eq:1_soluz_diff_magnetron}
+		\end{equation}
+		Sostituendo nella seconda e raccogliendo adeguatamente, possiamo scrivere:
+		$$
+		\ddot{x} = -\omega^2x + A,
+		$$
+		con
+		$$
+		\omega^2 \doteqdot \left( \frac{eB_0}{m_e} \right)^2;
+		\qquad
+		A \doteqdot -\frac{eE}{m_e}.
+		$$
+		La soluzione generale di tale equazione differenziale è
+		$$
+		x(t) = \frac{A}{\omega^2} + A_1\cos(\omega t) + A_2\sin(\omega t).
+		$$
+		Dalle condizioni iniziali $x(0) = 0, \quad \dot{x}(0) = 0$, otteniamo in particolare che
+		$$
+		A_1 = \frac{Em_e}{eB_0^2};
+		\qquad
+		A_2 = 0,
+		$$
+		quindi in definitiva
+		$$
+		\boxed{x(t) = -\frac{Em_e}{eB_0^2}(1 - \cos(\omega t))};
+		\qquad
+		\boxed{\dot{x}(t) = -\frac{Em_e}{eB_0^2}\omega\sin\left( \omega t \right)}.
+		$$
+		Andando a riguardare (\ref{eq:1_soluz_diff_magnetron}), ora possiamo determinare 
+		anche $y(t)$, sostituendo l'espressione appena trovata per $x(t)$ ed integrando 
+		successivamente in $dt$ con la condizione iniziale $y(0) = 0$. Quello che otteniamo è
+		$$
+		\boxed{y(t) = \frac{E}{B_0}\left( t - \frac{\in(\omega t)}{\omega} \right)};
+		\qquad
+		\boxed{\dot{y}(t) = \frac{E}{B_0}(1 - \cos(\omega t))}.
+		$$
+		\item Osservando che la funzione $x(t)$ è limitata (spazialmente), possiamo trovare
+		il campo magnetico di cut-off imponendo:
+		$$
+		\max_{t \in \mathbb{R}}x(t) < d.
+		$$
+		Risolvendo per $B_0$, otteniamo:
+		$$
+		\boxed{B_0 = \sqrt{-\frac{2Em_e}{ed}}}.
+		$$
+	\end{enumerate}
+\end{proof}
+
+% NUMERO 38 QUI!!!
+
+\begin{problema}
+	Sul rocchetto cilindrico mostrato in figura (FIGURA DA FARE) è avvolta una bobina di spire
+	in cui circola una corrente stazionaria. Il rocchetto posto su un piano inclinato di un
+	angolo $\vartheta$. Assumendo che il piano dell'avvolgimento si parallelo al piano
+	inclinato, si determini il valore minimo di corrente, $I_m$, necessaria affinché il
+	rocchetto non rotoli giù dal piano in presenza del campo magnetico $\vec{B}$. Sia $N$ il
+	numero di spire ed $m$ la massa del rocchetto. 
+\end{problema}
+\begin{proof}
+	Indichiamo con $R$ il raggio del cilindro, con $\vec{m_m}$ il momento magnetico della spira
+	e con $\vec{F_a}$ la forza di attrito. Il momento magnetico della spira ha modulo
+	$$
+	|\vec{m_m}| = N\mathrm{Area(spira)}I_m = N2LRI_m,
+	$$
+	mentre la forza di attrito deve bilanciare la componente della forza peso parallela al
+	piano, ed ha quindi modulo
+	$$
+	|\vec{F_a}| = mg\sin\vartheta.
+	$$
+	Definendo
+	$$
+	\vec{\tau_m} \doteqdot \vec{m_m} \wedge \vec{B} = 2LRI_m\sin\vartheta\hat{k};
+	\qquad
+	\vec{\tau_a} \doteqdot \vec{r_a} \wedge \vec{F_a} = -Rmg\sin\vartheta\hat{k};
+	$$
+	la relazione che risolve il problema è
+	$$
+	\vec{\tau_m} + \vec{\tau_a} = 0,
+	$$
+	ossia
+	$$
+	2L\cancel{R}I_mB\cancel{\sin\vartheta} = \cancel{R}mg\cancel{\sin\vartheta}
+	\qquad \Longrightarrow \qquad
+	\boxed{I_m = \frac{mg}{2LB}}.
+	$$
+\end{proof}
+
+\begin{problema}
+	Una bobina costituita da un nucleo cilindrico di ferro su cui sono avvolte $N$ spire, è
+	 immersa nel campo magnetico $\vec{B}$ generato da un magnete permanente. Questo presenta
+	 espansioni polari concave per far sì che il campo sia ortogonale alle spire 
+	 indipendentemente dall'orientazione della bobina. Per ruotare la bobina di una angolo 
+	 $\varphi$ occorre vincere un momento meccanico torcente $\tau = C\varphi$ esercitato da 
+	 una molla di costante elastica $C$. La bobina è attraversata dalla corrente stazionaria $I$. 
+	 Determinare l'angolo di rotazione $\varphi$ della bobina in funzione di $I$. Sia $R$ il 
+	 raggio della bobina ed $L$ la sua altezza. (Questo dispositivo è un \emph{amperometro a 
+	 indice}).
+\end{problema}
+\begin{proof}
+	Il momento torcente dovuto al campo magnetico ed alla corrente che scorre nella bobina ha
+	modulo
+	$$
+	\tau_{m} = |\vec{m} \wedge \vec{B}| = 2LRBI.
+	$$
+	Uguagliando $\tau$ e $\tau_{m}$ per avere la condizione di equilibrio, otteniamo
+	$$
+	\boxed{\varphi = \frac{2LRB}{C}I}.
+	$$
+\end{proof}
+
+
+\begin{problema}
+	Nel circuito in figura (FIGURA DA FARE) i due condensatori $C_1$ e $C_2$ sono inizialmente 
+	carichi e le ddp ai loro capi sono rispettivamente $V_{0,1} = 2V_0$ $V_{0,2} = V_0$. 
+	All'istante $t=0$ l'interruttore viene chiuso. A partire da questo istante, nota la 
+	resistenza $R$, calcolare:
+	\begin{itemize}
+		\item La corrente $I = I(t)$ nel circuito.
+		\item Le cariche $q_1(t)$ e $q_2(t)$ nei condensatori.
+		\item Le ddp $V_1(t)$ e $V_2(t)$ ai loro capi.
+		\item Il lavoro dissipato nella resistenza.
+		\item La potenza dissipata.
+	\end{itemize}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Scriviamo innanzitutto l'equazione del circuito:
+		$$
+		RI + V_{0,2} - V_{0,1} = 0
+		$$
+		Possiamo ora schematizzare il circuito come una resistenza $R$ e un condensatore
+		equivalente di capacità
+		$$
+		C_{\text{eq}} = \frac{C_1C_2}{C_1 + C_2}.
+		$$
+		La ddp iniziale ai capi della resistenza è pari a:
+		$$
+		V_{0,R} = RI = V_{0,1} - V_{0,2} = V_0.
+		$$
+		La corrente avrà quindi la forma:
+		$$
+		I(t) = \frac{V_{0,R}}{R}e^{-\frac{t}{RC_{\text{eq}}}}
+		= \boxed{\frac{V_0}{R}e^{-\frac{t(C_1+C_2)}{RC_1C_2}}}.
+		$$
+		\item Le cariche sui due condensatori sono legate alla corrente dalla relazione
+		$$
+		q(t) = \int_{0}^{t} I(t) dt + q_0
+		$$
+		In particolare, nel nostro caso,
+		$$
+		q_{1}(t) = -\int_{0}^{t} I(t) dt + q_{0,1};
+		\qquad
+		q_{2}(t) = \int_{0}^{t} I(t) dt + q_{0,2}
+		$$
+		Ora,
+		$$
+		\int_{0}^{t} I(t) dt 
+		= \int_{0}^{t} -C_{\text{eq}}V_0\left(-\frac{1}{RC_{\text{eq}}}\right)
+		e^{-\frac{t}{RC_{\text{eq}}}}
+		= -C_{\text{eq}}V_0e^{-\frac{t}{RC_{\text{eq}}}} + C_{\text{eq}}V_0,
+		$$
+		quindi
+		$$
+		q_{1}(t) = C_{\text{eq}}V_0e^{-\frac{t}{RC_{\text{eq}}}} + (2C_1-C_{\text{eq}})V_0
+		= \boxed{\frac{C_1}{C_1+C_2}V_0\left[2C_1+
+		C_2\left(1+e^{-\frac{t}{RC_{\text{eq}}}}\right)\right]}
+		$$
+		e
+		$$
+		q_{2}(t) = -C_{\text{eq}}V_0e^{-\frac{t}{RC_{\text{eq}}}} + (C_2+C_{\text{eq}})V_0
+		=\boxed{\frac{C_2}{C_1+C_2}V_0\left[C_2+
+		C_1\left(2-e^{-\frac{t}{RC_{\text{eq}}}}\right)\right]}.
+		$$
+		\item Dalle espressioni per $q(t)$ si possono ricavare le espressioni delle ddp.
+		$$
+		V_1(t) = \frac{q_{1}(t)}{C_1} 
+		= \boxed{\frac{V_0}{C_1+C_2}\left[2C_1+
+		C_2\left(1+e^{-\frac{t}{RC_{\text{eq}}}}\right)\right]}.
+		$$
+		$$
+		V_2(t) = \frac{q_{2}(t)}{C_2}
+		= \boxed{\frac{V_0}{C_1+C_2}\left[C_2+
+		C_1\left(2-e^{-\frac{t}{RC_{\text{eq}}}}\right)\right]}.
+		$$
+		Come prima, la tensione ai capi della resistenza è la differenza di quelle ai capi dei due
+		condensatori, quindi:
+		$$
+		V_R(t) = V_{1}(t) - V_{2}(t)
+		= V_0e^{-\frac{t}{RC_{\text{eq}}}}.
+		$$
+		\item Il lavoro dissipato, per la conservazione dell'energia, è pari alla somma delle 
+		energie iniziali nei due condensatori. Quindi:
+		$$
+		L = \frac{1}{2}C_1V_{0,1}^2 + \frac{1}{2}C_2V_{0,2}^2
+		= \boxed{\frac{1}{2}V_0^2(4C_1^2+C_2)}.
+		$$
+		\item La potenza dissipata istantaneamente dalla resistenza è pari a
+		$$
+		P(t) = \frac{V_R^2(t)}{R} 
+		= \boxed{
+		\frac{V_0^2}{R}e^{-\frac{2t}{RC_{\text{eq}}}}
+		}.
+		$$
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	Una carica $Q$ è distribuita uniformemente nel volume di una sfera di raggio $R$. La sfera
+	ruota attorno al suo asse con velocità angolare $\omega$ costante. Si determini il momento 
+	di dipolo magnetico della sfera.
+\end{problema}
+\begin{proof}
+	Possiamo trovare il momento magnetico di dipolo in due modi:
+	\begin{enumerate}
+		\item Suddividendo la sfera in tanti anelli infinitesimi nei quali scorre una corrente
+		infinitesima
+		$$
+		di = \frac{q\omega}{2\pi},
+		$$
+		ed integrare successivamente tutti i contributi infinitesimi;
+		\item Per integrazione diretta dalla definizione:
+		$$
+		\vec{m} = \frac{1}{2} \int_{\tau} \vec{r} \wedge \vec{J} d\tau
+		= \frac{1}{2} \int_{\tau} \vec{r} \wedge \rho\vec{v} d\tau,
+		$$
+		dove $\vec{J}$ è la densità di corrente, $\rho$ la densità di carica e $\vec{v}$ la
+		velocità di un elemento infinitesimo di volume.
+	\end{enumerate}
+	Scegliamo, ad esempio, la seconda strada ed usiamo le classiche coordinate sferiche.
+	Notiamo che, per un dato elemento infinitesimo di volume, il prodotto vettore tra 
+	$\vec{r}$ e $\vec{v}$ non è diretto lungo l'asse	di rotazione; tuttavia, per ragioni di
+	simmetria, ci aspettiamo che integrando l'elemento diametralmente opposto le componenti
+	di $\vec{r} \wedge \vec{v}$ che non sono lungo l'asse di rotazione di annullino. Ci basta
+	quindi considerare, nell'integrale, la proiezione di $\vec{r} \wedge \vec{v}$ lungo l'asse
+	di rotazione, ossia $(\vec{r} \wedge \vec{v})\sin\vartheta$. Infine, bisogna osservare che
+	$v$ ha modulo $\omega r \sin\vartheta$, che $\vec{r}$ e $\vec{v}$ sono perpendicolari
+	fra loro e che $\vec{m}$ ha la stessa direzione di $\vec{\omega}$, permettendoci di
+	limitarci al modulo di $\vec{m}$. Possiamo quindi eseguire il calcolo:
+	\begin{align*}
+	|\vec{m}| 
+	&= \frac{1}{2} \left\lvert\int_{\tau} \vec{r} \wedge \rho\vec{v} d\tau\right\rvert \\
+	&= \frac{1}{2} \rho \int_{\tau} 
+	r(\omega r \sin\vartheta)\sin\vartheta(r^2\sin\vartheta dr d\vartheta d\varphi) \\
+	&= \frac{1}{\cancel{2}} \omega \rho \cancel{2}\pi \int r^4\sin^3\vartheta d\vartheta dr \\
+	&= \frac{1}{5} \omega\rho R^5\pi \left(2\int_{0}^{\pi/2} \sin^3\vartheta d\vartheta \right) \\
+	&= \frac{1}{5} \omega \rho R^5 \pi
+	2\left[-\frac{3}{4}\cos\vartheta + \frac{1}{12}\cos(3\vartheta) \right]_{0}^{\pi/2} \\
+	&= \frac{1}{5} \omega \rho R^5 \pi \frac{4}{3} \\
+	&= \frac{1}{5} \omega 
+	\frac{Q}{\cancel{\dfrac{4}{3}}\cancel{\pi}\cancel{R^3}} 
+	R^{\cancel{5}2} \cancel{\pi} \cancel{\frac{4}{3}} \\
+	&= \boxed{\frac{1}{5} \omega Q R^2}.
+	\end{align*}
+\end{proof}
+
+\begin{problema}
+	Un filo sottile infinitamente lungo corre lungo gli assi $x$ ed $y$ di un sistema di 
+	riferimento rettangolare. Il filo è percorso dalla corrente $I$ nel verso indicato in figura 
+	(FIGURA DA FARE). Determinare il campo magnetico $\vec{B}$ nel punto $P$. Porre $I = 8A$, 
+	$P=(4\,\mathrm{m},\,3\,\mathrm{m},\,0)$.
+\end{problema}
+\begin{proof}
+	Sappiamo che
+	$$
+	d\vec{B} 
+	= \frac{\mu_0 I}{4\pi} \frac{d\vec{l} \wedge (\vec{r}-\vec{r'})}{|\vec{r}-\vec{r'}|^3},
+	$$
+	dove al solito $\vec{r}$ è il vettore posizione del punto $P$ (rispetto all'origine del 
+	sistema di riferimento) e $\vec{r'}$ è il vettore posizione dell'elemento infinitesimo 
+	di filo. Prendiamo un capo del filo, ad esempio quello lungo $x$, e calcoliamo il 
+	campo $B_x(P)$ generato dal quel pezzo di filo in $P$. Chiamando $\vartheta$ l'angolo fra 
+	l'ortogonale al filo passante per $P$ e il vettore $\vec{r'}$, abbiamo che
+	$$
+	|\vec{r}-\vec{r'}| = \frac{y}{\cos\vartheta};
+	\qquad
+	d\vec{l} \wedge (\vec{r}-\vec{r'})
+	= dl|\vec{r}-\vec{r'}|cos\vartheta;
+	$$
+	$$
+	l = y\tan\vartheta \quad \Rightarrow \quad dl = \frac{y}{cos^2\vartheta}d\vartheta;
+	$$
+	e dunque
+	$$
+	d\vec{B_x} 
+	= -\frac{\mu_0 I}{4\pi} 
+	\frac{
+	\frac{\cancel{y}}{\cancel{\cos^2\vartheta}}d\vartheta
+	\frac{\cancel{y}}{\cancel{\cos\vartheta}}\cancel{\cos\vartheta}
+	}{
+	\frac{y^{\cancel{3}}}{\cos^{\cancel{3}}\vartheta}
+	}\hat{k}
+	= -\frac{\mu_0 I}{4\pi} \frac{\cos\vartheta}{y}d\vartheta\hat{k}.
+	$$
+	Integrando su tutta la lunghezza del pezzo di filo lungo x,
+	\begin{align*}
+	\vec{B_x}
+	&= \int_l d\vec{B_x} = \int\limits_{-\pi/2}^{\arctan(x/y)}
+	-\frac{\mu_0 I}{4\pi} \frac{\cos\vartheta}{y}d\vartheta\hat{k} \\
+	&= -\frac{\mu_0I\hat{k}}{4\pi y}\int\limits_{-\pi/2}^{\arctan(x/y)}\cos\vartheta d\vartheta\\
+	&= -\frac{\mu_0I}{4\pi y}
+	\left[ \sin\left(\arctan\left(\frac{x}{y}\right)\right) + 1 \right]\hat{k}.
+	\end{align*}
+	Analogamente, si ottiene anche:
+	$$
+	\vec{B_y}
+	= -\frac{\mu_0I}{4\pi x}
+	\left[ \sin\left(\arctan\left(\frac{y}{x}\right)\right) + 1 \right]\hat{k}.
+	$$
+	Dunque, ricordando che
+	$$
+	\sin\left(\arctan\left(\varphi\right)\right) = \frac{\varphi}{\sqrt{1+\varphi^2}}
+	$$
+	e sostituendo i valori numerici, si ottiene che:
+	$$
+	B(P) = -\frac{\mu_0I}{4\pi x} (\vec{B_x}(P)+\vec{B_y}(P))\hat{k} 
+	= \boxed{-\frac{2\mu_0}{\pi}\hat{k}}.
+	$$
+\end{proof}
+
+\begin{problema}
+	Una carica $q$ di massa $m$ si muove nel campo magnetico uniforme $B_0\hat{k}$. All'istante $t=0$ velocità e posizione iniziale sono rispettivamente
+	$$
+	\vec{v}(t=0) = v_{0,x}\hat{i} + v_{0,y}\hat{j} + v_{0,z}\hat{k};
+	$$
+	$$
+	\vec{r}(t=0) = x_0\hat{i} + y_0\hat{j} + z_0\hat{k}.
+	$$
+	Determinare
+	\begin{enumerate}
+		\item Le componenti della velocità $\vec{v} = \vec{v}(t)$.
+		\item Le componente del vettore posizione $\vec{r} = \vec{r}(t)$.
+		\item L'equazione della proiezione del moto sul piano $(x,\,y)$.
+		\item L'energia cinetica della carica.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Ricordando che
+		$$
+		\vec{F_m} = q\vec{v} \wedge \vec{B},
+		$$
+		le equazioni del moto sono
+		\begin{equation}
+		\begin{cases}
+		m\ddot{x} = q\dot{y}B_0 \\
+		m\ddot{y} = -q\dot{x}B_0 \\
+		\dot{z} = v_{0,z}
+		\end{cases}
+		\label{eq:sistema_diff_campo_unif}
+		\end{equation}
+		Notiamo che il moto lungo l'asse $z$ è un moto rettilineo uniforme, perché non
+		ci sono forze agenti in quella direzione.
+		Da una prima integrazione in $dt$, considerato che $\ddot{x}dt = d\dot{x}$ e
+		$\dot{x}dt = dx$ (e similmente per la $y$) e imposte le condizioni iniziali,
+		risultano:
+		$$
+		\dot{x} = \boxed{v_x(t) = \frac{qB_0}{m}(y(t)-y_0) + v_{0,x}};
+		$$
+		$$
+		\dot{y} = \boxed{v_y(t) = -\frac{qB_0}{m}(x(t)-x_0) + v_{0,y}}.
+		$$
+		Notiamo che le velocità non sono funzioni del tempo esplicite, ma implicite; per
+		avere delle espressioni esplicite delle velocità bisogna risolvere completamente
+		le equazioni del moto.
+		\item Troviamo, ad esempio, $y(t)$. Sostituendo l'espressione appena trovata
+		per $\dot{x}$ in (\ref{eq:sistema_diff_campo_unif}), si ottiene:
+		$$
+		\ddot{y} = -\omega^2(y-y_0) - \omega v_{0,x}
+		\qquad\qquad	\text{con}\quad
+		\omega = \frac{qB}{m}.
+		$$
+		L'equazione si può riscrivere in maniera più maneggevole nel modo seguente:
+		$$
+		\ddot{u} = -\omega^2u - \omega v_{0,x}
+		\qquad\qquad	\text{con}\quad
+		u = y-y_0.
+		$$
+		In tale forma, la soluzione dell'equazione differenziale è
+		$$
+		y(t) - y_0 = c_1\cos(\omega t) + c_2\sin(\omega t) - \frac{v_{0,x}}{\omega}.
+		$$
+		Le costanti sono determinate attraverso le condizioni iniziali. Si ha immediatamente:
+		$$
+		\boxed{
+		y(t) = \frac{v_{0,x}}{\omega}\cos(\omega t) 
+		+ \frac{v_{0,y}}{\omega}\sin(\omega t) - \frac{v_{0,x}}{\omega} + y_0
+		}.
+		$$
+		Similmente per $x(t)$, bisogna risolvere l'equazione differenziale
+		$$
+		\ddot{u} = -\omega^2u + \omega v_{0,y}
+		\qquad\qquad	\text{con}\quad
+		u = x-x_0.
+		$$
+		Analogamente a prima, la soluzione è
+		$$
+		\boxed{
+		x(t) = -\frac{v_{0,y}}{\omega}\cos(\omega t) 
+		+ \frac{v_{0,x}}{\omega}\sin(\omega t) + \frac{v_{0,y}}{\omega} + x_0
+		}.
+		$$
+		Per l'asse $z$ si ha semplicemente
+		$$
+		\boxed{
+		z(t) = v_{0,z}t + z_0
+		}.
+		$$
+		\item Prendiamo le espressioni precedenti per $x$ e $y$, portiamo al primo membro 
+		i termini non dipendenti dal tempo, eleviamo al quadrato e sommiamo. Otteniamo:
+		$$
+		\boxed{
+		\left[
+		x - \left( x_0 + \frac{v_{0,y}}{\omega} \right)
+		\right]^2 +
+		\left[
+		y - \left( y_0 - \frac{v_{0,x}}{\omega} \right)
+		\right]^2
+		= \frac{v_{0,xy}^2}{\omega^2}
+		}.
+		$$
+		dove $v_{0,xy} = \sqrt{v_{0,x}^2 + v_{0,y}^2}$, cioè $v_{0,xy}$ è la proiezione di 
+		$\vec{v_0}$ sul piano $xy$. La proiezione del moto sul piano $xy$ è dunque una 
+		circonferenza di origine 
+		$\left( x_0 + \dfrac{v_{0,y}}{\omega} ,\, y_0 - \dfrac{v_{0,x}}{\omega} \right)$
+		e raggio $\dfrac{v_{0,xy}^2}{\omega^2}$.
+		\item L'energia cinetica della carica è
+		$$
+		T = \frac{1}{2}m(\dot{x}^2+\dot{y}^2+\dot{z}^2).
+		$$
+		Ora, 
+		$$
+		\dot{x} = v_{0,y}\sin(\omega t) + v_{0,x}\cos(\omega t),
+		$$
+		$$
+		\dot{y} = -v_{0,x}\sin(\omega t) + v_{0,y}\cos(\omega t),
+		$$
+		$$
+		\dot{z} = v_{0,z},
+		$$
+		quindi
+		$$
+		T = \frac{1}{2}m(v_{0,x}^2+v_{0,y}^2+v_{0,z}^2) = \boxed{\frac{1}{2}mv^2}.
+		$$
+		Si poteva giungere allo stesso risultato attraverso il principio di conservazione
+		dell'energia.
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	Determinare il campo magnetico nel centro $O$ delle seguenti spire di filo sottile percorse 
+	dalla corrente $I$:
+	\begin{enumerate}
+		\item Un rettangolo di lato $a$ e $b$.
+		\item Un cerchio di raggio $a$.
+		\item Di un poligono regolare con $n$ lati, $n \geq 4$, dove $a$ è la distanza dal centro 
+		ad uno dei vertici. Verificare che per $n=4$ si ritrova il risultato ottenuto per un 
+		quadrato e per $n \longrightarrow \infty$ si ritrova il risultato della spira circolare.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	Calcoliamo dapprima il campo generato da un filo di lunghezza $L$ in un punto sull'asse a 
+	distanza $d$ dal filo. L'integrazione è identica a quella nel caso del filo piegato
+	nell'origine, cambiano solo gli estremi di integrazione. Dunque:
+	$$
+	B = B(L,\,d) 
+	= \left.\frac{\mu_0 I}{4\pi d}\sin\vartheta\right\rvert_{\arctan(-L/(2d))}^{\arctan(L/(2d))}
+	= \frac{\mu_0 I}{2\pi d} \frac{L}{\sqrt{L^2+4d^2}}
+	$$
+	e il verso di $\vec{B}$ dipenderà dal verso della corrente secondo la regola della mano 
+	destra. Passiamo ora a calcolare i vari campi.
+	\begin{enumerate}
+		\item
+		$$
+		B(O) = 2B\left(a,\,\frac{b}{2}\right) + 2B\left(b,\,\frac{a}{2}\right)
+		= \dots = \boxed{\frac{2\mu_0I\sqrt{a^2+b^2}}{\pi ab}}
+		$$
+		(uscente). In particolare, nel caso di un quadrato di lato $a=b=2R$, abbiamo:
+		$$
+		\boxed{B(O) = \frac{\sqrt{2}\mu_0I}{\pi R}}.
+		$$
+		\item Nel caso del cerchio di raggio $a$, basta usare la definizione:
+		$$
+		\vec{B} = \frac{\mu_0 I}{4\pi} \int_l
+		\frac{d\vec{l} \wedge (\vec{r}-\vec{r'})}{|\vec{r}-\vec{r'}|^3}
+		$$
+		con $|\vec{r}-\vec{r'}| = a$, $dl = ad\vartheta$, $\vartheta \in [0,\,2\pi]$.
+		Dunque:
+		$$
+		B = \frac{\mu_0 I}{4\pi} \int_l \frac{\cancel{a}d\vartheta\cancel{a}}{a^{\cancel{3}}}
+		= \frac{\mu_0 I}{4\pi a} \int_{0}^{2\pi} d\vartheta
+		= \boxed{\frac{\mu_0I}{2a}}
+		$$
+		(uscente).
+		\item Per un poligono regolare qualsiasi, possiamo applicare la formula
+		$$
+		B(O) = nB(L,\,d)
+		$$
+		con $L$ e $d$ opportuni. Ora, se il poligono possiede $n$ lati, prendiamo $L$ come la
+		lunghezza del lato e $d$ come la distanza di ogni lato dal centro del poligono. Chiamiamo
+		infine $2\vartheta$ l'angolo sotteso ad ogni lato. Valgono banalmente:
+		$$
+		\vartheta = \frac{\pi}{n};
+		\qquad
+		d = a\cos\vartheta;
+		\qquad
+		L = 2a\sin\vartheta.
+		$$
+		In conclusione,
+		$$
+		B(O) = n\frac{\mu_0I}{\cancel{2}\pi\cancel{a}\cos\vartheta}
+		\frac{\cancel{2a}\sin\vartheta}{\sqrt{4a^2\cos^2\vartheta+4a^2\sin^2\vartheta}}
+		= \boxed{\frac{n\mu_0I}{2\pi a}\tan\left(\frac{\pi}{n}\right)}.
+		$$
+		Per $n=4$ e $a=\sqrt{2}R$, si ritrova immediatamente il risultato calcolato
+		precedentemente per il quadrato. Per $n \longrightarrow \infty$, possiamo usare la 
+		valutazione asintotica
+		$$
+		\tan\left(\frac{\pi}{n}\right) \sim \frac{\pi}{n},
+		$$
+		ottenendo immediatamente il campo al centro di una spira circolare di raggio $a$.
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	In una piattina conduttrice scorre una corrente di densità lineare 
+	$\vec{j}=12\hat{k}\,\mathrm{(A/m)}$. La piattina è situata nel piano $x=0$ tra le rette di 
+	equazioni $x=0,\,y=5\,\mathrm{(m)}$ e $x=0,\,y=1.5\,\mathrm{(m)}$. Sull'asse $z$ giace anche 
+	un filamento rettilineo infinitamente lungo attraversato da una corrente $I_1=5\,\mathrm{A}$ 
+	in direzione $\hat{k}$. Calcolare:
+	\begin{enumerate}
+		\item La forza unitaria esercitata sul filamento dalla piattina.
+		\item La forza per unità di lunghezza della piattina sul filamento.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Posto
+		$$
+		dI_2 = jdy
+		$$
+		abbiamo che la forza (attrattiva) tra il filo ed un ``nastro'' infinitesimo di superficie
+		a distanza $y$ dal filo e avente larghezza $dy$ è -- per unità di lunghezza
+		$$
+		\frac{dF}{l} = \frac{\mu_0}{2\pi}\frac{I_1dI_2}{y}
+		= \boxed{\frac{\mu_0}{2\pi}\frac{I_1jdy}{y}}.
+		$$
+		\item Per trovare la forza esercitata da tutta la piattina, basta integrare:
+		$$
+		\frac{F}{l} = \int_{0.5}^{1.5} \frac{dF}{l} 
+		= \frac{\mu_0}{2\pi}I_1j\int_{0.5}^{1.5}\frac{dy}{y}
+		= \frac{\mu_0}{\cancel{2}\pi} 5 \cdot \overset{6}{\cancel{12}}\ln(3)
+		= \boxed{30\mu_0\ln(3)}.
+		$$
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	In una lamina sottile, piana e indefinita, disposta sul piano $y=0$, scorre una corrente di 
+	densità lineare $j_0\hat{k}\,\mathrm{(A/m)}$.
+	\begin{enumerate}
+		\item Calcolare il campo magnetico $\vec{B}$ generato dalla lamina in tutto lo spazio.
+		\item Due lamine sottili piane infinitamente grandi occupano rispettivamente i piani 
+		$y=-y_0$ ed $y=y_0$. La prima lamina è percorsa dalla corrente di densità 
+		$\vec{j_1} = j_0\hat{k}\,\mathrm{(A/m)}$, la seconda dalla corrente di densità 
+		$\vec{j_1} = -j_0\hat{k}\,\mathrm{(A/m)}$. Determinare $\vec{B} = \vec{B}(x,\,y,\,z)$.
+		\item Calcolare la forza per unità di area esercitata da una lamina sull'altra (data la 
+		discontinuità di $\vec{B}$ in $y = \pm y_0$ considerare il valore di $\vec{B}$ sulle facce 
+		interne delle lamine).
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Per ragioni di simmetria, si può concludere subito che il campo $\vec{B}$ è 
+		parallelo alla lamina, lungo l'asse $x$. Per la regola della mano destra, $\vec{B}$ è 
+		concorde all'asse $x$ se $y<0$, discorde all'asse $x$ se $y>0$. Conoscendo già a priori la 
+		forma del campo, conviene applicare il Teorema di Ampère per conoscerne il modulo:
+		$$
+		\oint_l \vec{B} \cdot d\vec{l} = \mu_0I_{\text{enc}}.
+		$$
+		Scegliamo come percorso un rettangolo complanare al piano $y$, che racchiuda una parte 
+		della lamina. Sia $d$ la lunghezza del lato parallelo all'asse $x$. Valgono:
+		$$
+		\oint_l \vec{B} \cdot d\vec{l} = 2Bd;
+		$$
+		$$
+		\mu_0I_{\text{enc}} = \mu_0\left\lvert\int_l\vec{j}dx\right\rvert = \mu_0j_0d.
+		$$
+		Dunque si conclude subito che
+		$$
+		\boxed{B = \frac{\mu_0j_0}{2}}.
+		$$
+		\item Dal punto precedente, notiamo che il valore del campo non dipende dalla distanza
+		dalla lamina. Inoltre, le due densità di correnti $\vec{j_1}$ e $\vec{j_2}$ sono uguali ed 
+		opposte; quindi si vede immediatamente che il campo per $y<-y_0 \vee y>y_0$ è nullo, 
+		mentre il campo per $-y_0<y<y_0$ è pari al doppio del campo di una singola lamina, ossia
+		$$
+		\boxed{B = \mu_0j_0}.
+		$$
+		\item Sappiamo già a priori che la forza fra le due lamine è repulsiva, perché le correnti 
+		scorrono in senso opposto. Consideriamo, su una delle due lamine, un elemento di area di 
+		dimensione $l$ lungo il verso di $\vec{j}$ e dimensione $x$ lungo l'asse $x$, e definiamo 
+		$A = xl$. Notiamo che
+		$$
+		Il = (j_0x)l = j_0A,
+		$$
+		quindi
+		$$
+		F = |\vec{I}l \wedge \vec{B}| = j_0AB = j_0A\frac{\mu_0j_0}{2},
+		$$
+		da cui
+		$$
+		\boxed{\frac{F}{A} = \frac{\mu_0j_0^2}{2}}
+		$$
+		(repulsiva).
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	I filamenti riportati in figura (FIGURA DA FARE!) sono infinitamente lunghi e sono percorsi 
+	dalla corrente stazionaria $I$. Determinare per ciascuno di essi il campo magnetico nel punto 
+	$P$.
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Da calcoli fatti in precedenza, risulta che il campo generato da un filo di 
+		lunghezza $L$ in un punto a distanza $d$ dal suo asse è pari a
+		$$
+		B(L,\,d) = \frac{\mu_0 I}{2\pi d} \frac{L}{\sqrt{L^2+4d^2}}.
+		$$
+		Nel nostro caso, possiamo scrivere che
+		\begin{align*}	
+		B(P) &= B(b,\,a) + \frac{1}{2}B\left(2a,\,\frac{b}{2}\right) 
+		+ \frac{1}{2}B\left(2a,\,\frac{b}{2}\right) \\
+		&= B(b,\,a) + B\left(2a,\,\frac{b}{2}\right) \\
+		&\vdots\\
+		&= \boxed{\frac{\mu_0I\sqrt{a^2+b^2}}{2\pi ab}}
+		\end{align*}	
+		(entrante). Notiamo che è, come ci aspettavamo, metà del campo al centro di un rettangolo
+		di lati $b$ e $2a$.
+		\item Come nel caso precedente, il campo è metà di quello generato da una spira circolare
+		nel suo centro. Dunque:
+		$$
+		\boxed{B = \frac{\mu_0I}{4a}}
+		$$
+		(entrante).
+		\item Percorrendo il filo, vediamo che dobbiamo sommare metà del contributo per un filo
+		infinito, più metà del contributo di una spira circolare, più -- ancora -- metà del 
+		contributo di un filo infinito. Quindi:
+		$$
+		B(P) = B(\infty,\,a) + \frac{\mu_0I}{4a}
+		= \frac{\mu_0 I}{2\pi a} + \frac{\mu_0I}{4a}
+		= \boxed{\frac{\mu_0 I}{4a}\left(\frac{2}{\pi}+1\right)}
+		$$
+		(entrante).
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	Determinare quali dei seguenti vettori può essere un campo magnetico e per questi ultimi 
+	calcolare la densità di corrente $\vec{j}$;
+	\begin{enumerate}
+		\item $\vec{B} = cr\hat{u}_{\varphi}$ (coordinate cilindriche $(r,\,\varphi,\,z)$);
+		\item $\vec{B} = c(x\hat{i}-y\hat{j})$ (coordinate cartesiane $(x\,y,\,z)$);
+		\item $\vec{B} = c(-y\hat{i}+x\hat{j})$ (coordinate cartesiane $(x\,y,\,z)$);
+		\item $\vec{B} = cr\hat{r}$ (coordinate sferiche $(r,\,\vartheta,\,\varphi)$);
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	Dobbiamo innanzitutto trovare i campi che soddisfano la condizione
+	$$
+	\nabla \cdot \vec{B} = 0.
+	$$
+	Per questi campi, possiamo calcolare la densità ci corrente usando la legge
+	$$
+	\nabla \wedge \vec{B} = \mu_0\vec{J}
+	$$
+	\begin{enumerate}
+		\item
+		$$
+		\nabla \cdot \vec{B} 
+		= \cancelto{0}{\frac{1}{r}\frac{\partial}{\partial r}(rB_r)}
+		+ \frac{1}{r}\frac{\partial B_{\varphi}}{\partial \varphi}
+		+ \cancelto{0}{\frac{\partial B_z}{\partial z}}
+		= c \neq 0.
+		$$
+		Questo non può essere un campo magnetico, tranne che nel caso banale ($c=0$).
+		\item 
+		$$
+		\nabla \cdot \vec{B} 
+		= \frac{\partial B_x}{\partial x}
+		+ \frac{\partial B_y}{\partial y}
+		+ \cancelto{0}{\frac{\partial B_z}{\partial z}}
+		= c - c = 0.
+		$$
+		Questo può essere un campo magnetico! Calcoliamo la densità di corrente:
+		$$
+		\vec{J} = \frac{1}{\mu_0}\nabla \wedge \vec{B} = \boxed{0}.
+		$$
+		\item 
+		$$
+		\nabla \cdot \vec{B} 
+		= \cancelto{0}{\frac{\partial B_x}{\partial x}}
+		+ \cancelto{0}{\frac{\partial B_y}{\partial y}}
+		+ \cancelto{0}{\frac{\partial B_z}{\partial z}}
+		= 0.
+		$$
+		Questo può essere un campo magnetico! Calcoliamo la densità di corrente:
+		$$
+		\vec{J} = \frac{1}{\mu_0}\nabla \wedge \vec{B} = \boxed{\frac{2c}{\mu_0}\hat{k}}.
+		$$
+		\item
+		\begin{align*}
+		\nabla \cdot \vec{B} 
+		&= \frac{1}{r^2}\frac{\partial}{\partial r}(r^2B_r)
+		+ \cancelto{0}
+		{\frac{1}{r\sin\vartheta}\frac{\partial}{\partial\vartheta}(\sin\vartheta B_{\vartheta})}
+		+ \cancelto{0}
+		{\frac{1}{r\sin\vartheta}\frac{\partial B_{\varphi}}{\partial\vartheta}} \\
+		&= \frac{1}{r^2}\frac{\partial}{\partial r}(r^2cr)
+		= \frac{1}{\cancel{r^2}}c \cdot 3\cancel{r^2} = 3c \neq 0.
+		\end{align*}
+		Questo non può essere un campo magnetico, tranne che nel caso banale ($c=0$).
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}
+	La piastra mostrata in figura (FIGURA) ha una superficie infinitamente grande ed uno spessore 
+	finito $d\,\mathrm{(m)}$. Essa è attraversata da una densità di corrente 
+	$j_0\hat{k}\,\mathrm{(A/m^{2})}$. Determinare il campo magnetico generato dalla corrente in 
+	tutto lo spazio.
+\end{problema}
+\begin{proof}
+	Non conosciamo le caratteristiche del materiale di cui è costituita la piastra, quindi ci limiteremo a calcolare il campo magnetico al suo esterno. Possiamo vedere la piastra come una successione di lamine di spessore infinitesimo, in cui scorre una corrente di densità lineare
+	$j_l = j_0dy\hat{k}$. Il campo generato da una singola lamina -- già calcolato in precedenza col Teorema di Ampère -- ha modulo
+	$$
+	dB = \frac{\mu_0j_l}{2} = \frac{\mu_0j_0dy}{2}.
+	$$
+	Per trovare il campo totale, basta integrare in $dy$ su tutto lo spessore $d$:
+	$$
+	B = \int_{-d/2}^{d/2} dB = \int_{-d/2}^{d/2} \frac{\mu_0j_0dy}{2}
+	= \boxed{\frac{\mu_0j_0d}{2}}.
+	$$
+	Al solito, il campo sarà concorde all'asse $x$ per $y<-d/2$, discorde per $y>d/2$.
+\end{proof}
+
+
+
+
+
+
 
 
 \begin{thebibliography}{9}
