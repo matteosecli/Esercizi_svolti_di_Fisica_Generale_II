@@ -34,6 +34,9 @@
 %\usepackage{comment} % Uncomment for selective compilation
 \usepackage{asymptote}
 \usepackage{geometry}
+\usepackage{circuitikz}
+\usetikzlibrary{arrows}
+\usepackage{subcaption}
 \author{A.V.}
 \title{Esercizi svolti di Fisica Generale II\\
 	\large{\textit{Dalle lezioni di Giuseppe Dalba}}}
@@ -811,8 +814,8 @@
 	
 	Integrando fra $-L$ e $L$ ottengo:
 	$$
-	|\vec{E}|=\int_{-l}^{L} k_e \frac{\sigma (z-h) dS}{|(\vec{r}-\vec{r'})|^3}=
-	k_e \int_{-l}^{L} \frac{\sigma (z-h) 2\pi R }
+	|\vec{E}|=\int_{-L}^{L} k_e \frac{\sigma (z-h) dS}{|(\vec{r}-\vec{r'})|^3}=
+	k_e \int_{-L}^{L} \frac{\sigma (z-h) 2\pi R }
 	{\left(\sqrt{R^2+(z-h)^2}\right)^3} dh
 	$$
 	Posso risolvere l'integrale effettuando la sostituzione $s=z-h$ ($ds=-dh$); 
@@ -2740,14 +2743,49 @@ Si calcolino:
 
 
 \begin{problema}
-	Il dielettrico del condensatore in figura (FIGURA) non è perfetto: esso presenta una
-	conducibilità non nulla. Detta $\varepsilon$ la permeabilità dielettrica e $\rho_e$ la
-	resistività del dielettrico, si dimostri la seguente relazione:
+	Il dielettrico del condensatore in Figura \ref{fig:condensatore_generico} non è perfetto: esso 
+	presenta una conducibilità non nulla. Detta $\varepsilon$ la permeabilità dielettrica e 
+	$\rho_e$ la resistività del dielettrico, si dimostri la seguente relazione:
 	\begin{equation}
 	\rho_e\varepsilon = C R_p,
 	\end{equation}
 	quale che sia la forma del condensatore. $C$ rappresenta la capacità del condensatore
 	ed $R_p$ la sua resistenza di perdita.
+	\begin{figure}[H]
+	\centering
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\begin{asy}
+				import patterns;
+				size(3.5cm);
+				path capacitor_shape = 
+				(2,0.8)..(0,1)..(-2,1)..(-2,0)..(-1.5,-1)..(-2,-3)..(-0.5,-3)..(2,-2)..cycle;
+				add("hatchNNE",hatch(3mm,NNE,deepgreen));
+				draw(capacitor_shape^^scale(1.2)*capacitor_shape);
+				filldraw(capacitor_shape^^scale(0.4)*capacitor_shape,evenodd+pattern("hatchNNE"));
+				label("$\varepsilon,\;\rho$",(0,-2),NoAlign,p=solid+red);
+			\end{asy}
+		\caption{Condensatore generico}
+		\label{fig:condensatore_generico}
+		\end{subfigure}
+		$\,$
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\ctikzset{bipoles/length=.8cm}
+			\begin{circuitikz}[scale=1.2]
+				\draw (0,0) to (2,0);
+				\draw (2,0) to[R=$R_p$] (2,-2.5);
+				\draw (2,-2.5) to (0,-2.5);
+				\draw (0,-2.5) to[C=$C$] (0,0);
+			\end{circuitikz}
+		\caption{Circuito equivalente}
+		\label{fig:circuito_equivalente_condensatore}
+		\end{subfigure}
+	\caption{Condensatore generico e suo circuito equivalente}
+	\label{fig:condensatore_generico_e_CE}
+	\end{figure}
+
+
 \end{problema}
 \begin{proof}
 	Chiamando con $\sigma_e$ la conducibilità elettrica e con $\vec{j}$ la densità di corrente,
@@ -2937,10 +2975,10 @@ Si calcolino:
 
 
 \begin{problema}
-	Nel circuito in figura (FIGURA DA FARE) i due condensatori $C_1$ e $C_2$ sono inizialmente 
-	carichi e le ddp ai loro capi sono rispettivamente $V_{0,1} = 2V_0$ $V_{0,2} = V_0$. 
-	All'istante $t=0$ l'interruttore viene chiuso. A partire da questo istante, nota la 
-	resistenza $R$, calcolare:
+	Nel circuito in Figura \ref{fig:carico_scarico_due_condensatori} i due condensatori $C_1$ e 
+	$C_2$ sono inizialmente carichi e le ddp ai loro capi sono rispettivamente $V_{0,1} = 2V_0$ 
+	$V_{0,2} = V_0$. All'istante $t=0$ l'interruttore viene chiuso. A partire da questo istante, 
+	nota la resistenza $R$, calcolare:
 	\begin{itemize}
 		\item La corrente $I = I(t)$ nel circuito.
 		\item Le cariche $q_1(t)$ e $q_2(t)$ nei condensatori.
@@ -2948,6 +2986,20 @@ Si calcolino:
 		\item Il lavoro dissipato nella resistenza.
 		\item La potenza dissipata.
 	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\ctikzset{bipoles/length=.9cm}
+		\begin{circuitikz}[scale=.7]
+			\draw (0,4) to[R=$R$] (7,4);
+			\draw (7,4) to (7,3) to[C=$C_1$] (7,0);
+			\draw (7,0) to (0,0);
+			\draw (0,0) to[C=$C_2$] (0,3) to[closing switch] (0,4);
+			\draw[<-, >=triangle 45] (4,1.2) arc (-60:240:1);
+			\draw (2.2,2.1) node {$I$};
+		\end{circuitikz}
+	\caption{Carica e scarica di due condensatori}
+	\label{fig:carico_scarico_due_condensatori}
+	\end{figure}
 \end{problema}
 \begin{proof}
 	\begin{enumerate}
