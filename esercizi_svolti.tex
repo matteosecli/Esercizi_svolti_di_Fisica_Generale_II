@@ -44,7 +44,12 @@
 \let\oldhat\hat
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \renewcommand{\hat}[1]{\widehat{\mathbf{#1}}}
+\newcommand{\si}[1]{\mathrm{#1}}
 \DeclareMathOperator*{\arsinh}{arsinh}
+\makeatletter
+\DeclareRobustCommand{\abs}{\@ifstar\@firstofone\@abs}
+\newcommand{\@abs}[1]{\left\lvert #1 \right\rvert}
+\makeatother
 %\usepackage[square]{natbib}
 
 \begin{document}
@@ -3602,30 +3607,870 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}
-	La piastra mostrata in figura (FIGURA) ha una superficie infinitamente grande ed uno spessore 
-	finito $d\,\mathrm{(m)}$. Essa è attraversata da una densità di corrente 
-	$j_0\hat{k}\,\mathrm{(A/m^{2})}$. Determinare il campo magnetico generato dalla corrente in 
-	tutto lo spazio.
+%\begin{problema}
+%	La piastra mostrata in figura (FIGURA) ha una superficie infinitamente grande ed uno spessore 
+%	finito $d\,\mathrm{(m)}$. Essa è attraversata da una densità di corrente 
+%	$j_0\hat{k}\,\mathrm{(A/m^{2})}$. Determinare il campo magnetico generato dalla corrente in 
+%	tutto lo spazio.
+%\end{problema}
+%\begin{proof}
+%	Non conosciamo le caratteristiche del materiale di cui è costituita la piastra, quindi ci limiteremo a calcolare il campo magnetico al suo esterno. Possiamo vedere la piastra come una successione di lamine di spessore infinitesimo, in cui scorre una corrente di densità lineare
+%	$j_l = j_0dy\hat{k}$. Il campo generato da una singola lamina -- già calcolato in precedenza col Teorema di Ampère -- ha modulo
+%	$$
+%	dB = \frac{\mu_0j_l}{2} = \frac{\mu_0j_0dy}{2}.
+%	$$
+%	Per trovare il campo totale, basta integrare in $dy$ su tutto lo spessore $d$:
+%	$$
+%	B = \int_{-d/2}^{d/2} dB = \int_{-d/2}^{d/2} \frac{\mu_0j_0dy}{2}
+%	= \boxed{\frac{\mu_0j_0d}{2}}.
+%	$$
+%	Al solito, il campo sarà concorde all'asse $x$ per $y<-d/2$, discorde per $y>d/2$.
+%\end{proof}
+
+
+
+
+
+
+\begin{problema}[$50$]
+	La piastra mostrata in figura (INSERIRE FIGURA!!!) ha una superficie infinitamente grande 
+	ed uno spessore finito $d\,[m]$.
+	Essa è attraversata da una densità di corrente $j_{0}\,\hat{k}\,[Am^{2}]$. Determinare il 
+	campo magnetico generato dalla corrente in tutto lo spazio, assumendo che la piastra possiede 
+	la stessa permeabilità magnetica del vuoto.
 \end{problema}
 \begin{proof}
-	Non conosciamo le caratteristiche del materiale di cui è costituita la piastra, quindi ci limiteremo a calcolare il campo magnetico al suo esterno. Possiamo vedere la piastra come una successione di lamine di spessore infinitesimo, in cui scorre una corrente di densità lineare
-	$j_l = j_0dy\hat{k}$. Il campo generato da una singola lamina -- già calcolato in precedenza col Teorema di Ampère -- ha modulo
-	$$
-	dB = \frac{\mu_0j_l}{2} = \frac{\mu_0j_0dy}{2}.
-	$$
-	Per trovare il campo totale, basta integrare in $dy$ su tutto lo spessore $d$:
-	$$
-	B = \int_{-d/2}^{d/2} dB = \int_{-d/2}^{d/2} \frac{\mu_0j_0dy}{2}
-	= \boxed{\frac{\mu_0j_0d}{2}}.
-	$$
-	Al solito, il campo sarà concorde all'asse $x$ per $y<-d/2$, discorde per $y>d/2$.
+	Per calcolare il campo, utilizziamo la legge di Ampère.
+	\begin{itemize}
+		\item \underline{ $-\frac{d}{2} \leq y \leq \frac{d}{2}$ }\\
+		Osserviamo che il campo sarà diretto lungo $\hat{x}$. 
+		Considerando una spira rettangolare il cui lato parallello a $\hat{z}$ valga $l$: 	
+		\begin{align*}
+		\oint{\vec{B}\vec{dl}} = \mu_{0}I 	\qquad \text{con}\quad I = Jlz
+		\end{align*}
+		dove $I$ è la corrente che attraversa la spira. 
+		Gli unici contributi all'integrale sono dati dai lati paralleli al campo:
+		\begin{align*}
+		B2l &= \mu_{0}Jlz \\
+		\Rightarrow B &= \frac{\mu_{0}Jz}{2}		
+		\end{align*}
+		Ottenuto il modulo, tramite la regola della mano destra possiamo scrivere:
+		\begin{align*}
+		\boxed{\vec{B} = -\frac{\mu_{0}Jz}{2}\hat{x}}
+		\end{align*}
+		\item \underline{$y < -\frac{d}{2}$} \\
+		Scegliendo una spira come in figura %mandare figura
+		e osservando che la corrente in questo caso sarà $I = Jld $ si ottiene:
+		\begin{align*}
+		\oint{\vec{B}\vec{dl}} &= \mu_{0}I \\
+		&= \mu_{0}Jld \\
+		\Rightarrow B &= \frac{\mu_{0}Jd}{2}
+		\end{align*}
+		da cui scriviamo:
+		\begin{align*}
+		\boxed{\vec{B} = \frac{\mu_{0}Jd}{2}\hat{x}}
+		\end{align*}
+		\item \underline{$y > \frac{d}{2}$} \\
+		Ripetendo il ragionamento come nel caso precedente 
+		e applicando la regola della mano destra si ottiene:
+		\begin{align*}
+		\boxed{\vec{B} = -\frac{\mu_{0}Jd}{2}\hat{x}}
+		\end{align*}
+	\end{itemize}
 \end{proof}
 
+\begin{problema}[$51$]
+	Un dipolo magnetico $\vec{\mu} = \mu\,\hat{k}$ è situato sull'asse di una 
+	spira circolare di raggio $R$ a distanza $z$ dal centro della spira.
+	\begin{enumerate}
+		\item Determinare la forza sul dipolo.
+		\item Calcolare il valore della forza per $z = R$.
+		\item La forza è attrattiva o repulsiva?
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Per calcolare la forza agente sul dipolo sfruttiamo la relazione:
+		\begin{align}
+		\label{eq: forza}
+		\vec{F} = \vec{m}\frac{\partial \vec{B}}{\partial z}
+		\end{align}
+		dove  $\vec{B}$ rappresenta il campo magnetico generato dalla spira. Sapendo che:
+		\begin{align*}
+		\vec{B} = \frac{\mu_{0}IR^{2}}{2 \left[ R^{2} + z^{2} \right]^{3/2}} \hat{z}
+		\end{align*}
+		e sostituendo nella~\eqref{eq: forza} possiamo concludere:
+		\begin{align*}
+		\vec{F} &= \mu \frac{\partial \vec{B}}{\partial z} \hat{z} \\
+		&= \mu \frac{\partial}{\partial z}\left[\frac{\mu_{0}IR^{2}}{2 \left[ R^{2} 
+		+ z^{2} \right]^{3/2}}\right]\hat{z} \\
+		&=- \frac{3}{2}\frac{\mu \mu_{0}IR^{2}}{2}\frac{2z}{ \left[ R^{2} 
+		+ z^{2} \right]^{5/2}}\hat{z} \\
+		&=\boxed{ - \frac{3}{2}
+		\frac{\mu \mu_{0}IR^{2}z}{ \left[ R^{2} + z^{2} \right]^{5/2}}\hat{z}}
+		\end{align*}
+		\item Sostituendo $z = R$ si ottiene:
+		\begin{align*}
+		\boxed{\vec{F} = - \frac{3}{2^{7/5}}\frac{\mu \mu_{0}I}{R^{2}}\hat{z}}
+		\end{align*}
+		\item Si può osservare che in entrambi i casi la 
+		forza risulta attrattiva in quanto 
+		il momento di dipolo magnetico è concorde 
+		al campo $\vec{B}$ della spira.
+	\end{enumerate}
+\end{proof}
 
+\begin{problema}[$52$]
+	I centri delle bobine circolari mostrate in figura (INSERIRE LA FIGURA!!!)
+	sono distanti $d\,[m]$. 
+	Le bobine sono attraversata da corrente $I$. Sia $N$ il numero di spire di ciascuna di esse. 
+	Dimostrare che:
+	\begin{enumerate}
+		\item La derivata prima del campo magnetico $\vec{B} = \vec{B(z)}$, 
+		calcolato lungo $\hat{z}$, è nulla nell'origine.
+		\item Determinare il valore di $d$ per il quale anche la 
+		derivata seconda di $\vec{B}$ si annulla in $z = 0$.
+		\item Quanto vale $\vec{B}$ nell'origine in queste condizioni?
+		Quando la distanza tra le due bobine è uguale al loro raggio 
+		!!!!!!!!!(controllare se raggio o diametro, a me risulta raggio)!!!!!!!! 
+		esse sono dette Bobine di Helmoltz; sono molto importanti 
+		nella pratica perché 
+		il campo magnetico sul piano
+		mediano tra le due bobine è uniforme su un'ampia area.
+		(Suggerimento: considerare ciascuna bobina come 
+		una spira sottile percorsa da corrente $NI$.)
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	Consideriamo il campo diretto lungo l'asse $\hat{z}$ delle bobine. 
+	Dalla regola della mano destra si osserva che è il campo è concorde in verso a tale asse. 
+	Il campo generato da una bobina circolare avvolta da $N$ spire è dato da:
+	\begin{align*}
+	\vec{B_{\text{spira}}} = \frac{\mu_{0}NIR^{2}}{2 \left[ R^{2} 
+	+ x^{2} \right]^{3/2}} \hat{x}
+	\end{align*}			
+	dove $x$ è la distanza dal centro della spira.
+	 Facendo riferimento alla figura,%mandare figura
+	il generico punto $P = P(z)$ avrà distanze dalle due bobine:
+	\begin{align*}
+	r_{1} = z - \frac{d}{z}, \qquad r_{2} = z +\frac{d}{2}
+	\end{align*}
+	Il campo totale nel punto $P$ sarà la somma dei campi delle due bobine:
+	\begin{align*}
+	\vec{B} = -\frac{\mu_{0}NIR^{2}}{2}\left[\frac{1}{\left(R^{2} +
+	 \left(z - \frac{d}{2}\right)^{2}\right)^{3/2}} +\frac{1}{\left(R^{2} + 
+	 \left(z - \frac{d}{2}\right)^{2}\right)^{3/2}}\right]\hat{z}
+	\end{align*}
+	\begin{enumerate}
+		\item Il problema richiede di calcolare la derivata in direzione $z$:
+		\begin{align*}
+		\frac{\partial \vec{B}}{\partial z} = 
+		-\frac{3\mu_{0}NIR^{2}}{2}\left[
+		\frac{z - \frac{d}{2}}{\left(R^{2} 
+		+ \left(z - \frac{d}{2}\right)^{2}\right)^{5/2}} 
+		+\frac{z + \frac{d}{2}}{\left(R^{2} 
+		+ \left(z - \frac{d}{2}\right)^{2}\right)^{5/2}}\right]
+		\end{align*}
+		Sostituendo nella derivata $z = 0$ essa si annulla.
+		\item Calcoliamo la derivata seconda
+		\begin{align*}
+		\frac{\partial^{2}\vec{B}}{\partial z^{2}} &= -
+		\frac{3\mu_{0}NIR^{2}}{2}\left\{\frac{\left[R^{2} 
+		+ \left(z -\frac{d}{2}\right)^{2}\right]^{5/2} 
+		- 5\left(z - \frac{d}{2}\right)^{2}\left( R^{2}
+		+ \left(z - \frac{d}{2}\right)^{2}	\right)^{3/2}}{\left[R^{2} 
+		+ \left(z - \frac{d}{2}\right)^{2}\right]^{5}} \right. \\
+		&\left. + \frac{\left[R^{2} 
+		+ \left(z +\frac{d}{2}\right)^{2}\right]^{5/2} 
+		- 5\left(z + \frac{d}{2}\right)^{2}\left( R^{2} 
+		+ \left(z + \frac{d}{2}\right)^{2}\right)^{3/2}}{\left[R^{2} 
+		+\left(z + \frac{d}{2}\right)^{2}\right]^{5}}\right\}
+		\end{align*}
+		Ponendoci in $z=0$ come richiesto dal problema:
+		\begin{align*}
+		\frac{\partial^{2}\vec{B}}{\partial z^{2}}\bigg|_{z = 0} = 
+		\left(3\mu_{0}NIR^{2}\right)\left[\frac{\left(R^{2} 
+		+ \frac{d^{2}}{4}\right)^{5/2} + \frac{5d^{2}}{4}\left(R^{2} 
+		+ \frac{d^{2}}{4}\right)^{3/2}}{\left(R^{2} 
+		+ \frac{d^{2}}	{4}\right)^{5/2}}\right]
+		\end{align*}
+		Imponendo ora la condizione 
+		$\frac{\partial^{2}\vec{B}}{\partial z^{2}}\big|_{z = 0} = 0$ 
+		e osservando che:
+		\begin{align*}
+		\left(R^{2} + \frac{d^{2}}{4}\right)^{5/2} \neq 0
+		\end{align*}
+		Si ha immediatamente:
+		\begin{align*}
+		&\left(R^{2} + \frac{d^{2}}{4}\right)^{5/2} 
+		= \frac{5d^{2}}{4}\left(R^{2} 
+		+ \frac{d^{2}}{4}\right)^{3/2} \\
+		\Rightarrow \quad & \left(R^{2} + \frac{d^{2}}{4}\right)^{5/2 - 3/2} 
+		= \frac{5d^{2}}{4}
+		\end{align*}
+		Risolvendo per $d$ si ottiene la soluzione:
+		\begin{align*}
+		d^{2} = R^{2} \quad \Rightarrow \quad d = \abs{R}
+		\end{align*}
+		Osservando che $R > 0$	si conclude:
+		\begin{align*}
+		\boxed{d = R}
+		\end{align*}
+		\item in tali condizioni il campo vale:
+		\begin{align*}
+		\boxed{\vec{B} =\frac{2^{5}}{5^{5/2}}
+		\frac{\mu_{0} NI}{R^{3}}\hat{k}}
+		\end{align*}
+	\end{enumerate}
+\end{proof}
 
+\begin{problema}[$53$] 
+	Nel circuito in figura (INSERIRE LA FIGURA!!!) tutti gli elementi circuitali sono noti. 
+	Al tempo $t = 0$ l'interruttore viene chiuso. Determinare:
+	\begin{enumerate}
+		\item La carica $q = q(t)$ nell'ipotesi in cui 
+		all'istante iniziale il condensatore sia scarico.
+		\item La carica $q = q(t)$ nell'ipotesi in cui 
+		all'istante iniziale il condensatore possegga la carica $q_{0}$.
+	\end{enumerate}
+	\begin{figure}[H]
+		\centering
+		\ctikzset{bipoles/length=.8cm}
+		\begin{circuitikz}[scale=1.5]
+			\draw (0,0) 
+			to[battery=$\mathcal{E}$] (0,1) 
+			to[closing switch] (0,2)
+			to[R=$R_1$] (1,2)
+			to[R=$R_2$, *-*] (1,0)
+			to (0,0);
+			\draw (1,2)
+			to (2,2)
+			to[R=$R_3$] (2,1)
+			to[C=$C$] (2,0)
+			to (1,0);
+		\end{circuitikz}
+	\caption{Circuito del problema}
+	\label{fig:circuito_prob_53}
+	\end{figure}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Scrivendo le equazioni delle maglie si ottiene:
+		\begin{align*}
+		\varepsilon = I_{1}R_{1} + \left(I_{1} - I_{2}\right)R_{2} \qquad (i) \\
+		0 = I_{2}R_{3} + \left(I_{2} - I_{1}\right)R_{2} \qquad (ii)
+		\end{align*}
+		Dove le correnti $I_{1,2}$ sono funzioni del tempo; per non appesantire 
+		la notazione si è scelto di omettere il simbolo di dipendenza anche per le 
+		cariche $q$ e le differenze di  potenziale $V$. A questo punto cerchiamo 
+		di scrivere un'equazione differenziale risolvibile tramite separazione delle variabili. 
+		Osservando che:
+		\begin{align*}
+		I_{2} = \frac{dq}{dt} = C\frac{dV}{dt}
+		\end{align*}
+		ricavando da $(i)$:
+		\begin{align*}
+		I_{1} = \frac{\varepsilon + I_{2}R_{2}}{R_{1} + R_{2}}
+		\end{align*}
+		possiamo sostituire nella $(ii)$ ottenendo:
+		\begin{align*}
+		C\frac{dV}{dt}R_{3} + V + C\frac{dV}{dt}R_{2} 
+		- \varepsilon\frac{ R_{2}}{R_{1} + R_{2}}  
+		- C \frac{R_{2}^{2}}  {R_{1} + R_{2}}\frac{dV}{dt}= 0
+		\end{align*}
+		Indicando con $R' = R_{2} + R_{3} - \frac{R_{2}^{2}}{R_{1} + R_{2}}$ 
+		possiamo scrivere:
+		\begin{align*}
+		R'C\frac{dV}{dt} + V - \frac{R_{2}}{R_{1} + R_{2}} \varepsilon = 0
+		\end{align*}
+		Attraverso semplici passaggi algebrici e separando 
+		le variabili ricaviamo l'espressione differenziale:
+		\begin{align*}
+		\frac{dv}{\frac{R_{2}}{R_{1} + R_{2}} \varepsilon - V} = \frac{dt}{R'C}
+		\end{align*}
+		Integrando e applicando l'esponenziale ad entrambi i membri 
+		si ottiene l'equazione della carica di un condensatore:
+		\begin{align*}
+		V(t) = \frac{R_{2}}{R_{1} + R_{2}} \varepsilon 
+		- A\exp\left(- \frac{t}{R'C}\right)
+		\end{align*}
+		Dove la costante di integrazione $A$ viene determinata 
+		imponendo $t=0$:
+		\begin{align*}
+		A = \frac{R_{2}}{R_{1} + R_{2}} \varepsilon
+		\end{align*}
+		In definitiva l'andamento della differenza di potenziale è dato da:
+		\begin{align*}
+		\boxed{V(t) = \frac{R_{2}}{R_{1} + R_{2}} \varepsilon
+		\left(1 -\exp\left(- \frac{t}{R'C}\right)\right)}
+		\end{align*}
+		dove $V_{r} = \frac{R_{2}}{R_{1} + R_{2}} \varepsilon$ rappresenta 
+		la differenza di potenziale tra le facce del condensatore a regime.
+		Per ricavare l'equazione che descrive l'andamento della carica  
+		basta ricordarsi della relazione $q = VC$. Basta allora scrivere:
+		\begin{align*}
+		\boxed{q(t) = \frac{R_{2}}{R_{1} + R_{2}}C \varepsilon
+		\left(1 -\exp\left(- \frac{t}{R'C}\right)\right)}
+		\end{align*}
+		dove $q_{r} = \frac{R_{2}}{R_{1} + R_{2}} C\varepsilon$ 
+		coincide con la carica presente sulle facce del condensatore a regime.
+		\item Osserviamo che il condensatore si scarica su una resistenza equivalente:
+		\begin{align*}
+		R_\text{eq} &=  R_{3} + R_{1}\parallel R_{2} \\
+		&= R_{3} + \frac{R_{1}R_{2}}{R_{1} + R_{2}}
+		\end{align*}
+		Durante il processo di scarica, è nota l'equazione che descrive 
+		l'andamento della carica $q$ per un circuito $RC$:
+		\begin{align*}
+		q(t) = q_{0}\exp\left(- \frac{t}{R_{eq}C}\right)
+		\end{align*}
+		Ciò che bisogna determinare è la carica iniziale che possiamo 
+		esprimere come $q_{0} = V_{0}C$. Essendo nota la capacità 
+		determiniamo $V_{0}$, ossia la differenza di potenziale tra le 
+		facce del condensatore a regime. Applicando il teorema di 
+		Thevenin e osservando che, a regime, su $R_{3}$ non passa 
+		corrente otteniamo immediatamente la corrente 
+		$I$ che circola nella maglia:
+		\begin{align*}
+		I = \frac{\varepsilon}{R_{1} + R_{2}}
+		\end{align*}
+		Misurare la $V_{0}$ equivale a misurare la differenza di 
+		potenziale ai capi della resistenza $R_{2}$:
+		\begin{align*}
+		V_{0} &= IR_{2} \\
+		&= \frac{R_{2}}{R_{1} + R{2}}\varepsilon 
+		\end{align*}
+		Sostituendo nell'equazione della scarica si conclude:
+		\begin{align*}
+		\boxed{q(t) = \frac{R_{2}}{R_{1} + R_{2}}C\varepsilon\exp
+		\left(- \frac{t}{R_{eq}C}\right)}
+		\end{align*}
+	\end{enumerate}
+\end{proof}
 
+\begin{problema}[$54$] 
+	In una lastra infinitamente estesa fluisce una corrente di 
+	densità costante $j_{0}\,[A/m^{2}]$ ad eccezione che 
+	in un foro cilindrico di raggio $a$ centrato nel mezzo dello 
+	spessore della lastra. Sia $j_{0}$ parallela all'asse del foro. 
+	Noto lo spessore $d$ della lastra, calcolare il campo 
+	magnetico $\vec{B}$ in tutto lo spazio.
+\end{problema}
+\begin{proof}
+	Sia lo spessore della lastra parallelo a $\hat{y}$ e
+	$\vec{j_{0}}$ uscente dal foglio. Per risolvere l'esercizio  
+	consideriamo la sezione del foro attraversata da densità 
+	di corrente $-\vec{j_{0}}$. Per calcolare il campo 
+	utilizziamo la legge di Ampère. Scegliamo una spira 
+	rettangolari di lati $2a$ e $y$. Dalla regola della mano 
+	destra si vede che il campo è diretto lungo $\hat{z}$:
+	\begin{itemize}
+		\item \underline{$-\frac{d}{2} \le y \le \frac{d}{2}$ e $\abs{y} > a $} \\
+		\begin{align*}
+		\oint \vec{B}\vec{dl} = \oint Bdl = B4a = \mu_{0}I 
+		= \mu_{0}j_{0}\left(2ay - \frac{\pi a^{2}}{2}\right)
+		\end{align*}
+		dove i contributi non nulli all'integrale sono dati lati di 
+		lunghezza $2a$, paralleli al campo. Si conclude allora 
+		fissando il segno e la direzione del campo tramite la 
+		regola della mano destra:
+		\begin{align*}
+		\boxed{\vec{B} = \frac{\mu_{0}j_{0}}{4}
+		\left(2y - \frac{\pi a}{2}\right)\hat{z}}
+		\end{align*}
+		Si osservi che il campo dipende linearmente da $y$.
+		\item \underline{$ y > \frac{d}{2}$}  \\
+		Scegliendo una spira rettangolare come nel punto 
+		precedente si ottiene:
+		\begin{align*}
+		\oint \vec{B}\vec{dl} = \oint Bdl = B4a 
+		= \mu_{0}I = \mu_{0}j_{0}\left(\frac{d}{2}2a 
+		- \frac{\pi a^{2}}{2}\right)
+		\end{align*}
+		Grazie alle considerazioni precedenti si ha:
+		\begin{align*}
+		\boxed{\vec{B} = \frac{\mu_{0}j_{0}}{4}\left(2d 
+		- \frac{\pi a}{2}\right)\hat{z}}
+		\end{align*}
+		Il campo risulta costante fuori dalla piastra.
+		\item \underline{$y < -\frac{d}{2}$} \\
+		Ripetendo il procedimento utilizzato per il punto precedente:
+		\begin{align*}
+		\boxed{\vec{B} = -\frac{\mu_{0}j_{0}}{4}\left(2d 
+		- \frac{\pi a}{2}\right)\hat{z}}
+		\end{align*}
+		Il campo è comunque costante ma di segno opposto.
+	\end{itemize}		
+\end{proof}
 
+\begin{problema}[$55$] 
+	Determinare il campo magnetico generato nei piani 
+	$xz$ $yz$ da una piattina sottile infinitamente 
+	lunga e di larghezza $2a$, in cui scorra:
+	\begin{enumerate}
+		\item La densità di corrente: 
+		$\vec{j}$ = $\begin{cases}
+		j_{0}\,\hat{k}\qquad se \quad  -a < y < 0	\\
+		-j_{0}\,\hat{k}\qquad se \quad  0 < y < a \\
+		\end{cases}$
+		\item La densità di corrente:
+		\begin{equation}
+		\vec{j} =\frac{j_{0}\,y}{a}\hat{k} \qquad se \quad  -a < y < a
+		\end{equation}
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Calcoliamo il campo nel campo $xz$. 
+		Dividiamo la piattina in fili infiniti attraversati da 
+		corrente $i = j_{0}dy$. Per ragioni di simmetria sarà 
+		diretto lungo $-\hat{x}$. Ricordando che il campo generato 
+		da un filo infinitamente lungo è dato da:
+		\begin{align*}
+		\vec{dB_{\text{{filo}}}} =  \frac{\mu_{0}i}{2\pi r}\hat{\varphi}
+		\end{align*}		 
+		dove $r$ è la distanza dal filo. In questo caso, fissando 
+		$r = \sqrt{x^{2} + y^{2}}$, si ottiene (devo mandarti il disegno) 
+		che il campo
+		generato sul piano $xy$ da due fili disposti 
+		simmetricamente rispetto all'origine è dato da:
+		\begin{align*}
+		dB = dB_{\text{{filo, 1}}}\sin(\vartheta) 
+		+ dB_{\text{{filo, 2}}}\sin(\vartheta) 
+		= 2dB_{\text{{filo}}}\sin(\vartheta)
+		\end{align*}
+		Osservando che $\sin(\vartheta) = \frac{y}{r}$ 
+		calcoliamo il modulo del campo totale:
+		\begin{align*}
+		B &= \int 2dB_{\text{{filo}}}\sin(\vartheta) \\
+		&= \frac{\mu_{0} j_{0}}{2\pi}\int_{0}^{a} 
+		\frac{2y}{x^{2} + y^{2}}\,dy \\
+		&= \frac{\mu_{0} j_{0}}{2\pi}\ln\left(\left|\frac{x^{2} 
+		+ a^{2}}{x^{2}}\right|\right) \\
+		&=\frac{\mu_{0} j_{0}}{2\pi}\ln\left(\frac{x^{2} 
+		+ a^{2}}{x^{2}}\right)
+		\end{align*}			
+		Per le considerazioni precedenti possiamo concludere:
+		\begin{align*}
+		\boxed{\vec{B} = -\frac{\mu_{0} j_{0}}{2\pi}\ln\left(
+		\frac{x^{2} + a^{2}}{x^{2}}\right)\hat{x}}
+		\end{align*}
+		Calcoliamo ora il campo nel piano $yz$. Per semplicità, 
+		svolgiamo il calcolo per un punto $P$ a distanza $l$ 
+		da una singola piattina di lunghezza infinita e larghezza $a$,  
+		attraversata da densità di corrente $j_{0}$. 
+		Se consideriamo la piattina un insieme di fili il cui contributo 
+		$dB$ al campo è dato dalla legge di Biot-Savart, Il modulo 
+		del campo totale nel punto $P$ sarà dato da:
+		\begin{align*}
+		B &= \frac{\mu_{0}j_{0}}{2 \pi}\int_{l}^{l + a} \frac{dx}{x} \\
+		& =  \frac{\mu_{0}j_{0}}{2 \pi}\ln\left(\left|
+		\frac{l + a}{a}\right|\right)
+		\end{align*}
+		Facendo riferimento alla figura (INSERIRE FIGURA!!!), sia $l_{1} = y$ la distanza 
+		di un punto $P \in yz$ dalla piattina attraversata da 
+		$j_{0}$, e $l_{2} = y - a$ la distanza dalla seconda. 
+		Utilizzando la relazione appena trovata e considerando 
+		come separate le due piattine, si ottiene:
+		\begin{align*}
+		\vec{B} &= \frac{\mu_{0}j_{0}}{2 \pi}\ln\left(\left|
+		\frac{y + a}{a}\right|\right)(-\hat{x}) +  
+		\frac{\mu_{0}j_{0}}{2 \pi}\ln\left(\left|
+		\frac{y}{y  - a}\right|\right)\hat{x} \\
+		& =  \boxed{\frac{\mu_{0}j_{0}}{2 \pi}\ln\left(\left|
+		\frac{y^{2}}{y^{2} - a^{2}}\right|\right)\hat{x}}
+		\end{align*}
+		La relazione appena trovata è valida per qualsiasi valore di $y$, 
+		anche se scegliessimo $-a < y < a$, ossia all'interno di una 
+		delle piattine; per convincerci di questo consideriamo il 
+		seguente ragionamento: scegliamo l'asse delle $Y$ come
+		in figura e  supponiamo di porci all'interno di una delle 
+		due piattine, in particolare a una distanza $\delta$ dal 
+		lato destro di quest'ultima; scegliendo un sistema 
+		di riferimento centrato in tale punto $P \in Y$, 
+		il contributo al campo totale in $P$ del nastro $+ \delta$ 
+		della piattina sarà annullato dal contributo opposto del 
+		nastro $-\delta$. In pratica è come se fossimo all'esterno 
+		di una piattina di larghezza $a - 2\delta$. Estendendo 
+		il ragionamento combinato a due piattine con densità
+		di corrente opposta, allora è facile convincersi 
+		della bontà della relazione.
+		\item  Come nel caso precedente calcoliamo il campo nel campo $xz$. 
+		Dividiamo la piattina in fili infiniti attraversati da 
+		corrente $i = j_{0}\frac{y}{a} dy$. Per ragioni di simmetria sarà 
+		diretto lungo $\hat{y}$. Sfruttando nuovamente la legge
+		di Biot-Savart otteniamo il contributo infinitesimo al campo di 
+		due fili in posizione simmetrica:
+		\begin{align*}
+		dB = dB_{\text{{filo, 1}}}\sin(\vartheta) 
+		+ dB_{\text{{filo, 2}}}\sin(\vartheta) 
+		= 2dB_{\text{{filo}}}\sin(\vartheta)
+		\end{align*}
+		Osservando che $\sin(\vartheta) = \frac{y}{r}$
+		calcoliamo il modulo del campo totale:
+		\begin{align*}
+		B &= \int 2dB_{\text{{filo}}}\sin(\vartheta) \\
+		&= \frac{\mu_{0} j_{0}}{a2\pi}\int_{0}^{a} 
+		\frac{2y^{2}}{x^{2} + y^{2}}\,dy \\
+		&= \frac{\mu_{0} j_{0}}{a\pi}\int_{0}^{a} \left[
+		1 - \frac{x^{2}}{x^{2}+ y^{2}}
+		\right]\,dy \\
+		&= \frac{\mu_{0} j_{0}}{a\pi}\left[y + 
+		x^{2}\arctan\left(\frac{y}{x}\right) \right]_{0}^{a} \\
+		&= \frac{\mu_{0} j_{0}}{a\pi}\left[
+		a + x^{2}\arctan\left(\frac{a}{x}\right)\right]
+		\end{align*}		
+		Si ottiene allora:
+		\begin{align*}
+		\boxed{\vec{B}= \frac{\mu_{0} j_{0}}{a\pi}\left[
+		a + x^{2}\arctan\left(\frac{a}{x}\right)\right]\hat{y}}	
+		\end{align*}
+		Calcoliamo ora il campo nel piano $yz$. Assumendo le stesse
+		convenzioni sulle distanze usate nel caso precedente, 
+		dividendo nuovamente la piattina in singoli fili e 
+		osservando che in questo caso 
+		la corrente che attraversa un singolo filo è $I = \frac{j_{0}y}{a}\,dy$,
+		otteniamo il modulo del campo:
+		\begin{align*}
+		B &= \frac{\mu_{0}j_{0}}{2a \pi}\int_{l}^{l + a} \frac{y}{y}\,dy \\		
+		&= \frac{\mu_{0}j_{0}}{2a \pi}\int_{l}^{l + a}dy \\
+		&= \frac{\mu_{0}j_{0}}{2a \pi}\left[y\right]_{l}^{l + a} \\
+		&= \frac{\mu_{0}j_{0}}{2a \pi}a \\
+		&= \frac{\mu_{0}j_{0}}{2\pi}
+		\end{align*}
+		In definitiva, utilizzando la regola della mano destra:
+		\begin{align*}
+		\boxed{ \vec{B} = -\frac{\mu_{0}j_{0}}{2\pi }\hat{x}} 
+		\end{align*}									
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}[$56$] 
+	Un fascio di neutroni di velocità $\vec{v} = v_{0}\,\hat{x}$ 
+	viene inviato verso una regione in cui è presente un campo 
+	magnetico variabile in funzione della coordinata $y$: 
+	$\vec{B} = \beta y\,\hat{y}$, dove $\beta$ è una 
+	costante con  opportune unità di misura. La zona si 
+	estende in orizzontale per $h$ metri. I neutroni 
+	posseggono un momento di dipolo $\vec{\mu} 
+	= \mu\,\hat{y}$ e massa $m$. Calcolare:
+	\begin{enumerate}
+		\item Le coordinate $y$ e $z$ dei neutroni 
+		giusto all'uscita della regione in cui è presente 
+		il campo $\vec{B}$, ossia in $x=h$.
+		\item Le coordinate del punto dello schermo 
+		su cui incidono i neutroni dopo aver percorso lo 
+		spazio di lunghezza $L$ compreso tra la regione 
+		del campo e lo schermo.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item All'entrata della zona in cui è presente il 
+		campo magnetico, i neutroni risento di una forza:
+		\begin{align*}
+		\vec{F} &= \mu\frac{\partial \vec{B}}{\partial y}\hat{y} \\
+		&= \mu\beta\hat{y}
+		\end{align*}
+		Scriviamo le equazione del moto proiettata lungo 
+		i tre assi cartesiani. Trascurando la forza peso si ottiene:
+		\begin{align*}
+		&\hat{x}: \quad ma_{x} = 0	\quad			\Rightarrow  a_{x} = 0 \\
+		&\hat{y}: \quad ma_{y} = \mu\beta \quad\Rightarrow  a_{y} = \frac{\mu\beta}{m} \\
+		&\hat{z}: \quad ma_{z} = 0	\quad			\Rightarrow  a_{z} = 0 \\
+		\end{align*}
+		Trovate le accelerazioni le leggi orarie sono date 
+		integrando le equazioni del moto e imponendo per $t = 0$ 
+		le condizioni iniziali $x(0) = 0, y(0) = 0, z(0) 
+		=0, v_{\text{x}}(0) = v_{0}, v_{y}(0) = v_{\text{z}}(0) = 0$:
+		\begin{align*}
+		& x(t) = v_{0}t \\
+		& y(t) = \frac{1}{2}\frac{\mu\beta}{m}t^{2} \\
+		& z(t) = cost = 0 \\
+		\end{align*}
+		Il fascio di protoni compirà un moto rettilineo 
+		uniforme lungo $\hat{x}$ e un moto parabolico 
+		lungo $\hat{y}$ con accelerazione costante 
+		fornita dall'azione del campo magnetico, 
+		mentre la coordinata $z$ rimane costante nel tempo.
+		Sia $t^{*}$ il tempo in cui i 
+		neutroni giungono in $x = h$, dall'equazione 
+		oraria per la coordinata $x$ si ricava
+		\begin{align*}
+		t^{*} = \frac{h}{v_{0}}
+		\end{align*}
+		Allora le coordinate richieste diventano:
+		\begin{align*}
+		& x(t^{*}) = h \\
+		& y(t^{*}) = \frac{1}{2}\frac{\mu\beta}{m}
+		\frac{h^{2}}{v_{0}^{2}} \\
+		& z(t^{*}) = 0 \\
+		\end{align*}
+		\item Per $x > h$ l'unica legge oraria interessante 
+		da studiare è quella della coordinata $y$, le altre 
+		restano invariate. Consideriamo la precedente 
+		legge oraria separata da ciò che andremo a scrivere. 
+		In pratica azioniamo un altro orologio nel 
+		momento in cui i protoni si trovano in $x = h$. Risulta:
+		\begin{align}
+		\label{eq: legor}
+		y(t) =  y_{0}  + v_{0\text{y}}t
+		\end{align}
+		Osserviamo che il fascio di protoni è uscito dalla zona 
+		in cui è presente il campo magnetico, dunque non 
+		è soggetto ad alcuna forza lungo $\hat{y}$. 
+		Ciò implica ovviamente un accelerazione nulla. 
+		Per quanto riguarda le condizioni iniziali, si ricavano 
+		facilmente dal punto precedente. Infatti:
+		\begin{align*}
+		y_{0} = y_{t*} = \frac{1}{2}\frac{\mu\beta}{m}
+		\frac{h^{2}}{v_{0}^{2}} , \qquad
+		v_{0\text{y}} = a_{\text{y}}t* = 
+		\frac{1}{2}\frac{\mu\beta}{m}\frac{h}{v_{0}} 
+		\end{align*}
+		Il tempo richiesto per percorrere il tratto $L$ è dato da:
+		\begin{align*}
+		t^{**} = \frac{L}{v_{0}}
+		\end{align*}
+		In base alle considerazioni precedenti e sostituendo 
+		in~\eqref{eq: legor} otteniamo le coordinate sullo schermo:
+		\begin{align*}
+		& x(t^{**}) = L \\
+		& y(t^{**'}) = \frac{1}{2}\frac{\mu\beta}{m}
+		\frac{h^{2}}{v_{0}^{2}} + \frac{\mu\beta}{m}
+		\frac{h}{v_{0}}\frac{L-  h}{v_{0}} = 
+		\frac{\mu\beta}{m}\frac{h}{v_{0}^{2}}\left[\frac{h}{2} 
+		+ L\right]\\
+		& z(t^{**}) = 0 \\
+		\end{align*}
+		dove lungo $\hat{y}$ si è tenuto conto del fatto 
+		che è stato utilizzato un sistema di riferimento 
+		con coordinata temporale differente per $x > h$.
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}[$57$]
+	Nel circuito in figura i condensatori sono inizialmente
+	scarichi alla tensione $V_{0}$. All'istante $t = 0$ 
+	l'interruttore viene chiuso. Determinare come cambiano
+	le tensioni $V_{1}(t)$ e $V_{2}(t)$ ai capi
+	dei due condensatori. Porre:
+	\begin{enumerate}
+		\item $C_{1} = C_{2} = C$
+		\item $R_{1} = R_{2} = R$.
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	Per non appesantire la notazione ometteremo 
+	il simbolo di dipendenza dal tempo per le cariche $q$, 
+	le correnti $I$ e le tensioni $V$. Scriviamo le equazioni delle
+	due maglie in figura e del nodo ($\vec{inserire una lettera?}$): 
+	\begin{align*}
+	\begin{cases}
+	V_{1} = I_{1}R	 \\
+	V_{2} = I_{1}R + I_{2}R \\
+	I_{2} = I_{1} + I_{3}
+	\end{cases}
+	\end{align*}
+	Ricordando la relazione valida per un condensatore piano $q = CV$, 
+	la definizione di corrente $I = \frac{dq}{dt}$ e il fatto che venga
+	inserito un segno meno se la variazione di carica è negativa, insieme alla legge di Ohm,
+	possiamo riscrivere il sistema nel modo seguente, cercando di ottenere un'equazione
+	differenziale nella sola variabile $V_{2}$:
+	\begin{align*}
+	\begin{cases}
+	I_{1} = \frac{V_{1}}{R}	 \\
+	I_{1} = \frac{V_{2}}{R} +  C\frac{dV_{2}}{dt}\\
+	I_{1} = -C\frac{dV_{2}}{dt} - RC\frac{dI_{1}}{dt}
+	\end{cases}
+	\end{align*}
+	Osservando inoltre che : 
+	$I_{1} = -I_{2} + \frac{V_{2}}{R} 
+	= C\frac{dV_{2}}{dt} + \frac{V_{2}}{R}$
+	e sottraendo la seconda equazione alla terza si ottiene:
+	\begin{align*}
+	&RC^{2}\frac{d^{2}V_{2}}{dt^{2}} + 3C\frac{dV_{2}}{dt}
+	+ \frac{V_{2}}{R} = 0\\
+	\Rightarrow &\frac{d^{2}V_{2}}{dt^{2}} +
+	\frac{3}{RC}\frac{dV_{2}}{dt} + \frac{V_{2}}{R^{2}C^{2}} = 0
+	\end{align*}
+	Abbiamo ottenuto un'equazione differenziale del secondo ordine
+	a coefficienti costanti. Calcolando il polinomio caratteristico,
+	la soluzione generale di tale equazione è data da:
+	\begin{align*}
+	V_{2}(t) = A\exp\left(-\frac{3 + \sqrt{5}}{2}\frac{t}{RC}\right) 
+	+ B\exp\left(-\frac{3 - \sqrt{5}}{2}\frac{t}{RC}\right) 
+	\end{align*}
+	da cui si ricava:
+	\begin{align*}
+	V_{1} &= I_{1}R = V_{2} + C\frac{dV_{2}}{dt}
+	&= A\left(1 - \right)
+	\end{align*}	
+\end{proof}
+
+\begin{problema}[$58$]
+	Gli elementi circuitali del circuito in figura 
+	sono tutti noti. Determinare:
+	\begin{enumerate}
+		\item La corrente $I$ fornita dal generatore.
+		\item La differenza di potenziale tra i punti $B$ e $C$-
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Siamo in presenza di un ponte di Wheatstone. 
+		Riconosciamo allora l'equivalenza con il seguente circuito
+		dove:
+		\begin{align*}
+		R_{\text{a}} &= \frac{2RR}{2R + R + R} = \frac{R}{2} \\
+		R_{\text{b}} &= \frac{2RR}{2R + R + R} = \frac{R}{2} \\
+		R_{\text{c}} &= \frac{RR}{2R + R + R} = \frac{R}{4} \\
+		\end{align*}
+		Osserviamo che tra i capi $A$ e $D$ possiamo 
+		sostituire una resistenza equivalente:
+		\begin{align*}
+		R_{eq} &= R_{a} + (R_{b} + R)\parallel (R_{c} + 2R) \\
+		&= \frac{R}{2} + \frac{3}{2}R \parallel \frac{9}{4}R \\
+		&= \frac{R}{2} + \frac{27}{30}R \\
+		&= \frac{21}{15}R
+		\end{align*}
+		A questo punto per trovare la corrente che circola 
+		nel circuito basta utilizzare la legge di Ohm:
+		\begin{align*}
+		I = \frac{V_{0}}{R_{eq}} = \frac{5}{7}
+		\end{align*}
+		\item Per trovare la differenza di potenziale 
+		$V_{\text{B}} - V_{\text{C}} = V_{\text{BC}}$ 
+		sfruttiamo la legge di Ohm generalizzata e 
+		l'equazione delle correnti per il nodo $D$
+		\footnote{Il secondo punto poteva anche essere risolto 
+		applicando il teorema di Thevenin.}:
+		\begin{align*}
+		V_{\text{BC}} &= I_{\text{b}}R - I_{\text{c}}2R 
+		= -I_{\text{b}}R_{\text{b}} + I_{\text{c}}R_{\text{c}} \\
+		I &= I_{\text{b}} + I_{\text{c}}
+		\end{align*}
+		Risolvendo il sistema si ottiene:
+		\begin{align*}
+		I_{\text{b}} = \frac{3}{5}I, \qquad I_{\text{c}} = \frac{2}{5}I
+		\end{align*}
+		Infine si calcola la differenza di potenziale cercata:
+		\begin{align*}
+		V_{\text{BC}} = I_{\text{b}}R - I_{\text{c}}2R =  -\frac{V_{0}}{7}
+		\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{problema}[$59$]
+	Il solenoide a forma toroidale mostrato in figura consiste 
+	in un nucleo di permeabilità $\mu$ attorno a cui sono 
+	avvolte $N$ spire. Il materiale del nucleo è lineare. 
+	Determinare l'autoinduttanza $L$ dell'avvolgimento. 
+	Determinarne inoltre il valore dati: $N = 1000, R_{1} = 5\, \si{cm}, 
+	R_{2} = 7\, \si{cm}, h = 2\, \si{cm}, \mu = \mu_{0}$
+\end{problema}
+\begin{proof}
+	Utilizziamo l'espressione che lega l'autoinduttanza 
+	al flusso del campo magnetico concatenato a una 
+	superficie qualsiasi che poggia sulla linea chiusa percorsa 
+	dalla corrente. In questo caso scegliamo la sezione del toro:
+	\begin{align*}
+	\Phi_{S} (\vec{B}) = IL \quad
+	\Rightarrow  \quad L = \frac{\Phi_{S} (\vec{B})}{I}
+	\end{align*}
+	Dove $\vec{B}$ è il campo magnetico generato dal toro. 
+	Calcoliamolo utilizzando una spira circolare di raggio 
+	$R_{1} \le r \le R_{2}$; osservando che il vettore 
+	$\vec{dl}$ è  parallelo e concorde a $\vec{B}$ punto per punto, 
+	si ottiene :
+	\begin{align*}
+	\oint \vec{B} \vec{dl} = \oint B dl &= B \oint dl = \mu NI \\
+	\Rightarrow \vec{B} =& \frac{\mu NI}{2 \pi r} \hat{\varphi}
+	\end{align*}
+	dove $\hat{\phi}$ rappresenta il versore tangente 
+	alla spira scelta. Calcoliamo ora il flusso del campo
+	attraverso la sezione del toro; sostituendo per 
+	semplicità nella notazione $r = x$ e osservando 
+	che il vettore ortogonale alla superficie $\vec{dS}$ 
+	è sempre parallelo e concorde al campo, si ottiene:
+	\begin{align*}
+	\Phi_{S}(\vec{B}) &= \oint B dS \\
+	&= \mu NI \oint_{S} \frac{1}{x} dx\,dy \\
+	&= \mu NI \int_{y = 0}^{h}dy \int_{x= R_{1}}^{R_{2}} \frac{1}{x}\, dy \\
+	&= \mu NIh \ln\left( \left| \frac{R_{2}}{R_{1}}\right| \right)	 \\
+	&= \mu NIh \ln\left(\frac{R_{2}}{R_{1}}\right)		
+	\end{align*}
+	Dove nell'ultimo passaggio abbiamo tolto il modulo 
+	poiché i raggi sono sempre positivi. In definitiva si ottiene:
+	\begin{align*}
+	\boxed{L = \mu Nh \ln\left(\frac{R_{2}}{R_{1}}\right)}
+	\end{align*}
+	Sostituendo i dati del problema si ha:
+	\begin{align*}
+	L &= 1000 \cdot 4 \pi \times 10^{-7} 
+	\cdot 2 \times 10^{-2} \cdot \ln(1.4) \si{H} \\
+	& = \boxed{8.46 \times 10^{-6}\, \si{H}}
+	\end{align*}
+\end{proof}
+
+\begin{problema}[$60$]
+	Un filo rettilineo sottile infinitamente lungo è 
+	disposto sull'asse di un avvolgimento toroidale. 
+	Nel filo fluisce una corrente  stazionaria $I$. 
+	Il toroide ha un raggio medio $R_{0}$ ed $N$ spire. 
+	Nell'ipotesi che $R_{0} \gg b$, si calcoli:
+	\begin{enumerate}
+		\item L'induttanza mutua $M$ tra il filo e la 
+		bobina nel caso in cui l'avvolgimento sia in aria.
+		\item  L'induttanza mutua $M$ tra il filo e la bobina 
+		nel caso di un avvolgimento attorno ad un nucleo di 
+		ferrite di permeabilità magnetica $\mu = 5000$. 
+		Si supponga che la ferrite si comporti linearmente
+	\end{enumerate}
+\end{problema}
+\begin{proof}
+	\begin{enumerate}
+		\item Utilizziamo l'espressione che lega 
+		il coefficiente di mutua induttanza al flusso del 
+		campo magnetico generato dal filo e concatenato 
+		ad una superficie qualsiasi che poggia sul contorno della sezione.
+		In questo caso scegliamo la sezione del toroide $S$:
+		\begin{align*}
+		\Phi_{S} (\vec{B}) = IM \quad
+		\Rightarrow  \quad M = \frac{\Phi_{S} (\vec{B})}{I}
+		\end{align*}
+		Utilizzando la legge di Biot-Savart è noto il campo
+		generato dal filo:
+		\begin{align*}
+		\vec{B} = \frac{\mu_{0} I}{2 \pi r}\hat{\varphi}
+		\end{align*}
+		Dove $\hat{\varphi}$ è il versore tangente alla 
+		circonferenza di raggio $r$. Calcolando il flusso 
+		del campo, il quale consideriamo applicato 
+		solamente sulla circonferenza di raggio medio 
+		$r = R_{0}$, si ottiene:
+		\begin{align*}
+		\Phi_{S} (\vec{B}) &= \oint 
+		\frac{\mu_{0} I}{2 \pi R_{0}} dS\\
+		&= \frac{\mu_{0} I}{2 \pi R_{0}} \oint dS\\
+		&= \frac{\mu_{0} I}{2 \pi R_{0}}bh
+		\end{align*}
+		Osserviamo che nel calcolo del flusso, 
+		come al solito, si è sfruttato il fatto 
+		che il campo è concorde e parallelo al vettore 
+		$\vec{dS}$ ortogonale alla sezione. 
+		In definitiva si ottiene:
+		\begin{align*}
+		\boxed{M = \frac{\mu_{0} bh}{2 \pi R_{0}}}
+		\end{align*}
+		\item Utilizzando le proprietà delle equazioni 
+		utilizzate nel caso di un avvolgimento attorno 
+		ad un nucleo di ferrite si ottiene:
+		\begin{align*}
+		\boxed{M = \frac{\mu bh}{2 \pi R_{0}}}
+		\end{align*}
+	\end{enumerate}
+\end{proof}
 
 
 
