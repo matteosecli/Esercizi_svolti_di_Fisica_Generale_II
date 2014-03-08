@@ -602,7 +602,7 @@
 
 \begin{problema}
 	Due cariche $q$ puntiformi e della stessa grandezza
-	sono disposte a distanza $a$ lungo l'asse in
+	sono disposte a distanza "a" lungo l'asse in
 	posizione simmetrica rispetto al piano $y = 0$
 	(Figura \ref{fig:dipolo_3d}).
 	Si calcoli il campo elettrico in ciascun punto del
@@ -649,7 +649,7 @@
 \end{problema}
 \begin{proof}
 	Iniziamo col notare che il piano $y=0$ corrisponde all'``asse'' 
-	(bidimensionale) del
+	(bidimensionale) passante per il
 	segmento che congiunge le due cariche; inoltre, la forza elettrica
 	è una forza centrale, quindi possiamo ridurre il problema da 3 a 2
 	dimensioni. Detto in altro modo, si tratta di studiare l'andamento
@@ -826,7 +826,7 @@
 	Posso risolvere l'integrale effettuando la sostituzione $s=z-h$ ($ds=-dh$); 
 	l'integrale si riduce a:
 	$$
-	|\vec{E}| = - 2 k_e \sigma \pi R \int \frac{s}{(\sqrt{R^2+s^2})^3} ds=
+	|\vec{E}| = - 2 k_e \sigma \pi R \int_{-L -h}^{L - h} \frac{s}{(\sqrt{R^2+s^2})^3} ds=
 	2 k_e \sigma \pi R \left[ \frac{1}{\sqrt{R^2+(z-h)^2}} \right]_{-L}^{L}
 	$$
 	da cui il risultato:
@@ -1316,9 +1316,9 @@
 		-- visto dall'alto -- come un cerchio al cui interno è presente un altro
 		cerchio più piccolo, fuori asse;
 		\item supporre che $\rho > 0$;
-		\item supporre che i centri dei due cerchi siano entrambi sull'asse $x$,
+		\item supporre che i centri dei due cerchi siano entrambi sull'asse $x$, senza perdere di generalità.
 	\end{enumerate}
-	senza perdere di generalità. La situazione è schematizzata in Figura
+	La situazione è schematizzata in Figura
 	\ref{fig:cilindro_forato}. Il nostro sistema può essere ora immaginato come
 	la sovrapposizione di due cilindri: uno di raggio $R$ e densità di carica $\rho$,
 	e uno di raggio $a$ e densità di carica $-\rho$. Sappiamo che il campo all'interno
@@ -1409,7 +1409,7 @@
 		\int_{S_1} \sigma_1 V_2 dS_1 = \int_{S_2} \sigma_2 V_1 dS_2
 		$$
 		che, poiché i potenziali sono costanti e 
-		$\displaystyle_S \int \sigma dS = Q$, si riduce a:
+		$\displaystyle \int_S \sigma dS = Q$, si riduce a:
 		$$
 		Q_1V_2 = Q_2V_1.
 		$$
@@ -2735,7 +2735,7 @@ Si calcolino:
 		&=Q(C_{1} - C_{2})\hat{a} \\
 		&=Q(z_{{C}_{1}} - z_{{C}_{2}})\hat{z}\\
 		&=Q\left(\frac{3}{8}R - \left(-\frac{3}{8}R\right)\right)\hat{z}\\
-		&=Q\frac{R}{4}\hat{z}\\
+		&=Q\frac{3}{4}R\hat{z}\\
 		&= \boxed{\frac{1}{6}\pi R^{4}\rho \hat{z}}
 		\end{align*}
 	\end{enumerate}
@@ -2793,7 +2793,7 @@ Si calcolino:
 
 \end{problema}
 \begin{proof}
-	Chiamando con $\sigma_e$ la conducibilità elettrica e con $\vec{j}$ la densità di corrente,
+	Chiamando con $\sigma_e$ la conducibilità elettrica e con $\vec{J}$ la densità di corrente,
 	il problema è risolvibile impostando	il sistema:
 	$$
 	\begin{cases}
@@ -2900,7 +2900,7 @@ Si calcolino:
 		anche $y(t)$, sostituendo l'espressione appena trovata per $x(t)$ ed integrando 
 		successivamente in $dt$ con la condizione iniziale $y(0) = 0$. Quello che otteniamo è
 		$$
-		\boxed{y(t) = \frac{E}{B_0}\left( t - \frac{\in(\omega t)}{\omega} \right)};
+		\boxed{y(t) = \frac{E}{B_0}\left( t - \frac{\sin(\omega t)}{\omega} \right)};
 		\qquad
 		\boxed{\dot{y}(t) = \frac{E}{B_0}(1 - \cos(\omega t))}.
 		$$
@@ -3544,8 +3544,8 @@ Si calcolino:
 	calcolare la densità di corrente $\vec{j}$;
 	\begin{enumerate}
 		\item $\vec{B} = cr\hat{u}_{\varphi}$ (coordinate cilindriche $(r,\,\varphi,\,z)$);
-		\item $\vec{B} = c(x\hat{i}-y\hat{j})$ (coordinate cartesiane $(x\,y,\,z)$);
-		\item $\vec{B} = c(-y\hat{i}+x\hat{j})$ (coordinate cartesiane $(x\,y,\,z)$);
+		\item $\vec{B} = c(x\hat{i}-y\hat{j})$ (coordinate cartesiane $(x,\,y,\,z)$);
+		\item $\vec{B} = c(-y\hat{i}+x\hat{j})$ (coordinate cartesiane $(x,\,y,\,z)$);
 		\item $\vec{B} = cr\hat{r}$ (coordinate sferiche $(r,\,\vartheta,\,\varphi)$);
 	\end{enumerate}
 \end{problema}
@@ -3632,10 +3632,10 @@ Si calcolino:
 
 
 
-\begin{problema}[$50$]
+\begin{problema}
 	La piastra mostrata in figura (INSERIRE FIGURA!!!) ha una superficie infinitamente grande 
 	ed uno spessore finito $d\,[m]$.
-	Essa è attraversata da una densità di corrente $j_{0}\,\hat{k}\,[Am^{2}]$. Determinare il 
+	Essa è attraversata da una densità di corrente $j_{0}\,\hat{k}\,[A\,m^{2}]$. Determinare il 
 	campo magnetico generato dalla corrente in tutto lo spazio, assumendo che la piastra possiede 
 	la stessa permeabilità magnetica del vuoto.
 \end{problema}
@@ -3679,8 +3679,8 @@ Si calcolino:
 	\end{itemize}
 \end{proof}
 
-\begin{problema}[$51$]
-	Un dipolo magnetico $\vec{\mu} = \mu\,\hat{k}$ è situato sull'asse di una 
+\begin{problema}
+	Un dipolo magnetico $\vec{\mu} = \mu\,\hat{z}$ è situato sull'asse di una 
 	spira circolare di raggio $R$ a distanza $z$ dal centro della spira.
 	\begin{enumerate}
 		\item Determinare la forza sul dipolo.
@@ -3693,7 +3693,7 @@ Si calcolino:
 		\item Per calcolare la forza agente sul dipolo sfruttiamo la relazione:
 		\begin{align}
 		\label{eq: forza}
-		\vec{F} = \vec{m}\frac{\partial \vec{B}}{\partial z}
+		\vec{F} = \vec{m}\frac{\partial B}{\partial z}
 		\end{align}
 		dove  $\vec{B}$ rappresenta il campo magnetico generato dalla spira. Sapendo che:
 		\begin{align*}
@@ -3720,7 +3720,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}[$52$]
+\begin{problema}
 	I centri delle bobine circolari mostrate in figura (INSERIRE LA FIGURA!!!)
 	sono distanti $d\,[m]$. 
 	Le bobine sono attraversata da corrente $I$. Sia $N$ il numero di spire di ciascuna di esse. 
@@ -3750,7 +3750,7 @@ Si calcolino:
 	+ x^{2} \right]^{3/2}} \hat{x}
 	\end{align*}			
 	dove $x$ è la distanza dal centro della spira.
-	 Facendo riferimento alla figura,%mandare figura
+	 Facendo riferimento alla figura,  %mandare figura
 	il generico punto $P = P(z)$ avrà distanze dalle due bobine:
 	\begin{align*}
 	r_{1} = z - \frac{d}{z}, \qquad r_{2} = z +\frac{d}{2}
@@ -3790,7 +3790,7 @@ Si calcolino:
 		\begin{align*}
 		\frac{\partial^{2}\vec{B}}{\partial z^{2}}\bigg|_{z = 0} = 
 		\left(3\mu_{0}NIR^{2}\right)\left[\frac{\left(R^{2} 
-		+ \frac{d^{2}}{4}\right)^{5/2} + \frac{5d^{2}}{4}\left(R^{2} 
+		+ \frac{d^{2}}{4}\right)^{5/2} - \frac{5d^{2}}{4}\left(R^{2} 
 		+ \frac{d^{2}}{4}\right)^{3/2}}{\left(R^{2} 
 		+ \frac{d^{2}}	{4}\right)^{5/2}}\right]
 		\end{align*}
@@ -3824,8 +3824,8 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}[$53$] 
-	Nel circuito in figura (INSERIRE LA FIGURA!!!) tutti gli elementi circuitali sono noti. 
+\begin{problema}
+	Nel circuito in figura tutti gli elementi circuitali sono noti. 
 	Al tempo $t = 0$ l'interruttore viene chiuso. Determinare:
 	\begin{enumerate}
 		\item La carica $q = q(t)$ nell'ipotesi in cui 
@@ -3886,7 +3886,7 @@ Si calcolino:
 		Attraverso semplici passaggi algebrici e separando 
 		le variabili ricaviamo l'espressione differenziale:
 		\begin{align*}
-		\frac{dv}{\frac{R_{2}}{R_{1} + R_{2}} \varepsilon - V} = \frac{dt}{R'C}
+		\frac{dV}{\frac{R_{2}}{R_{1} + R_{2}} \varepsilon - V} = \frac{dt}{R'C}
 		\end{align*}
 		Integrando e applicando l'esponenziale ad entrambi i membri 
 		si ottiene l'equazione della carica di un condensatore:
@@ -3948,7 +3948,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}[$54$] 
+\begin{problema}
 	In una lastra infinitamente estesa fluisce una corrente di 
 	densità costante $j_{0}\,[A/m^{2}]$ ad eccezione che 
 	in un foro cilindrico di raggio $a$ centrato nel mezzo dello 
@@ -4003,7 +4003,7 @@ Si calcolino:
 	\end{itemize}		
 \end{proof}
 
-\begin{problema}[$55$] 
+\begin{problema}
 	Determinare il campo magnetico generato nei piani 
 	$xz$ e $yz$ da una piattina sottile infinitamente 
 	lunga e di larghezza $2a$, in cui scorra:
@@ -4116,14 +4116,14 @@ Si calcolino:
 		1 - \frac{x^{2}}{x^{2}+ y^{2}}
 		\right]\,dy \\
 		&= \frac{\mu_{0} j_{0}}{a\pi}\left[y + 
-		x^{2}\arctan\left(\frac{y}{x}\right) \right]_{0}^{a} \\
+		x \arctan\left(\frac{y}{x}\right) \right]_{0}^{a} \\
 		&= \frac{\mu_{0} j_{0}}{a\pi}\left[
-		a + x^{2}\arctan\left(\frac{a}{x}\right)\right]
+		a + x \arctan\left(\frac{a}{x}\right)\right]
 		\end{align*}		
 		Si ottiene allora:
 		\begin{align*}
 		\boxed{\vec{B}= \frac{\mu_{0} j_{0}}{a\pi}\left[
-		a + x^{2}\arctan\left(\frac{a}{x}\right)\right]\hat{y}}	
+		a + x \arctan\left(\frac{a}{x}\right)\right]\hat{y}}	
 		\end{align*}
 		Calcoliamo ora il campo nel piano $yz$. Assumendo le stesse
 		convenzioni sulle distanze usate nel caso precedente, 
@@ -4145,7 +4145,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}[$56$] 
+\begin{problema}
 	Un fascio di neutroni di velocità $\vec{v} = v_{0}\,\hat{x}$ 
 	viene inviato verso una regione in cui è presente un campo 
 	magnetico variabile in funzione della coordinata $y$: 
@@ -4249,7 +4249,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}[$57$]
+\begin{problema}
 	Nel circuito in figura i condensatori sono inizialmente
 	scarichi alla tensione $V_{0}$. All'istante $t = 0$ 
 	l'interruttore viene chiuso. Determinare come cambiano
@@ -4308,12 +4308,12 @@ Si calcolino:
 	\end{align*}	
 \end{proof}
 
-\begin{problema}[$58$]
+\begin{problema}
 	Gli elementi circuitali del circuito in figura 
 	sono tutti noti. Determinare:
 	\begin{enumerate}
 		\item La corrente $I$ fornita dal generatore.
-		\item La differenza di potenziale tra i punti $B$ e $C$-
+		\item La differenza di potenziale tra i punti $B$ e $C$.
 	\end{enumerate}
 \end{problema}
 \begin{proof}
@@ -4361,7 +4361,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}[$59$]
+\begin{problema}
 	Il solenoide a forma toroidale mostrato in figura consiste 
 	in un nucleo di permeabilità $\mu$ attorno a cui sono 
 	avvolte $N$ spire. Il materiale del nucleo è lineare. 
@@ -4387,7 +4387,7 @@ Si calcolino:
 	\oint \vec{B} \vec{dl} = \oint B dl &= B \oint dl = \mu NI \\
 	\Rightarrow \vec{B} =& \frac{\mu NI}{2 \pi r} \hat{\varphi}
 	\end{align*}
-	dove $\hat{\phi}$ rappresenta il versore tangente 
+	dove $\hat{\varphi}$ rappresenta il versore tangente 
 	alla spira scelta. Calcoliamo ora il flusso del campo
 	attraverso la sezione del toro; sostituendo per 
 	semplicità nella notazione $r = x$ e osservando 
