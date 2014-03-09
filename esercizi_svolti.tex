@@ -1,4 +1,4 @@
-\documentclass[a4paper,oneside]{article}
+\documentclass[b5paper,twoside]{book}
 \usepackage[utf8]{inputenc}
 \usepackage{type1cm}
 \usepackage[italian]{babel}
@@ -56,6 +56,11 @@
 
 \maketitle
 
+\tableofcontents
+
+\chapter{Problemi}
+\section{Elettrodinamica}
+
 \begin{problema}
 	Preso un filo sottile carico, di lunghezza $2a$ e 
 	distribuzione lineare di carica $\lambda = \mathrm{costante}$, 
@@ -85,8 +90,7 @@
 				real ymin=-8,ymax=8;
 				xaxis(Label("\small $x$",position=EndPoint,align=SE),
 				xmin, xmax, arrow=EndArrow, NoTicks);
-				yaxis(Label("\small $y$",position=EndPoint,align=NW),
-				ymin, ymax, arrow=EndArrow, NoTicks);
+					
 				dot(Label("$P(x,\,y,\,z)$",align=NNE),(10,0));
 				draw("$\vec{r}$",(0,0)--(10,0),1bp+black,Arrow(10bp,8));
 				draw(Label("$\vec{r}-\vec{r'}$",position=MidPoint,NE),
@@ -602,7 +606,7 @@
 
 \begin{problema}
 	Due cariche $q$ puntiformi e della stessa grandezza
-	sono disposte a distanza "a" lungo l'asse in
+	sono disposte a distanza ``$a$'' lungo l'asse in
 	posizione simmetrica rispetto al piano $y = 0$
 	(Figura \ref{fig:dipolo_3d}).
 	Si calcoli il campo elettrico in ciascun punto del
@@ -794,7 +798,7 @@
 				//path3 base_upper=circle((0,0,4), 2);
 				//path3 base_lower=circle((0,0,4), 2);
 				draw(lat_surf,black);
-				draw(surface(lat_surf),lightgrey+opacity(0.75));
+				draw(surface(lat_surf),paleblue+opacity(0.75));
 				//draw(surface(base_upper),lightgrey+opacity(0.75));
 				//draw(surface(base_lower),lightgrey+opacity(0.75));
 				draw(Label("$R$",position=EndPoint,align=N),
@@ -871,9 +875,9 @@
 				path3 base_upper=circle((0,0,4), 2);
 				path3 base_lower=circle((0,0,4), 2);
 				draw(lat_surf,black);
-				draw(surface(lat_surf),lightgrey+opacity(0.75));
-				draw(surface(base_upper),lightgrey+opacity(0.75));
-				draw(surface(base_lower),lightgrey+opacity(0.75));
+				draw(surface(lat_surf),paleblue+opacity(0.75));
+				draw(surface(base_upper),paleblue+opacity(0.75));
+				draw(surface(base_lower),paleblue+opacity(0.75));
 				draw(Label("$R$",position=EndPoint,align=N),
 				(0,0,4)--(-sqrt(2),sqrt(2),4));
 				//dot((0,0,4));
@@ -1291,7 +1295,7 @@
 			ymin, ymax, arrow=EndArrow, NoTicks);
 			path cyl_proj = circle((0,0),6);
 			path cyl_small_proj = circle((4,0),1);
-			filldraw(cyl_proj^^cyl_small_proj,evenodd+grey+opacity(0.65));
+			filldraw(cyl_proj^^cyl_small_proj,evenodd+paleblue+opacity(0.65));
 			label("$\rho$",(3*sqrt(2),3*sqrt(2)),N);
 			label("$-\rho$",(4+sqrt(2)/2,sqrt(2)/2),N);
 			pair P = (3.5,-0.5);
@@ -1310,13 +1314,13 @@
 	\end{figure}
 \end{problema}
 \begin{proof}
-	Considerata la geometria del sistema, possiamo:
+	Considerata la geometria del sistema, possiamo in tutta generalità:
 	\begin{enumerate}
 		\item ridurre il problema a due dimensioni, e rappresentare il cilindro
 		-- visto dall'alto -- come un cerchio al cui interno è presente un altro
 		cerchio più piccolo, fuori asse;
 		\item supporre che $\rho > 0$;
-		\item supporre che i centri dei due cerchi siano entrambi sull'asse $x$, senza perdere di generalità.
+		\item supporre che i centri dei due cerchi siano entrambi sull'asse $x$,
 	\end{enumerate}
 	La situazione è schematizzata in Figura
 	\ref{fig:cilindro_forato}. Il nostro sistema può essere ora immaginato come
@@ -1830,10 +1834,10 @@ Si calcolino:
 				size(4cm);
 				draw(Label("\small $+\lambda$",p=black),circle((0,0),1),invisible);
 				label("\small $A$",rotate(45)*(1,0),E);
-				filldraw(circle((0,0),1),grey+opacity(0.3));
+				filldraw(circle((0,0),1),lightblue+opacity(0.3));
 				draw(Label("\small $-\lambda$",p=black),circle((0,0),3.3),invisible);
 				label("\small $B$",rotate(45)*(3.3,0),E);
-				filldraw(circle((0,0),3.3)^^circle((0,0),3),evenodd+grey+opacity(0.3));
+				filldraw(circle((0,0),3.3)^^circle((0,0),3),evenodd+lightblue+opacity(0.3));
 				draw(Label("\small $a$",position=MidPoint,align=NNW),(0,0)--rotate(45)*(-1,0));
 				draw(Label("\small $b$",position=MidPoint,align=2E),(0,0)--rotate(-45)*(3,0));
 			\end{asy}
@@ -1978,7 +1982,7 @@ Si calcolino:
 			real ch=180*acos(h/r)/pi;
 			path3 arcU=Arc((0,0,0),r,ch,0,0,0,Y,10);
 			revolution sphereU=revolution((0,0,0),arcU,Z);
-			draw(surface(sphereU), opacity(0.5)+lightgrey);
+			draw(surface(sphereU), opacity(0.5)+paleblue);
 			dot(Label("\small $P$"),(0,0,8));
 			draw(Label("\small $R$",position=MidPoint),(0,0,0)--(0,-6,0));
 			draw((0,0,0)--rotate(45,(0,0,1))*(0,-6,0));
@@ -2133,7 +2137,7 @@ Si calcolino:
 				pair C=(3,-3);
 				pair H=(3,0);
 				path mytriangle = A--B--C--cycle;
-				filldraw(mytriangle,lightgrey+opacity(0.7));
+				filldraw(mytriangle,paleblue+opacity(0.7));
 				dot("\small $A$",A,W);
 				dot("\small $B$",B,NE);
 				dot("\small $C$",C,SE);
@@ -2382,31 +2386,31 @@ Si calcolino:
 	carica $-\sigma$ (sempre in maniera uniforme). Si calcoli la differenza di potenziale tra
 	i due conduttori.
 	\begin{figure}[H]
-			\centering
-			\begin{asy}
-				import graph;
-				texpreamble("\let\oldhat\hat
-				\renewcommand{\vec}[1]{\mathbf{#1}}
-				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
-				size(6cm);
-				real xmin=0,xmax=7;
-				xaxis(Label("\small $x$",position=EndPoint,align=SE),
-				xmin, xmax, arrow=EndArrow, NoTicks);
-				path cylinder1 = circle((0,0),1);
-				path cylinder2 = circle((5,0),1);
-				filldraw(cylinder1,lightgrey+opacity(0.7));
-				filldraw(cylinder2,lightgrey+opacity(0.7));
-				draw(Label("\small $D$",align=Center,filltype=UnFill),
-				(0,-2)--(5,-2),arrow=Arrows,bar=Bars);
-				draw(Label("\small $R$",position=MidPoint,align=WNW),
-				(0,0)--rotate(-45)*(0,1));
-				draw(Label("\small $R$",position=MidPoint,align=WNW),
-				(5,0)--rotate(-45,(5,0))*(5,1));
-				labelx("\small $0$",0,S);
-			\end{asy}
-			\caption{Cavi coassiali in sezione}
-			\label{fig:cavi_coassiali_sezione}
-		\end{figure}
+		\centering
+		\begin{asy}
+			import graph;
+			texpreamble("\let\oldhat\hat
+			\renewcommand{\vec}[1]{\mathbf{#1}}
+			\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+			size(6cm);
+			real xmin=0,xmax=7;
+			xaxis(Label("\small $x$",position=EndPoint,align=SE),
+			xmin, xmax, arrow=EndArrow, NoTicks);
+			path cylinder1 = circle((0,0),1);
+			path cylinder2 = circle((5,0),1);
+			filldraw(cylinder1,paleblue+opacity(0.7));
+			filldraw(cylinder2,paleblue+opacity(0.7));
+			draw(Label("\small $D$",align=Center,filltype=UnFill),
+			(0,-2)--(5,-2),arrow=Arrows,bar=Bars);
+			draw(Label("\small $R$",position=MidPoint,align=WNW),
+			(0,0)--rotate(-45)*(0,1));
+			draw(Label("\small $R$",position=MidPoint,align=WNW),
+			(5,0)--rotate(-45,(5,0))*(5,1));
+			labelx("\small $0$",0,S);
+		\end{asy}
+		\caption{Cavi coassiali in sezione}
+		\label{fig:cavi_coassiali_sezione}
+	\end{figure}
 \end{problema}
 \begin{proof}
 	Siano $\vec{r_1}$ e $\vec{r_2}$ i versori radiali, uscenti dalle due sezioni; $r_{1}$ e
@@ -2452,11 +2456,67 @@ Si calcolino:
 		\item i valori che $\vec{E}$ assume sulle due superfici, cioè $\vec{E}(x,\,0)$
 		e $\vec{E}(0,\,y)$.
 	\end{enumerate}
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			import patterns;
+			texpreamble("\let\oldhat\hat
+			\renewcommand{\vec}[1]{\mathbf{#1}}
+			\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+			size(6cm);
+			real xmin=0,xmax=8;
+			real ymin=0,ymax=8;
+			xaxis(Label("\small $x$",position=EndPoint,align=SE),
+			xmin, xmax, arrow=EndArrow, NoTicks);
+			yaxis(Label("\small $y$",position=EndPoint,align=NW),
+			ymin, ymax, arrow=EndArrow, NoTicks);
+			path wall_shape = (-2,8)--(0,8)--(0,0)--(8,0)--(8,-2)--(-2,-2)--cycle;
+			add("hatchNE",hatch(3mm,NE,black));
+			fill(wall_shape,evenodd+pattern("hatchNE"));
+			dot(Label("\small $+q$",align=NE),(6,4),blue);
+			draw("\small $a$",(6,4)--(0,4),dashed);
+			draw("\small $b$",(6,0)--(6,4),dashed);
+		\end{asy}
+		\caption{Carica puntiforme di fronte ad un conduttore con facce ortogonali}
+		\label{fig:conduttori_ortogonali}
+	\end{figure}
 \end{problema}
 \begin{proof}
 	Risolviamo il problema utilizzando il metodo delle cariche immagine e considerando 
 	un sistema equivalente consistente in un rettangolo di lati $2a$ e $2b$ con ai vertici 
 	quattro cariche puntiformi come in Figura \ref{fig:conduttori_ortogonali_soluz}.
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			texpreamble("\let\oldhat\hat
+			\renewcommand{\vec}[1]{\mathbf{#1}}
+			\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+			size(8cm);
+			real xmin=-10,xmax=10;
+			real ymin=-8,ymax=8;
+			xaxis(Label("\small $x$",position=EndPoint,align=SE),
+			xmin, xmax, arrow=EndArrow, NoTicks);
+			yaxis(Label("\small $y$",position=EndPoint,align=NW),
+			ymin, ymax, arrow=EndArrow, NoTicks);
+			dot(Label("\small $+q$",align=NE),(6,4),blue);
+			draw("\small $a$",(6,4)--(0,4),dashed);
+			draw("\small $b$",(6,0)--(6,4),dashed);
+			dot("\small $P$",(8,6));
+			dot(Label("\small $+q$",align=SW),(-6,-4),red);
+			draw("\small $a$",(-6,-4)--(0,-4),dashed+grey);
+			draw("\small $b$",(-6,0)--(-6,-4),dashed+grey);
+			dot(Label("\small $-q$",align=SE),(6,-4),red);
+			draw("\small $a$",(0,-4)--(6,-4),dashed+grey);
+			draw("\small $b$",(6,-4)--(6,0),dashed+grey);
+			dot(Label("\small $-q$",align=NW),(-6,4),red);
+			draw("\small $a$",(0,4)--(-6,4),dashed+grey);
+			draw("\small $b$",(-6,4)--(-6,0),dashed+grey);
+		\end{asy}
+		\caption{Carica puntiforme di fronte ad un conduttore con facce ortogonali}
+		\label{fig:conduttori_ortogonali_soluz}
+	\end{figure}
 	\begin{enumerate}
 		\item Per calcolare il potenziale sfruttiamo il principio di sovrapposizione e 
 		l'espressione del potenziale per una carica puntiforme $V = k_{e}\dfrac{q}{r}$, 
@@ -2823,19 +2883,55 @@ Si calcolino:
 \end{proof}
 
 \begin{problema}
-		Un magnetron è equivalente, in linea di principio, ad un condensatore a grandi facce
-		piane e parallele, sottoposto ad una ddp $V_0$ in cui gli elettroni sono emessi in
-		posizione $(x,\,y) = (0,\,0)$ con velocità iniziale nulla (FIGURA DA FARE). Tra le
-		due piastre è presente un campo magnetico $\vec{B} = B_0 \hat{k}$. Trascurando i campi
-		elettrici e magnetici dovuti agli elettroni sulle piastre rispetto a quelli applicati,
-		e nota la distanza $d$ tra le piastre, determinare:
-		\begin{itemize}
-			\item Velocità e spostamento di un elettrone iniettato a velocità iniziale nulla
-			all'istante $t=0$.
-			\item Il campo magnetico di cut-off, cioè il campo che non consente agli elettroni
-			di raggiungere l'altro elettrodo.
-		\end{itemize}
-		(Il campo elettrico fra le due piastre può essere ritenuto costante.)
+	Un magnetron è equivalente, in linea di principio, ad un condensatore a grandi facce
+	piane e parallele, sottoposto ad una ddp $V_0$ in cui gli elettroni sono emessi in
+	posizione $(x,\,y) = (0,\,0)$ con velocità iniziale nulla (Figura \ref{fig:magnetron}). Tra
+	le due piastre è presente un campo magnetico $\vec{B} = B_0 \hat{k}$. Trascurando i campi
+	elettrici e magnetici dovuti agli elettroni sulle piastre rispetto a quelli applicati,
+	e nota la distanza $d$ tra le piastre, determinare:
+	\begin{itemize}
+		\item Velocità e spostamento di un elettrone iniettato a velocità iniziale nulla
+		all'istante $t=0$.
+		\item Il campo magnetico di cut-off, cioè il campo che non consente agli elettroni
+		di raggiungere l'altro elettrodo.
+	\end{itemize}
+	(Il campo elettrico fra le due piastre può essere ritenuto costante.)
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			texpreamble("\let\oldhat\hat
+			\renewcommand{\vec}[1]{\mathbf{#1}}
+			\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");		
+			size(7cm);			
+			real xmin=0,xmax=5;
+			real ymin=0,ymax=5;			
+			xaxis(Label("\small $x$",position=EndPoint,align=SE),
+			xmin, xmax, arrow=EndArrow, NoTicks);			
+			yaxis(Label("\small $y$",position=EndPoint,align=NW),
+			ymin, ymax, arrow=EndArrow, NoTicks);			
+			path magnetron_l = (-0.5,-4)--(-0.01,-4)--(-0.01,4)--(-1,4)--(-1,-4)--cycle;
+			path magnetron_dl = (-0.5,-4)--(-0.5,-6)--(2.25,-6);
+			path magnetron_Vl = (2.25,-5.75)--(2.25,-6.25);
+			path magnetron_Vr = (2.5,-5.5)--(2.5,-6.5);
+			path magnetron_dr = (2.5,-6)--(5.5,-6)--(5.5,-4);
+			path magnetron_r = (5.5,-4)--(6,-4)--(6,4)--(5.01,4)--(5.01,-4)--cycle;			
+			draw(magnetron_l);
+			draw(magnetron_dl);
+			draw(magnetron_Vl);
+			draw(magnetron_Vr);
+			draw(magnetron_dr);
+			draw(magnetron_r);
+			label("\small $V_0$",(2.375,-6),3S);
+			label("\small $\bigodot \; \vec{B}$",(2.5,-2.5));
+			fill(magnetron_l,paleblue);
+			fill(magnetron_r,paleblue);			
+			real f(real x) {return 7-sqrt(49-x^2);}
+			draw(graph(f,0,5),red+dashed,arrow=MidArrow);
+		\end{asy}
+		\caption{Magnetron}
+		\label{fig:magnetron}
+	\end{figure}
 \end{problema}
 \begin{proof}
 	\begin{enumerate}
@@ -3137,7 +3233,7 @@ Si calcolino:
 	\end{align*}
 \end{proof}
 
-\begin{problema}
+\begin{problema}%%%%% Problema 43
 	Un filo sottile infinitamente lungo corre lungo gli assi $x$ ed $y$ di un sistema di 
 	riferimento rettangolare. Il filo è percorso dalla corrente $I$ nel verso indicato in figura 
 	(FIGURA DA FARE). Determinare il campo magnetico $\vec{B}$ nel punto $P$. Porre $I = 8A$, 
@@ -3201,7 +3297,7 @@ Si calcolino:
 	$$
 \end{proof}
 
-\begin{problema}
+\begin{problema}%%%%% Problema 44
 	Una carica $q$ di massa $m$ si muove nel campo magnetico uniforme $B_0\hat{k}$. All'istante $t=0$ velocità e posizione iniziale sono rispettivamente
 	$$
 	\vec{v}(t=0) = v_{0,x}\hat{i} + v_{0,y}\hat{j} + v_{0,z}\hat{k};
@@ -3330,7 +3426,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}
+\begin{problema}%%%%% Problema 45
 	Determinare il campo magnetico nel centro $O$ delle seguenti spire di filo sottile percorse 
 	dalla corrente $I$:
 	\begin{enumerate}
@@ -3405,7 +3501,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}
+\begin{problema}%%%%% Problema 46
 	In una piattina conduttrice scorre una corrente di densità lineare 
 	$\vec{j}=12\hat{k}\,\mathrm{(A/m)}$. La piattina è situata nel piano $x=0$ tra le rette di 
 	equazioni $x=0,\,y=5\,\mathrm{(m)}$ e $x=0,\,y=1.5\,\mathrm{(m)}$. Sull'asse $z$ giace anche 
@@ -3438,7 +3534,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}
+\begin{problema}%%%%% Problema 47
 	In una lamina sottile, piana e indefinita, disposta sul piano $y=0$, scorre una corrente di 
 	densità lineare $j_0\hat{k}\,\mathrm{(A/m)}$.
 	\begin{enumerate}
@@ -3499,7 +3595,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}
+\begin{problema}%%%%% Problema 48
 	I filamenti riportati in figura (FIGURA DA FARE!) sono infinitamente lunghi e sono percorsi 
 	dalla corrente stazionaria $I$. Determinare per ciascuno di essi il campo magnetico nel punto 
 	$P$.
@@ -3539,7 +3635,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}
+\begin{problema}%%%%% Problema 49
 	Determinare quali dei seguenti vettori può essere un campo magnetico e per questi ultimi 
 	calcolare la densità di corrente $\vec{j}$;
 	\begin{enumerate}
@@ -3607,32 +3703,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-%\begin{problema}
-%	La piastra mostrata in figura (FIGURA) ha una superficie infinitamente grande ed uno spessore 
-%	finito $d\,\mathrm{(m)}$. Essa è attraversata da una densità di corrente 
-%	$j_0\hat{k}\,\mathrm{(A/m^{2})}$. Determinare il campo magnetico generato dalla corrente in 
-%	tutto lo spazio.
-%\end{problema}
-%\begin{proof}
-%	Non conosciamo le caratteristiche del materiale di cui è costituita la piastra, quindi ci limiteremo a calcolare il campo magnetico al suo esterno. Possiamo vedere la piastra come una successione di lamine di spessore infinitesimo, in cui scorre una corrente di densità lineare
-%	$j_l = j_0dy\hat{k}$. Il campo generato da una singola lamina -- già calcolato in precedenza col Teorema di Ampère -- ha modulo
-%	$$
-%	dB = \frac{\mu_0j_l}{2} = \frac{\mu_0j_0dy}{2}.
-%	$$
-%	Per trovare il campo totale, basta integrare in $dy$ su tutto lo spessore $d$:
-%	$$
-%	B = \int_{-d/2}^{d/2} dB = \int_{-d/2}^{d/2} \frac{\mu_0j_0dy}{2}
-%	= \boxed{\frac{\mu_0j_0d}{2}}.
-%	$$
-%	Al solito, il campo sarà concorde all'asse $x$ per $y<-d/2$, discorde per $y>d/2$.
-%\end{proof}
-
-
-
-
-
-
-\begin{problema}
+\begin{problema}%%%%% Problema 50
 	La piastra mostrata in figura (INSERIRE FIGURA!!!) ha una superficie infinitamente grande 
 	ed uno spessore finito $d\,[m]$.
 	Essa è attraversata da una densità di corrente $j_{0}\,\hat{k}\,[A\,m^{2}]$. Determinare il 
@@ -3679,7 +3750,7 @@ Si calcolino:
 	\end{itemize}
 \end{proof}
 
-\begin{problema}
+\begin{problema}%%%%% Problema 51
 	Un dipolo magnetico $\vec{\mu} = \mu\,\hat{z}$ è situato sull'asse di una 
 	spira circolare di raggio $R$ a distanza $z$ dal centro della spira.
 	\begin{enumerate}
@@ -3720,7 +3791,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}
+\begin{problema}%%%%% Problema 52
 	I centri delle bobine circolari mostrate in figura (INSERIRE LA FIGURA!!!)
 	sono distanti $d\,[m]$. 
 	Le bobine sono attraversata da corrente $I$. Sia $N$ il numero di spire di ciascuna di esse. 
@@ -3750,7 +3821,7 @@ Si calcolino:
 	+ x^{2} \right]^{3/2}} \hat{x}
 	\end{align*}			
 	dove $x$ è la distanza dal centro della spira.
-	 Facendo riferimento alla figura,  %mandare figura
+	 Facendo riferimento alla figura,%mandare figura
 	il generico punto $P = P(z)$ avrà distanze dalle due bobine:
 	\begin{align*}
 	r_{1} = z - \frac{d}{z}, \qquad r_{2} = z +\frac{d}{2}
@@ -3824,8 +3895,8 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}
-	Nel circuito in figura tutti gli elementi circuitali sono noti. 
+\begin{problema}%%%%% Problema 53
+	Nel circuito in Figura \ref{fig:circuito_prob_53} tutti gli elementi circuitali sono noti. 
 	Al tempo $t = 0$ l'interruttore viene chiuso. Determinare:
 	\begin{enumerate}
 		\item La carica $q = q(t)$ nell'ipotesi in cui 
@@ -3948,7 +4019,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}
+\begin{problema}%%%%% Problema 54
 	In una lastra infinitamente estesa fluisce una corrente di 
 	densità costante $j_{0}\,[A/m^{2}]$ ad eccezione che 
 	in un foro cilindrico di raggio $a$ centrato nel mezzo dello 
@@ -4003,7 +4074,7 @@ Si calcolino:
 	\end{itemize}		
 \end{proof}
 
-\begin{problema}
+\begin{problema}%%%%% Problema 55
 	Determinare il campo magnetico generato nei piani 
 	$xz$ e $yz$ da una piattina sottile infinitamente 
 	lunga e di larghezza $2a$, in cui scorra:
@@ -4097,7 +4168,7 @@ Si calcolino:
 		della bontà della relazione.
 		\item  Come nel caso precedente calcoliamo il campo nel piano $xz$. 
 		Dividiamo la piattina in fili infiniti attraversati da 
-		corrente $i = j_{0}\frac{y}{a} dy$. Per ragioni di simmetria sarà 
+		corrente $i = j_{0}\dfrac{y}{a} dy$. Per ragioni di simmetria sarà 
 		diretto lungo $\hat{y}$. Sfruttando nuovamente la legge
 		di Biot-Savart otteniamo il contributo infinitesimo al campo di 
 		due fili in posizione simmetrica:
@@ -4145,7 +4216,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}
+\begin{problema}%%%%% Problema 56
 	Un fascio di neutroni di velocità $\vec{v} = v_{0}\,\hat{x}$ 
 	viene inviato verso una regione in cui è presente un campo 
 	magnetico variabile in funzione della coordinata $y$: 
@@ -4249,8 +4320,8 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}
-	Nel circuito in figura i condensatori sono inizialmente
+\begin{problema}%%%%% Problema 57
+	Nel circuito in Figura \ref{fig:due_condensatori} i condensatori sono inizialmente
 	scarichi alla tensione $V_{0}$. All'istante $t = 0$ 
 	l'interruttore viene chiuso. Determinare come cambiano
 	le tensioni $V_{1}(t)$ e $V_{2}(t)$ ai capi
@@ -4259,12 +4330,28 @@ Si calcolino:
 		\item $C_{1} = C_{2} = C$
 		\item $R_{1} = R_{2} = R$.
 	\end{enumerate}
+	\begin{figure}[H]
+		\centering
+		\ctikzset{bipoles/length=.9cm}
+		\begin{circuitikz}[scale=.7]
+			\draw (0,0) to[C=$C_2$] (0,4)
+			to[R=$R_2$,i_>=$I_2$,*-*] (4,4)
+			to[C=$C_1$,i_>=$I_3$,-*] (4,0) to (0,0);
+			\draw (-0.1,4.5) node {$V_2$};
+			\draw (4,4.5) node {$V_1$};
+			\draw (4,4) to[R=$R_1$,i_>=$I_1$] (8,4) 
+			to[closing switch] (8,0)
+			to (4,0) to (4,0) node[ground] {};
+		\end{circuitikz}
+		\caption{Circuito del problema}
+		\label{fig:due_condensatori}
+	\end{figure}
 \end{problema}
 \begin{proof}
 	Per non appesantire la notazione ometteremo 
 	il simbolo di dipendenza dal tempo per le cariche $q$, 
 	le correnti $I$ e le tensioni $V$. Scriviamo le equazioni delle
-	due maglie in figura e del nodo ($\vec{inserire una lettera?}$): 
+	due maglie in figura e del nodo a potenziale $V_2$: 
 	\begin{align*}
 	\begin{cases}
 	V_{1} = I_{1}R	 \\
@@ -4273,20 +4360,20 @@ Si calcolino:
 	\end{cases}
 	\end{align*}
 	Ricordando la relazione valida per un condensatore piano $q = CV$, 
-	la definizione di corrente $I = \frac{dq}{dt}$ e il fatto che venga
+	la definizione di corrente $I = \dfrac{dq}{dt}$ e il fatto che venga
 	inserito un segno meno se la variazione di carica è negativa, insieme alla legge di Ohm,
 	possiamo riscrivere il sistema nel modo seguente, cercando di ottenere un'equazione
 	differenziale nella sola variabile $V_{2}$:
 	\begin{align*}
-	\begin{cases}
-	I_{1} = \frac{V_{1}}{R}	 \\
-	I_{1} = \frac{V_{2}}{R} +  C\frac{dV_{2}}{dt}\\
-	I_{1} = -C\frac{dV_{2}}{dt} - RC\frac{dI_{1}}{dt}
+	\begin{cases}\medskip
+	I_{1} = \dfrac{V_{1}}{R}	 \\\medskip
+	I_{1} = \dfrac{V_{2}}{R} +  C\dfrac{dV_{2}}{dt}\\
+	I_{1} = -C\dfrac{dV_{2}}{dt} - RC\dfrac{dI_{1}}{dt}
 	\end{cases}
 	\end{align*}
-	Osservando inoltre che : 
-	$I_{1} = -I_{2} + \frac{V_{2}}{R} 
-	= C\frac{dV_{2}}{dt} + \frac{V_{2}}{R}$
+	Osservando inoltre che  
+	$I_{1} = -I_{2} + \dfrac{V_{2}}{R} 
+	= C\dfrac{dV_{2}}{dt} + \dfrac{V_{2}}{R}$
 	e sottraendo la seconda equazione alla terza si ottiene:
 	\begin{align*}
 	&RC^{2}\frac{d^{2}V_{2}}{dt^{2}} + 3C\frac{dV_{2}}{dt}
@@ -4308,13 +4395,29 @@ Si calcolino:
 	\end{align*}	
 \end{proof}
 
-\begin{problema}
-	Gli elementi circuitali del circuito in figura 
+\begin{problema}%%%%% Problema 58
+	Gli elementi circuitali del circuito in Figura \ref{fig:wheatstone}
 	sono tutti noti. Determinare:
 	\begin{enumerate}
 		\item La corrente $I$ fornita dal generatore.
 		\item La differenza di potenziale tra i punti $B$ e $C$.
 	\end{enumerate}
+	\begin{figure}[H]
+		\centering
+		\ctikzset{bipoles/length=.9cm}
+		\begin{circuitikz}[scale=.7]
+			\draw (0,0) to[battery=$V_0$] (0,8) to (6,8) to (6,7)
+			to[R=$R$] (9,4) to[R=$2R$] (6,1) to (6,0) to (0,0);
+			\draw (6,7) to[R=$2R$] (3,4) to[R=$R$] (6,1);
+			\draw (3,4) to[R=$R$] (9,4);
+			\draw (6.2,7.2) node {$A$};
+			\draw (2.8,4) node {$B$};
+			\draw (9.2,4) node {$C$};
+			\draw (6.2,0.8) node {$D$};
+		\end{circuitikz}
+		\caption{Circuito del problema}
+		\label{fig:wheatstone}
+	\end{figure}
 \end{problema}
 \begin{proof}
 	\begin{enumerate}
@@ -4361,7 +4464,7 @@ Si calcolino:
 	\end{enumerate}
 \end{proof}
 
-\begin{problema}
+\begin{problema}%%%%% Problema 59
 	Il solenoide a forma toroidale mostrato in figura consiste 
 	in un nucleo di permeabilità $\mu$ attorno a cui sono 
 	avvolte $N$ spire. Il materiale del nucleo è lineare. 
@@ -4413,7 +4516,7 @@ Si calcolino:
 	\end{align*}
 \end{proof}
 
-\begin{problema}[$60$]
+\begin{problema}%%%%% Problema 60
 	Un filo rettilineo sottile infinitamente lungo è 
 	disposto sull'asse di un avvolgimento toroidale. 
 	Nel filo fluisce una corrente  stazionaria $I$. 
