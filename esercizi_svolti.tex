@@ -87,10 +87,11 @@
 				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
 				size(8cm);
 				real xmin=-2,xmax=12;
-				real ymin=-8,ymax=8;
+				real ymin=-7,ymax=7;
 				xaxis(Label("\small $x$",position=EndPoint,align=SE),
 				xmin, xmax, arrow=EndArrow, NoTicks);
-					
+				yaxis(Label("\small $y$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow, NoTicks);
 				dot(Label("$P(x,\,y,\,z)$",align=NNE),(10,0));
 				draw("$\vec{r}$",(0,0)--(10,0),1bp+black,Arrow(10bp,8));
 				draw(Label("$\vec{r}-\vec{r'}$",position=MidPoint,NE),
