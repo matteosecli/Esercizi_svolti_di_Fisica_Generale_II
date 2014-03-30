@@ -4085,10 +4085,83 @@ Si calcolino:
 		j_{0}\,\hat{k}\qquad se \quad  -a < y < 0	\\
 		-j_{0}\,\hat{k}\qquad se \quad  0 < y < a \\
 		\end{cases}$
+		\begin{figure}[H]
+			\centering
+			\begin{asy}[height=6cm,inline=true,attach=false,viewportwidth=\linewidth]
+				import three;
+				import graph3;
+				import solids;
+				currentprojection=obliqueX(-45);
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				//size(6cm);
+				size3(6cm);		//IgnoreAspect
+				real xmin=-2,xmax=6;
+				real ymin=-4,ymax=6;
+				real zmin=-2,zmax=4;
+				xaxis3(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow3, NoTicks3);
+				yaxis3(Label("\small $y$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow3, NoTicks3);
+				zaxis3(Label("\small $z$",position=EndPoint,align=NW),
+				zmin, zmax, arrow=EndArrow3, NoTicks3);
+				label("\small $a$",(0,2,0),SE);
+				label("\small $-a$",(0,-2,0),SW);
+				draw((0,-2,-2)--(0,-2,4),linewidth(1bp));
+				draw((0,2,-2.5)--(0,2,3.5),linewidth(1bp));
+				path3 left_side_p = (0,-2,-2)--(0,-2,4)--(0,0,3.75)--(0,0,-2.25)--cycle;
+				path3 right_side_p = (0,2,-2.5)--(0,2,3.5)--(0,0,3.75)--(0,0,-2.25)--cycle;
+				surface left_side=surface(left_side_p);
+				surface right_side=surface(right_side_p);
+				draw(left_side,heavyblue+opacity(0.4));
+				draw(right_side,heavyred+opacity(0.4));
+				draw(Label("\small $\vec{j}$"),
+				(0,-1,0)--(0,-1,2),arrow=Arrow3(16bp,8),1bp+blue);
+				draw(Label("\small $\vec{-j}$"),
+				(0,1,2)--(0,1,0),arrow=Arrow3(16bp,8),1bp+red);
+			\end{asy}
+			\caption{Piattina con correnti in direzioni opposte.}
+			\label{fig:piattina_caso_a}
+		\end{figure}
 		\item La densità di corrente:
 		\begin{equation}
 		\vec{j} =\frac{j_{0}\,y}{a}\hat{k} \qquad se \quad  -a < y < a
 		\end{equation}
+		\begin{figure}[H]
+			\centering
+			\begin{asy}[height=6cm,inline=true,attach=false,viewportwidth=\linewidth]
+				import three;
+				import graph3;
+				import solids;
+				currentprojection=obliqueX(-45);
+				texpreamble("\let\oldhat\hat
+				\renewcommand{\vec}[1]{\mathbf{#1}}
+				\renewcommand{\hat}[1]{\oldhat{\mathbf{#1}}}");
+				//size(6cm);
+				size3(6cm);		//IgnoreAspect
+				real xmin=-2,xmax=6;
+				real ymin=-4,ymax=6;
+				real zmin=-2,zmax=4;
+				xaxis3(Label("\small $x$",position=EndPoint,align=SE),
+				xmin, xmax, arrow=EndArrow3, NoTicks3);
+				yaxis3(Label("\small $y$",position=EndPoint,align=NW),
+				ymin, ymax, arrow=EndArrow3, NoTicks3);
+				zaxis3(Label("\small $z$",position=EndPoint,align=NW),
+				zmin, zmax, arrow=EndArrow3, NoTicks3);
+				label("\small $a$",(0,2,0),SE);
+				label("\small $-a$",(0,-2,0),SW);
+				draw((0,-2,-2)--(0,-2,4),linewidth(1bp));
+				draw((0,2,-2.5)--(0,2,3.5),linewidth(1bp));
+				path3 surface_p = (0,-2,-2)--(0,-2,4)--(0,2,3.5)--(0,2,-2.5)--cycle;
+				surface surface=surface(surface_p);
+				draw(surface,heavyblue +opacity(0.4));
+				draw(Label("\small $\vec{j}$"),
+				(0,0,0)--(0,0,2),arrow=Arrow3(16bp,8),1bp+blue);
+			\end{asy}
+			\caption{Piattina con corrente in un'unica direzione.}
+			\label{fig:piattina_caso_b}
+		\end{figure}
 	\end{enumerate}
 \end{problema}
 \begin{proof}
@@ -4139,7 +4212,8 @@ Si calcolino:
 		& =  \frac{\mu_{0}j_{0}}{2 \pi}\ln\left(\left|
 		\frac{l + a}{a}\right|\right)
 		\end{align*}
-		Facendo riferimento alla figura (INSERIRE FIGURA!!!), sia $l_{1} = y$ la distanza 
+		Facendo riferimento alla Figura \ref{fig:piattina_caso_a}, 
+		sia $l_{1} = y$ la distanza 
 		di un punto $P \in yz$ dalla piattina attraversata da 
 		$j_{0}$, e $l_{2} = y - a$ la distanza dalla seconda. 
 		Utilizzando la relazione appena trovata e considerando 
@@ -4549,9 +4623,12 @@ Si calcolino:
 
 \begin{problema}%%%%% Problema 60
 	Un filo rettilineo sottile infinitamente lungo è 
-	disposto sull'asse di un avvolgimento toroidale. 
+	disposto sull'asse di un avvolgimento toroidale
+	a sezione rettangolare. 
 	Nel filo fluisce una corrente  stazionaria $I$. 
-	Il toroide ha un raggio medio $R_{0}$ ed $N$ spire. 
+	Il toroide ha raggio medio $R_{0}$, 
+	differenza fra i raggi $b$, altezza $h$ ed 
+	è costituito da $N$ spire.
 	Nell'ipotesi che $R_{0} \gg b$, si calcoli:
 	\begin{enumerate}
 		\item L'induttanza mutua $M$ tra il filo e la 
